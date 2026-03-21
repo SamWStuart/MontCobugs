@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#1A3C35">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<title>LA County Invertebrate Field Guide — v2.012</title>
+<title>LA County Invertebrate Field Guide — v2.014</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -165,7 +165,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <meta name="twitter:description" content="Free open-source field guide to 1,000+ invertebrate species of LA County. Photos, field marks, seasonality, maps.">
 </head>
 <body>
-<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v2.012</span></h1><p class="sub" id="hSub">1,016 species + 5 subspecies across 15 taxa groups</p></header>
+<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v2.014</span></h1><p class="sub" id="hSub">1,016 species + 5 subspecies across 15 taxa groups</p></header>
 <nav class="tbar" id="tBar"></nav>
 <main class="cnt">
 <div class="llb" id="llBar"></div>
@@ -283,15 +283,14 @@ if(priority){pq.unshift(...newItems);}else{pq.push(...newItems);}
 ppq();}
 
 async function fetchLL(){if(!state.inatUsername)return;state.lifeListLoading=true;rLL();
-const revAlias={};for(const[k,v]of Object.entries(NAME_ALIASES)){revAlias[v.toLowerCase()]=k.toLowerCase();revAlias[k.toLowerCase()]=v.toLowerCase();}
 const res={};for(const k of TAXA_ORDER){const cfg=TAXA[k];
-try{const r=await fetch(`https://api.inaturalist.org/v1/observations/species_counts?user_id=${encodeURIComponent(state.inatUsername)}&place_id=${cfg.placeId}&taxon_id=${cfg.iNatTaxonId}&hrank=species&per_page=500`);
+try{const r=await fetch(`https://api.inaturalist.org/v1/observations/species_counts?user_id=${encodeURIComponent(state.inatUsername)}&place_id=${cfg.placeId}&taxon_id=${cfg.iNatTaxonId}&per_page=500`);
 const d=await r.json();const ids=new Set(),names=new Set();
-for(const x of(d.results||[])){const rk=x.taxon?.rank;if(rk!=='species'&&rk!=='subspecies')continue;if(x.taxon?.id)ids.add(x.taxon.id);if(x.taxon?.name){const n=x.taxon.name.toLowerCase();names.add(n);const p=n.split(' ');if(p.length>=3)names.add(p[0]+' '+p[1]);if(revAlias[n])names.add(revAlias[n]);if(p.length>=2){const bi=p[0]+' '+p[1];if(revAlias[bi])names.add(revAlias[bi]);}}}
+for(const x of(d.results||[])){if(x.taxon?.id)ids.add(x.taxon.id);if(x.taxon?.name)names.add(x.taxon.name.toLowerCase());}
 res[k]={ids,names};}catch{res[k]={ids:new Set(),names:new Set()};}}
 state.lifeListData=res;state.lifeListLoading=false;render();}
 
-function isO(sp,taxon){const d=state.lifeListData[taxon||state.activeTaxon];if(!d)return false;const r=state.resolvedTids[sp.sn];if(r&&d.ids.has(r))return true;const sn=sp.sn.toLowerCase();if(d.names.has(sn))return true;const alias=NAME_ALIASES[sp.sn];if(alias&&d.names.has(alias.toLowerCase()))return true;const parts=sn.split(' ');if(parts.length>=3&&d.names.has(parts[0]+' '+parts[1]))return true;return false;}
+function isO(sp,taxon){const d=state.lifeListData[taxon||state.activeTaxon];if(!d)return false;const r=state.resolvedTids[sp.sn];if(r&&d.ids.has(r))return true;const sn=sp.sn.toLowerCase();if(d.names.has(sn))return true;const parts=sn.split(' ');if(parts.length>=3&&d.names.has(parts[0]+' '+parts[1]))return true;return false;}
 
 function sC(){const c={};for(const k of TAXA_ORDER)c[k]=(SPECIES_DATA[k]||[]).filter(sp=>!sp.ssp).length;return c;}
 function sspC(k){return(SPECIES_DATA[k]||[]).filter(sp=>sp.ssp).length;}
@@ -307,7 +306,8 @@ if(hasOF){for(const k of TAXA_ORDER){let fl=SPECIES_DATA[k]||[];
 if(state.observedFilter==='observed')fl=fl.filter(s=>isO(s,k));
 else if(state.observedFilter==='unobserved')fl=fl.filter(s=>!isO(s,k));
 fsc[k]=fl.filter(s=>!s.ssp).length;}}
-bar.innerHTML=TAXA_ORDER.map(k=>{const t=TAXA[k],a=state.activeTaxon===k;const den=hasOF?(fsc[k]||0):(sc[k]||0);return`<button class="ttab ${a?'active':''}" data-t="${k}"><span class="em">${t.emoji}</span><span class="lb">${t.label}</span>${sc[k]>0?`<span class="ct ${(lc[k]||0)>0?'ho':''}">${lc[k]||0}/${den}</span>`:''}</button>`;}).join('');
+const hasLL=state.inatUsername&&!state.lifeListLoading&&Object.keys(state.lifeListData).length>0;
+bar.innerHTML=TAXA_ORDER.map(k=>{const t=TAXA[k],a=state.activeTaxon===k;const den=hasOF?(fsc[k]||0):(sc[k]||0);const ctStr=hasLL?`<span class="ct ${(lc[k]||0)>0?'ho':''}">${lc[k]||0}/${den}</span>`:`<span class="ct">${den}</span>`;return`<button class="ttab ${a?'active':''}" data-t="${k}"><span class="em">${t.emoji}</span><span class="lb">${t.label}</span>${ctStr}</button>`;}).join('');
 bar.querySelectorAll('.ttab').forEach(b=>b.addEventListener('click',()=>{saveT(b.dataset.t);render();}));}
 
 function rLL(){const el=document.getElementById('llBar'),sc=sC(),lc=lC();
@@ -427,7 +427,7 @@ ${(()=>{const c=CONSERVATION[sp.sn]||CONSERVATION[sp.sn.split(' ').slice(0,2).jo
 <div class="ds-map" id="dsMap"></div>
 </div>
 <div class="ds-fms">${rFM(sp)}</div>
-<div class="ds-acts"><a class="ds-btn ds-btn-inat" href="${mapUrl}" target="_blank" rel="noopener noreferrer">View on iNaturalist →</a>${state.inatUsername&&tid?`<a class="ds-btn ds-btn-myobs" href="#" onclick="event.preventDefault();var w='https://www.inaturalist.org/observations?taxon_id=${tid}&user_login=${encodeURIComponent(state.inatUsername)}';var t=setTimeout(function(){window.open(w,'_blank')},1200);window.addEventListener('pagehide',function(){clearTimeout(t)},{once:true});window.location='inaturalist://observations?taxon_id=${tid}&user_login=${encodeURIComponent(state.inatUsername)}';">My Observations →</a>`:''}</div>
+<div class="ds-acts"><a class="ds-btn ds-btn-inat" href="${mapUrl}" target="_blank" rel="noopener noreferrer">View on iNaturalist →</a>${state.inatUsername&&tid?`<a class="ds-btn ds-btn-myobs" href="https://www.inaturalist.org/observations?user_id=${encodeURIComponent(state.inatUsername)}&taxon_id=${tid}&verifiable=any" target="_blank" rel="noopener noreferrer">My Observations →</a>`:''}</div>
 ${ca&&ca.attr?`<div class="ds-attr">${eH(ca.attr)}</div>`:''}
 </div></div></div>`;
 document.body.insertAdjacentHTML('beforeend',h);
