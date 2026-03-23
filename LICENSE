@@ -672,3 +672,79 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
+
+================================================================================
+
+ADDITIONAL DISCLAIMER — IMPORTANT, PLEASE READ
+
+LA County Invertebrate Field Guide
+Copyright (C) 2025-2026 Rhys Marsh
+https://github.com/rhysmarsh/LAbugs
+
+This field guide application and its species database are provided FOR
+INFORMATIONAL AND EDUCATIONAL PURPOSES ONLY.
+
+SPECIES IDENTIFICATIONS, VENOM/STING WARNINGS, CONSERVATION STATUS
+DESIGNATIONS, AND ALL OTHER CONTENT ARE PROVIDED "AS-IS" WITH NO
+WARRANTY OF ACCURACY, COMPLETENESS, OR FITNESS FOR ANY PARTICULAR PURPOSE.
+
+DO NOT HANDLE, PROVOKE, OR OTHERWISE INTERACT WITH ANY INVERTEBRATE
+BASED SOLELY ON INFORMATION IN THIS GUIDE. Misidentification of venomous
+or medically significant species (e.g., widow spiders, scorpions, kissing
+bugs) can cause serious injury.
+
+ANY ACTION TAKEN OR NOT TAKEN BASED ON INFORMATION IN THIS GUIDE IS SOLELY
+AT THE USER'S OWN RISK. The author and contributors assume no liability
+whatsoever for any damages, injuries, or losses arising from direct or
+indirect use of this guide, including but not limited to:
+
+  - Misidentification of species
+  - Reliance on venom, sting severity, or medical significance information
+  - Decisions regarding pest management or species control
+  - Medical or allergic reactions from invertebrate contact or stings
+  - Property damage from invasive species management decisions
+
+This guide is NOT a substitute for:
+  - Professional entomological identification by a qualified expert
+  - Medical advice from a licensed healthcare provider
+  - Pest management guidance from certified professionals
+  - Legal advice regarding protected species or regulations
+
+Always consult multiple authoritative sources and qualified professionals
+before making any identification-dependent decisions. When in doubt about
+a species identification, DO NOT interact with the organism.
+
+Conservation status designations (IUCN Red List, ESA, CESA, CA SSC) are
+subject to change. Verify current status with the IUCN Red List
+(iucnredlist.org), USFWS ECOS (ecos.fws.gov), and the California Natural
+Diversity Database (CNDDB).
+
+================================================================================
+
+PHOTO AND DATA ATTRIBUTION
+
+Species photographs are fetched from iNaturalist (inaturalist.org) via the
+taxa/autocomplete API and are subject to their respective Creative Commons
+licenses as set by individual photographers. This application does not store
+or redistribute photographs; they are loaded dynamically from iNaturalist's
+servers.
+
+Species data in this guide was compiled from the following public sources:
+
+  - Powell, J.A. & Hogue, C.L. California Insects (1979)
+  - Hogue, C.L. Insects of the Los Angeles Basin (1993)
+  - Emmel, T.C. & Emmel, J.F. The Butterflies of Southern California (1973)
+  - Garth, J.S. & Tilden, J.W. California Butterflies (1986)
+  - BugGuide (bugguide.net)
+  - iNaturalist LA County checklists and observation data (inaturalist.org)
+  - Arroyos & Foothills Conservancy invertebrate surveys
+  - California Bumble Bee Atlas (cabumblebeeatlas.org)
+  - BumbleBeeWatch.org
+  - socalbutterflies.com
+  - Essig Museum of Entomology, UC Berkeley
+  - UC Integrated Pest Management Program (ipm.ucanr.edu)
+  - Xerces Society for Invertebrate Conservation
+
+Map data: Esri, iNaturalist
+Observation data: iNaturalist API (place_id=962, Los Angeles County)

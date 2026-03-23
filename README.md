@@ -2,7 +2,7 @@
 
 **[labugs.org](https://labugs.org)** · v2.015
 
-> For informational purposes only — not a substitute for professional identification. Species IDs may contain errors.
+> For informational purposes only — not a substitute for expert identification. Species IDs may contain errors.
 
 A free, open-source field guide to 1,016 invertebrate species (+ 5 subspecies) of Los Angeles County, California. Single-file PWA — no frameworks, no build step, no dependencies.
 
@@ -162,6 +162,6 @@ Service worker cache name: `invertebrate-guide-v2.015`
 
 ## License
 
-GPL v3. See [LICENSE](LICENSE).
+GPL v3. See [LICENSE](LICENSE) for full terms of use and license.
 
 Species photographs are individually licensed under Creative Commons by their respective iNaturalist contributors.

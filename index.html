@@ -170,7 +170,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <meta name="twitter:description" content="Free open-source field guide to 1,000+ invertebrate species of LA County. Photos, field marks, seasonality, maps.">
 </head>
 <body>
-<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v2.015</span></h1><p class="sub" id="hSub">1,016 species + 5 subspecies across 15 taxa groups · For informational purposes only</p></header>
+<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v2.015</span></h1><p class="sub" id="hSub">1,016 species + 5 subspecies across 15 taxa groups<br>For informational purposes only — not a substitute for expert identification</p></header>
 <nav class="tbar" id="tBar"></nav>
 <main class="cnt">
 <div class="llb" id="llBar"></div>
@@ -184,7 +184,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <div class="ti" id="tInfo"></div>
 <div id="spCont"></div>
 </main>
-<footer class="ft"><div style="font-size:9px;font-weight:400;font-family:var(--fb);opacity:0.5;margin-bottom:6px">For informational purposes only — not a substitute for professional identification. Species IDs may contain errors. <a href="LICENSE" style="color:var(--gold);opacity:0.7">GPL v3</a></div>Field guide by Rhys Marsh<div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Ref: Arroyos Foothills Conservancy, CA Bumble Bee Atlas, BumbleBeeWatch, socalbutterflies.com, Essig Museum, UC IPM</div><a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a></footer>
+<footer class="ft">Field guide by Rhys Marsh<div class="ftc" style="margin-top:6px">For informational purposes only — not a substitute for expert identification. By using this app you agree to the <a href="https://github.com/rhysmarsh/LAbugs/blob/main/LICENSE" style="color:var(--gold);opacity:0.7;text-decoration:underline">terms &amp; license</a>.</div><div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Ref: Arroyos Foothills Conservancy, CA Bumble Bee Atlas, BumbleBeeWatch, socalbutterflies.com, Essig Museum, UC IPM</div><a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a></footer>
 <div class="mo hid" id="mOvr"><div class="mm"><div class="mmh"><div><div class="mmt" id="mTit"></div><div class="mms" id="mSub"></div></div><button class="mmc" id="mCl">&times;</button></div><div class="mc" id="mCon"></div><div class="mml"><a id="mLnk" href="#" target="_blank" rel="noopener noreferrer">Open in iNaturalist</a></div></div></div>
 <script>
 const STATUS={"common": {"label": "Common", "color": "#3A9B68", "bg": "#E8F5E9"}, "uncommon": {"label": "Uncommon", "color": "#BFA46E", "bg": "#FFF8E1"}, "rare": {"label": "Rare", "color": "#D4760A", "bg": "#FFF3E0"}, "endangered": {"label": "Endangered", "color": "#C62828", "bg": "#FFEBEE"}, "vagrant": {"label": "Vagrant", "color": "#5C6BC0", "bg": "#E8EAF6"}, "extirpated": {"label": "Extirpated", "color": "#78909C", "bg": "#ECEFF1"}, "historical": {"label": "Historical", "color": "#9E9E9E", "bg": "#F5F5F5"}};
@@ -303,7 +303,7 @@ function sspC(k){return(SPECIES_DATA[k]||[]).filter(sp=>sp.ssp).length;}
 function lC(){const c={};for(const k of TAXA_ORDER){const d=state.lifeListData[k];if(!d){c[k]=0;continue;}let n=0;for(const sp of(SPECIES_DATA[k]||[])){if(sp.ssp)continue;if(isO(sp,k))n++;}c[k]=n;}return c;}
 
 function fmtN(n){return n.toLocaleString();}
-function rSub(){const t=TAXA_ORDER.reduce((a,k)=>a+(SPECIES_DATA[k]||[]).length,0);const ssp=TAXA_ORDER.reduce((a,k)=>a+sspC(k),0);document.getElementById('hSub').textContent=ssp>0?`${fmtN(t-ssp)} species + ${ssp} subspecies across ${TAXA_ORDER.length} taxa groups \u00b7 For informational purposes only`:`${fmtN(t)} species across ${TAXA_ORDER.length} taxa groups \u00b7 For informational purposes only`;}
+function rSub(){const t=TAXA_ORDER.reduce((a,k)=>a+(SPECIES_DATA[k]||[]).length,0);const ssp=TAXA_ORDER.reduce((a,k)=>a+sspC(k),0);document.getElementById('hSub').innerHTML=ssp>0?`${fmtN(t-ssp)} species + ${ssp} subspecies across ${TAXA_ORDER.length} taxa groups<br>For informational purposes only \u2014 not a substitute for expert identification`:`${fmtN(t)} species across ${TAXA_ORDER.length} taxa groups<br>For informational purposes only \u2014 not a substitute for expert identification`;}
 
 function rTB(){const bar=document.getElementById('tBar'),sc=sC(),lc=lC();
 const hasOF=!!state.observedFilter;
@@ -390,8 +390,8 @@ if(!list.length&&xtrHtml){cont.innerHTML=xtrHtml+`<div class="es">No matches in 
 const tc=TAXA[state.activeTaxon],groups={};
 for(const sp of list){if(!groups[sp.fam])groups[sp.fam]=[];groups[sp.fam].push(sp);}
 let html=xtrHtml;
-const sortedGroups=Object.entries(groups);if(state.famSort==='alpha')sortedGroups.sort((a,b)=>a[0].localeCompare(b[0]));
-for(const[fam,spp]of sortedGroups){
+const sortedFamGroups=Object.entries(groups);if(state.famSort==='alpha')sortedFamGroups.sort((a,b)=>a[0].localeCompare(b[0]));
+for(const[fam,spp]of sortedFamGroups){
 const fc=tc.familyColors[fam]||'#999';
 html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${fam}<span class="fgc">(${spp.length})</span></div><div class="sg">`;
 for(const sp of spp){const obs=isO(sp),ca=state.photoCache[sp.sn];
