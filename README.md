@@ -1,178 +1,132 @@
 # LA County Invertebrate Field Guide
 
-> **⚠️ FOR INFORMATIONAL PURPOSES ONLY.** Do not handle, provoke, or otherwise interact with any invertebrate based solely on information in this guide. Misidentification of venomous or medically significant species can cause serious injury. Any action taken or not taken is solely at the user's own risk. See [LICENSE](LICENSE) for full disclaimer.
+**Version 3.000** · 1,060+ species · [labugs.org](https://labugs.org)
 
-A comprehensive self-contained PWA field guide to the invertebrates of Los Angeles County, California — from coastal tide pools to 10,000 ft alpine, Mojave Desert edge to Channel Islands.
-
-**[Live site →](https://labugs.org)**
-
-## Stats
-
-| Taxa | Count |
-|---|---|
-| 🦋 Butterflies | 146 (+5 ssp) |
-| 🐝 Bumblebees | 9 |
-| 🪁 Dragonflies & Damselflies | 72 |
-| 🪰 Hoverflies | 25 |
-| 🪻 Native Bees | 89 |
-| 🕷️ Arachnids | 106 |
-| 🦇 Moths | 139 |
-| 🐝 Wasps & Ants | 80 |
-| 🪲 Beetles | 131 |
-| 🪲 True Bugs | 74 |
-| 🦗 Grasshoppers & Orthoptera | 40 |
-| 🪰 Flies | 52 |
-| 🐌 Snails & Slugs | 24 |
-| 🐛 Myriapods | 14 |
-| 🦀 Isopods & Crustaceans | 15 |
-| **Total** | **1,016 + 5 ssp** |
-
-- **~880 native** · 136 introduced (non-native)
-- **39 invasive species** flagged (ecological/economic harm)
-- **15 taxa groups** across ~188 families
-- **14 conservation-listed species** (IUCN, ESA, CESA, CA SSC)
-- **3 federally Endangered** (Palos Verdes Blue, El Segundo Blue, Quino Checkerspot)
-- **9 bumblebee species** including 3 CESA/IUCN-listed
-- **2 fairy shrimp** (federally Endangered/Threatened vernal pool specialists)
-- **106 arachnids** — spiders, scorpions, ticks, tarantulas, pseudoscorpions, solifuges, vinegaroons
-- **Bidirectional NAME_ALIASES** for 30+ iNat reclassifications (Plebejus → Icaricia, Speyeria → Argynnis, Lycaena → Tharsalea, etc.)
-
-## Features
-
-- **Single-file PWA** — works offline after first load; installable on iOS/Android
-- **iNaturalist integration** — photos via taxa/autocomplete API, cached in IndexedDB; life list via species_counts API
-- **Satellite observation maps** — iNat occurrence data on ESRI basemap with LA County bounds
-- **Introduced (✦) and Invasive (⚠ INV) badges** — non-native species flagged; invasive species causing ecological/economic harm highlighted in red
-- **Conservation badges** — IUCN Red List, ESA, CESA, and CA SSC listings with detailed notes
-- **Life list tracking** — enter your iNat username to see which LA County species you've observed, with per-taxon progress bars
-- **Collapsible family chips** — family filter with species counts, zero-count auto-hide, A→Z sort toggle synced to photo grid order
-- **Status/Observed filter chips** — filter by conservation status or life list observation status
-- **Cross-taxon search** — search any species name from any tab, with "Also found in" links
-- **Phenology bars** — monthly activity/flight period with peak months highlighted
-- **Elevation display** — coast/lowland/foothill/mid-elevation/mountain range for each species
-- **Host plant cross-references** — larval food plants and ecological associations
-- **Alias-aware life list** — handles iNat reclassifications with bidirectional NAME_ALIASES
-- **iOS edge-to-edge** — respects safe area insets on notched devices
+A free, open-source progressive web app (PWA) field guide to the invertebrates of Los Angeles County, California. Covers butterflies, moths, bees, wasps, beetles, dragonflies, spiders, scorpions, snails, and more — with iNaturalist-sourced photos, field marks, seasonality charts, and observation maps.
 
 ## Architecture
 
-Self-contained single HTML file (~540 KB). All species data, CSS, and JS inlined. No build step, no dependencies, no framework.
+**v3 split architecture.** The app shell (HTML, CSS, JS) loads instantly at 73 KB. Species data loads on demand from 15 per-group JSON files (499 KB total). Service worker caches everything for offline use.
 
-- Photos: fetched from iNat `/taxa/autocomplete`, cached in IndexedDB (`invertGuidePhotos`)
-- Life list: iNat `species_counts` API with place_id=962 (LA County)
-- Maps: ESRI satellite tiles + iNat observation overlay, bounds [[33.70,-118.95],[34.82,-117.65]]
-- Fonts: EB Garamond (serif) + DM Sans (sans-serif) via Google Fonts
-- Branding: dark forest green `#1A3C35`, muted gold `#BFA46E`, warm cream `#FAF8F4`
+```
+labugs.org/
+├── index.html              73 KB   App shell (CSS, JS, SEO, conservation data)
+├── manifest.json            1 KB   PWA manifest
+├── sw.js                    1 KB   Service worker (cache-first, precaches all data)
+├── data/
+│   ├── butterflies.json    85 KB   151 species
+│   ├── moths.json          68 KB   141 species
+│   ├── beetles.json        57 KB   134 species
+│   ├── arachnids.json      47 KB   106 species
+│   ├── nativeBees.json     38 KB    89 species
+│   ├── wasps.json          38 KB    82 species
+│   ├── trueBugs.json       38 KB    84 species
+│   ├── flies.json          34 KB    68 species
+│   ├── dragonflies.json    33 KB    71 species
+│   ├── orthoptera.json     22 KB    44 species
+│   ├── snails.json         15 KB    28 species
+│   ├── hoverflies.json     13 KB    28 species
+│   ├── myriapods.json       9 KB    16 species
+│   ├── isopods.json         8 KB    16 species
+│   └── bumblebees.json      5 KB     9 species
+└── icons/
+    ├── app-icon-180x180.png         Apple touch icon
+    ├── app-icon-192x192.png         Android/PWA icon
+    └── app-icon-512x512.png         Splash/large icon
+```
 
-## Sources
+### Capacity
 
-This guide was compiled from the following authoritative references:
+At current data density (479 bytes/species), the architecture supports ~4,400 species within a 2 MB data budget — well beyond the estimated 2,500-3,500 identifiable macro-invertebrate species in LA County.
 
-**Butterflies**
-- Emmel & Emmel, *Butterflies of Southern California* (1973)
-- Garth & Tilden, *California Butterflies* (1986)
-- socalbutterflies.com
+## Features
 
-**General Entomology**
-- Powell & Hogue, *California Insects* (1979)
-- Hogue, *Insects of the Los Angeles Basin* (1993)
-
-**Bees & Pollinators**
-- California Bumble Bee Atlas (cabumblebeeatlas.org)
-- BumbleBeeWatch.org
-- Xerces Society for Invertebrate Conservation
-
-**General Reference**
-- BugGuide (bugguide.net)
-- iNaturalist LA County checklists and observation data (inaturalist.org)
-- Arroyos & Foothills Conservancy invertebrate surveys
-- Essig Museum of Entomology, UC Berkeley
-- UC Integrated Pest Management Program (ipm.ucanr.edu)
+- **1,067 species** across 15 taxa groups
+- **Progressive loading** — active tab renders immediately; other groups load in parallel
+- **Offline-first PWA** — service worker caches core + all data files
+- **iNaturalist integration** — live observation maps and photo galleries
+- **Life list tracker** — mark species observed; persists in IndexedDB
+- **Subspecies bundling** — parent cards show subspecies observation status
+- **Conservation badges** — IUCN, ESA, CESA, NatureServe for 17 imperiled species
+- **Invasive species flagging** — 44 invasive + 147 introduced species marked
+- **Seasonality charts** — monthly activity bars with peak indicators
+- **Search** — by common name, scientific name, or family (cross-taxon)
+- **iOS safe area support** — notch/Dynamic Island handling in standalone mode
+- **SEO** — JSON-LD structured data, OpenGraph, Twitter cards
 
 ## Deployment
 
-The deploy zip contains everything needed for Netlify drag-and-drop deployment:
+1. Copy the entire directory structure to your web root
+2. Serve over HTTPS (required for service worker)
+3. Create `icons/og-image.png` (1200×630px) for social sharing previews
 
-```
-index.html          # Complete self-contained PWA
-sw.js               # Service worker for offline caching
-manifest.json       # PWA manifest
-_headers            # Cache control + security headers
-_redirects          # Netlify redirect rules
-icons/              # App icons (192px, 512px)
-LICENSE             # GPL v3 + disclaimer
-README.md           # This file
-```
+No build step. No npm dependencies. No server-side rendering. CDN dependencies (Google Fonts, Leaflet, iNaturalist API) load at runtime.
 
-Canonical URL: `https://labugs.org`
+## Species Coverage
 
-## Species Data Schema
+| Group | Species | Families | Highlights |
+|---|---|---|---|
+| Butterflies | 151 | 6 | PV Blue (FE), El Segundo Blue (FE), Quino Checkerspot (FE) |
+| Moths | 141 | 24 | Sphingidae (21), Erebidae (22), Noctuidae (24) |
+| Beetles | 134 | 32 | Tiger beetles, fireflies, PSHB invasive, ladybugs |
+| Arachnids | 106 | 40 | Spiders, scorpions, tarantulas, solifuges |
+| Native Bees | 89 | 6 | Carpenter bees to fairy bees; 50+ solitary |
+| True Bugs | 84 | 35 | Stink bugs, assassin bugs, cicadas, leafhoppers |
+| Wasps | 82 | 20 | Tarantula hawks, ants, termites, velvet ants |
+| Dragonflies | 71 | 8 | 43 dragonflies + 28 damselflies |
+| Flies | 68 | 34 | *Aedes* invasive mosquitoes, robber flies, blow flies |
+| Orthoptera | 44 | 13 | Grasshoppers, mantids, cockroaches, silverfish, snakeflies |
+| Hoverflies | 28 | 4 | Aphid predators, bee mimics |
+| Snails | 28 | 17 | 3 NatureServe G1 endemic shoulderbands |
+| Myriapods | 16 | 11 | Giant centipede, Catalina Island endemic |
+| Isopods | 16 | 10 | Pillbugs, fairy shrimp (2 federally listed) |
+| Bumblebees | 9 | 1 | All 9 LA County *Bombus* |
 
-```javascript
-{
-  id: 'bp1',                    // Unique identifier
-  cn: 'Pipevine Swallowtail',   // Common name
-  sn: 'Battus philenor',        // Scientific name (iNat-compatible)
-  fam: 'Papilionidae',          // Family — must match familyColors key
-  st: 'rare',                   // Status: common|uncommon|rare|endangered|vagrant|extirpated|historical
-  desc: '...',                  // Description (50–300 chars)
-  elev: 'low,foot',             // Elevation: coast|low|foot|mid|high|wide
-  mo: [3,4,5,6,7,8,9],          // Active/flight months (1–12)
-  pk: [4,5],                    // Peak months (subset of mo)
-  fm: {                         // Field marks (key-value pairs)
-    Wingspan: '3–3.5 in',
-    Upperside: '...',
-    Habitat: '...',
-    vs: '...',                  // Differentiation from similar species
-  },
-  hp: 'Aristolochia californica', // Host plants / ecological associations
-  intro: true,                  // Non-native flag (optional)
-  ssp: true,                    // Subspecies flag — excluded from headline counts (optional)
-}
-```
+## Development
 
-Species in `INTRO_SET` are displayed with a ✦ marker. Species in `INVASIVE_SET` receive an additional red ⚠ INV badge.
+### Adding species
 
-### Conservation Data
+Edit `data/{group}.json` directly. Each file is a JSON array of species objects:
 
-Species with formal conservation listings have entries in the `CONSERVATION` object:
-
-```javascript
-CONSERVATION['Danaus plexippus'] = {
-  iucn: 'VU',                   // IUCN Red List category
-  iucnFull: 'Vulnerable',       // Full IUCN label
-  esa: 'Proposed Threatened',   // US Endangered Species Act
-  cesa: 'Candidate',            // California ESA
-  state: 'CA SSC',              // State listing (optional)
-  note: '...',                  // Detailed conservation notes
-};
+```json
+[
+  {
+    "id": "fl_e29",
+    "cn": "Common Name",
+    "sn": "Genus species",
+    "fam": "Familyidae",
+    "st": "common",
+    "desc": "Description text.",
+    "mo": [3,4,5,6,7,8,9],
+    "fm": {
+      "Size": "measurement",
+      "Color": "description",
+      "Habitat": "where found"
+    }
+  }
+]
 ```
 
-## Contributing
+If the species is introduced/invasive or has conservation status, also update `INTRO_SET`, `INVASIVE_SET`, or `CONSERVATION` in `index.html`.
 
-Species additions, corrections, and field mark improvements are welcome. Priority areas for community contribution:
+### Build QC
 
-- **vs field marks** — many invertebrate look-alikes lack differentiation notes; top confusable pairs need `vs` entries
-- **Ecological associations** — expand `hp` (host plant) data across all taxa, connecting to the companion [LA County Plant Guide](https://la-flora.org)
-- **Native bee coverage** — LA County has 500+ native bee species; current 89 could expand significantly
-- **Photo fetch accuracy** — large genera (Andrena, Lasioglossum, Habronattus, Neoscona) need manual verification of iNat photo results
-- **Moth coverage** — many micro-moth families underrepresented
-- **Conservation data** — verify IUCN/ESA/CESA listings are current
+Run `v3_qc.py` before every release. Validates JS syntax, data file integrity, zero duplicates across all files, and cross-reference integrity between core HTML sets and species data.
 
-### Pre-Publish Audit Checklist
+### Version convention
 
-- [ ] 0 duplicate scientific names
-- [ ] 0 missing required fields (id, cn, sn, fam, st, desc, mo, elev)
-- [ ] 0 missing family colors for any family in species data
-- [ ] Peak months (pk) are subset of active months (mo)
-- [ ] INTRO_SET consistent with species `intro` flags
-- [ ] Even backtick count in JS
-- [ ] JS validates via `new Function(script)`
-- [ ] Version synced across `<title>`, header `<span>`, and SW cache name
-- [ ] Disclaimer present in footer and meta description
+`v3.NNN` — increment by .001 per build. Sync across: `<title>`, header `<span>`, JSON-LD `softwareVersion`, and `sw.js` cache name.
+
+## Related Guides
+
+Part of the LA County Natural History Field Guide suite:
+- **labugs.org** — Invertebrates (this guide)
+- **laplants.org** — Native & naturalized plants
 
 ## License
 
-GNU General Public License v3.0 — see [LICENSE](LICENSE) for full text and additional disclaimer.
+MIT
 
-Species data compiled from public sources. Photos loaded dynamically from iNaturalist (CC-licensed by individual photographers). This guide does not store or redistribute photographs.
+## Author
+
+Rhys Marsh · Los Angeles, California
