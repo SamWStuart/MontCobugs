@@ -242,7 +242,7 @@ The `isopods` group (key retained for backward compat) is labeled "Crustaceans" 
 
 ## Guide 2: LA County Plant, Moss & Lichen Field Guide (la-flora.org)
 
-**Status**: v3.015 — deploy-ready, all quality + desc consistency checks passed, production icons installed
+**Status**: v3.015 — deploy-ready, all quality checks passed, production icons installed
 **Species**: 1,476 across 10 taxa groups (533 wildflowers, 105 trees, 391 shrubs, 162 grasses, 46 ferns, 35 cacti, 16 vines, 34 aquatic, 26 mosses, 128 lichens)
 **Architecture**: v3 two-file (index.html 90 KB + species-data.json 1,082 KB)
 **IDB name**: `plantGuidePhotos`
@@ -592,13 +592,12 @@ Hinton *Seashore Life of Southern California* (1987), Gotshall *Guide to Marine 
 - [ ] **isO life list function uses NAME_ALIASES** for reclassified taxa
 - [ ] **Node.js syntax validation passes** (`node -c` on extracted JS)
 - [ ] **Cross-reference verification complete** — names verified against iNat/ITIS
-- [ ] **0 redundant CN in desc** — desc must not restate the common name (it's already the card title)
-- [ ] **0 genus in CN parens** — "(Genus)" in CN is redundant with scientific name; only qualifier parens like "(Coast)" are valid
-- [ ] **0 "(Genus) (Family)" double-parens in desc** — only "(Family)" belongs in desc prefix
-- [ ] **0 desc-duplicating sentences in hp** — morphological descriptions belong in desc, not Ecological Associations
-- [ ] **0 lowercase desc starts** — sentences after "Non-native X (Family)." prefix must start uppercase
-- [ ] **0 dead cross-link entries** — every BUG_LINKS/BIRD_LINKS/FAUNA_LINKS/GROUP_LINKS key must match hp text
-- [ ] **Cross-group search preserves searchQuery** — "Also found in" buttons must NOT call saveT() (see Build Lesson #23)
+- [ ] **0 redundant CN in desc** — desc must not restate the common name
+- [ ] **0 genus in CN parens** — only qualifier parens like "(Coast)" are valid
+- [ ] **0 desc-duplicating sentences in hp** — morphology belongs in desc not hp
+- [ ] **0 dead cross-link entries** — every link map key must match hp text
+- [ ] **GROUP_LINKS include target taxa hash** — `?search=X#taxonKey` format (Build Lesson #25)
+- [ ] **Cross-group search preserves searchQuery** — "Also found in" must NOT call saveT() (Build Lesson #23)
 
 ### hp Ecological Associations — Proven 100% Coverage Methodology
 The plant guide achieved 100% species-specific hp coverage across 1,476 species using this multi-pass approach (reuse for all guides):
@@ -751,45 +750,53 @@ The plant guide achieved deep ecological coverage through ~12 iterative passes:
 - 0 generic "small mammals" (must be named species)
 
 ### Build Lesson #23: Cross-Group Search Must Preserve searchQuery (RESOLVED v3.014)
-When a user searches and results span multiple taxa groups, the "Also found in: [group]" buttons allow navigation to other groups. Prior to v3.014, these buttons called `saveT()` which cleared `state.searchQuery`, losing the search filter when switching groups.
+When a user searches and results span multiple taxa groups, the "Also found in: [group]" buttons allow navigation to other groups. Prior to v3.014, these buttons called `saveT()` which cleared `state.searchQuery`.
 
-**Root cause**: `saveT()` resets ALL state including `searchQuery=''`. The "Also found in" button called `saveT()` then `render()`, which cleared the search.
-
-**Fix (v3.014)**: Replace `saveT()` call in the "Also found in" onclick with direct state mutation:
+**Fix**: Replace `saveT()` in the "Also found in" onclick with direct state mutation:
 ```javascript
-// OLD — clears search:
-onclick="saveT('${m.taxon}');render()"
-
-// NEW — preserves search:
-onclick="state.activeTaxon='${m.taxon}';try{location.hash='${m.taxon}'}catch(e){};render()"
+// OLD: onclick="saveT('${m.taxon}');render()"
+// NEW: onclick="state.activeTaxon='${m.taxon}';try{location.hash='${m.taxon}'}catch(e){};render()"
 ```
 
-**Backport required**: This same bug exists in **labugs.org** and **lafungi.org** — any guide using `saveT()` in cross-group navigation buttons needs this fix.
+**Backport required**: labugs.org and lafungi.org have the same bug.
 
 ### Build Lesson #24: Species Card Desc Quality Standards (v3.015)
-The `desc` field appears directly below the `cn` (common name) on the species card. Quality standards established after finding systematic issues across 300+ cards:
+Quality standards for the `desc` field (appears below CN on card):
+1. Never restate CN — it's the card title
+2. No genus in CN parens — "(Polycauliona)" is redundant with scientific name
+3. No "(Genus) (Family)" double-parens — only "(Family)" belongs
+4. Uppercase after "Non-native X (Family)." prefix
+5. Morphological descriptions in desc not hp (>60% word overlap = duplicate)
 
-1. **Never restate the CN** — it's already the card title. `"Black Sage (Lamiaceae). Black sage — aromatic..."` → strip "Black sage —"
-2. **Never include genus in parens in CN** — `"Red Firedot Lichen (Polycauliona)"` → remove "(Polycauliona)". The genus is in the scientific name. Only qualifier parens like "(Coast)" are valid.
-3. **No "(Genus) (Family)" double-parens in desc** — remove "(Genus)", keep "(Family)"
-4. **Sentences after prefix must start uppercase** — "Non-native X (Family). lowercase..." → capitalize
-5. **Morphological descriptions belong in desc, not hp** — if an hp sentence is >60% word overlap with desc, remove it from hp
-6. **"Also found in" buttons must preserve searchQuery** — see Build Lesson #23
+### Build Lesson #25: GROUP_LINKS Must Include Target Taxa Group Hash (v3.015)
+Cross-guide GROUP_LINKS (e.g., "mining bees" → labugs.org) must include the target taxa group in the URL hash, not just the search query. Without the hash, labugs opens to its default tab (butterflies), finds no matches, and shows "Also found in: native bees" — forcing the user to click again.
 
-**Audit script** (run before every deploy):
-```python
-# CN repeated in desc
-m = re.match(r'^(?:Non-native|Invasive)?\s*[^.]+\([^)]+\)\.\s*(.*)', desc)
-if m and m.group(1).lower().startswith(cn.lower()): # fix needed
+**Fix**: Append `#taxonKey` to every GROUP_LINKS URL:
+```javascript
+// OLD — opens to default tab, requires extra click:
+"mining bees": "?search=mining+bee"
 
-# Genus in CN
-if re.search(r'\(([A-Z][a-z]+)\)$', cn) and sp['sn'].startswith(match): # fix needed
-
-# Desc-duplicating hp sentences (>60% word overlap)
-s_words = set(re.findall(r'\w{4,}', sentence.lower()))
-d_words = set(re.findall(r'\w{4,}', desc.lower()))
-if len(s_words & d_words) / len(s_words) > 0.6: # remove from hp
+// NEW — opens directly to correct tab:
+"mining bees": "?search=mining+bee#nativeBees"
 ```
+
+**How it works**: The URL `labugs.org?search=mining+bee#nativeBees` is processed in two stages:
+1. `loadState()` reads `location.hash` → sets `state.activeTaxon = 'nativeBees'`
+2. `checkDeepLink()` reads `URLSearchParams('search')` → sets `state.searchQuery = 'mining bee'`
+
+Both run on init in the correct order (loadState first), so the page opens to the right tab with the search pre-filled. No labugs code changes needed — the existing init chain handles it.
+
+**Mapping for labugs taxa groups:**
+| GROUP_LINKS search | Target hash | Why |
+|---|---|---|
+| bumble+bee | #bumblebees | Separate bumblebee group |
+| carpenter+bee, bee, sweat+bee, mining+bee, mason+bee, squash+bee | #nativeBees | All solitary/native bees |
+| sphinx | #moths | Sphinx/hawk moths in moths group |
+| hover+fly | #hoverflies | Separate hoverfly group |
+| bee+fly | #flies | Bee flies are true flies |
+| lady+beetle | #beetles | Lady beetles in beetles group |
+
+**Apply to all guides**: Any guide sending GROUP_LINKS to another guide should include the target taxa hash. The receiving guide's `loadState()` must read `location.hash` and set `activeTaxon` before `checkDeepLink()` runs — this is the standard init order in the shared architecture.
 
 ### Build Lesson #22: iOS Safari Sticky Elements + Safe Area (RESOLVED v3.015)
 On iOS Safari PWA (`viewport-fit: cover`), sticky elements that need to account for the Dynamic Island / notch safe area require a specific pattern. **Multiple approaches were tried and failed before finding the working solution.**
