@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="icons/app-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/app-icon-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/app-icon-192x192.png">
-<title>LA County Invertebrate Field Guide — v3.026</title>
+<title>LA County Invertebrate Field Guide — v3.027</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -143,6 +143,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .mmc{background:none;border:none;color:var(--gold);font-size:24px;line-height:1}
 .mc{width:100%;height:380px}
 .mml{padding:8px 16px;text-align:center}.mml a{font-size:11px;color:var(--forest);text-decoration:underline}
+.gnav{display:flex;background:#E8E3D9;border-top:1px solid #D5CEBC}.gnav a{flex:1;text-align:center;padding:10px 4px;font-family:var(--fb);font-size:13px;font-weight:600;color:#1A3C35;text-decoration:none;letter-spacing:0.02em}.gnav a.gna{background:#FAF8F4;color:var(--forest);border-top:2px solid var(--gold);padding-top:9px}
 .ft{text-align:center;padding:16px;background:var(--forest);color:var(--gold);font-size:12px;font-family:var(--fd);font-weight:600;letter-spacing:0.04em}
 .ftc{font-size:9px;font-weight:400;font-family:var(--fb);opacity:0.4;margin-top:2px}
 .es{text-align:center;padding:40px 20px;color:#999;font-size:14px}
@@ -188,10 +189,10 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://labugs.org/icons/app-icon-512x512.png">
 <link rel="canonical" href="https://labugs.org/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LA County Invertebrate Field Guide","url":"https://labugs.org","description":"Free PWA field guide to 3,438+ invertebrate species of Los Angeles County","applicationCategory":"ReferenceApplication","operatingSystem":"Any","softwareVersion":"v3.026","author":{"@type":"Organization","name":"labugs.org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LA County Invertebrate Field Guide","url":"https://labugs.org","description":"Free PWA field guide to 3,438+ invertebrate species of Los Angeles County","applicationCategory":"ReferenceApplication","operatingSystem":"Any","softwareVersion":"v3.027","author":{"@type":"Organization","name":"labugs.org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body>
-<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v3.026</span></h1><p class="sub" id="hSub">3,434 species + 5 subspecies across 15 taxa groups</p></header>
+<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v3.027</span></h1><p class="sub" id="hSub">3,433 species + 5 subspecies across 15 taxa groups</p></header>
 <div id="loadProg" style="display:none;text-align:center;padding:20px 16px;font-family:var(--fb);font-size:14px;color:var(--gold);background:var(--cream)"></div>
 <div class="notch-bg"></div><nav class="tbar" id="tBar"></nav>
 <main class="cnt">
@@ -206,7 +207,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <div class="ti" id="tInfo"></div>
 <div id="spCont"></div>
 </main>
-<footer class="ft">Field guide by Rhys Marsh · <a href="https://la-flora.org" style="color:var(--gold)">🌿 Plants</a> · <a href="https://lafungi.org" style="color:var(--gold)">🍄 Fungi</a> · <a href="https://la-fauna.org" style="color:var(--gold)">🦎 Wildlife</a><div class="ftc" style="margin-top:6px">For informational purposes only — not a substitute for expert identification. By using this app you agree to the <a href="https://github.com/rhysmarsh/LAbugs/blob/main/LICENSE" style="color:var(--gold);opacity:0.7;text-decoration:underline">terms &amp; license</a>.</div><div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Ref: Arroyos Foothills Conservancy, CA Bumble Bee Atlas, BumbleBeeWatch, socalbutterflies.com, Essig Museum, UC IPM</div><a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a></footer>
+<div class="gnav"><a href="https://la-flora.org">🌿 Flora</a><a href="https://lafungi.org">🍄 Fungi</a><a class="gna">🐛 Bugs</a><a href="https://la-fauna.org">🦎 Fauna</a></div><footer class="ft">Field guide by Rhys Marsh<div class="ftc" style="margin-top:6px">For informational purposes only — not a substitute for expert identification. By using this app you agree to the <a href="https://github.com/rhysmarsh/LAbugs/blob/main/LICENSE" style="color:var(--gold);opacity:0.7;text-decoration:underline">terms &amp; license</a>.</div><div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Ref: Arroyos Foothills Conservancy, CA Bumble Bee Atlas, BumbleBeeWatch, socalbutterflies.com, Essig Museum, UC IPM</div><a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a></footer>
 <div class="mo hid" id="mOvr"><div class="mm"><div class="mmh"><div><div class="mmt" id="mTit"></div><div class="mms" id="mSub"></div></div><button class="mmc" id="mCl">&times;</button></div><div class="mc" id="mCon"></div><div class="mml"><a id="mLnk" href="#" target="_blank" rel="noopener noreferrer">Open in iNaturalist</a></div></div></div>
 <script>
 const STATUS={"common": {"label": "Common", "color": "#3A9B68", "bg": "#E8F5E9"}, "uncommon": {"label": "Uncommon", "color": "#BFA46E", "bg": "#FFF8E1"}, "rare": {"label": "Rare", "color": "#D4760A", "bg": "#FFF3E0"}, "endangered": {"label": "Endangered", "color": "#C62828", "bg": "#FFEBEE"}, "vagrant": {"label": "Vagrant", "color": "#5C6BC0", "bg": "#E8EAF6"}, "extirpated": {"label": "Extirpated", "color": "#78909C", "bg": "#ECEFF1"}, "historical": {"label": "Historical", "color": "#9E9E9E", "bg": "#F5F5F5"}};
@@ -342,7 +343,7 @@ if(state.elevFilter)fl=fl.filter(s=>s.elev&&s.elev.includes(state.elevFilter));
 if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();fl=fl.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q));}
 fsc[k]=fl.filter(s=>!s.ssp).length;}}
 const hasLL=state.inatUsername&&!state.lifeListLoading&&Object.keys(state.lifeListData).length>0;
-bar.innerHTML=TAXA_ORDER.map(k=>{const t=TAXA[k],a=state.activeTaxon===k;const den=hasOF?(fsc[k]||0):(sc[k]||0);const ctStr=hasLL?`<span class="ct ${(lc[k]||0)>0?'ho':''}">${lc[k]||0}/${den}</span>`:`<span class="ct">${den}</span>`;return`<button class="ttab ${a?'active':''}" data-t="${k}"><span class="em">${t.emoji}</span><span class="lb">${t.label}</span>${ctStr}</button>`;}).join('');
+bar.innerHTML=TAXA_ORDER.map(k=>{const t=TAXA[k],a=state.activeTaxon===k;const den=hasAF?(fsc[k]||0):(sc[k]||0);const ctStr=hasLL?`<span class="ct ${(lc[k]||0)>0?'ho':''}">${lc[k]||0}/${den}</span>`:`<span class="ct">${den}</span>`;return`<button class="ttab ${a?'active':''}" data-t="${k}"><span class="em">${t.emoji}</span><span class="lb">${t.label}</span>${ctStr}</button>`;}).join('');
 bar.querySelectorAll('.ttab').forEach(b=>b.addEventListener('click',()=>{saveT(b.dataset.t);render();}));}
 
 function rLL(){const el=document.getElementById('llBar'),sc=sC(),lc=lC();
@@ -566,7 +567,7 @@ loadState();
 hydrateCache().catch(()=>{});
 
 
-/* === v3.026 Data Loader === */
+/* === v3.027 Data Loader === */
 const DATA_GROUPS=TAXA_ORDER;
 let _dataLoaded=0,_dataTotal=DATA_GROUPS.length;
 
