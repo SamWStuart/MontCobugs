@@ -1,0 +1,494 @@
+[
+  {
+    "id": "da1",
+    "cn": "Ebony Jewelwing",
+    "sn": "Calopteryx maculata",
+    "fam": "Calopterygidae",
+    "famCommon":"jewlwings",
+    "obs": 138,
+    "wiki": "http://en.wikipedia.org/wiki/Ebony_jewelwing",
+    "st": "common",
+    "desc": "A real stunner, dark and iridescent.",
+    "fm": {
+      "Size": "Large: 39-57mm",
+      "Male": "iridescent green body and smokey black wings.",
+      "Female": "Blackish iridescent body, wings black with a white stigma.",
+      "Similar Species": "River Jewelwing has partially dark wings.",
+      "Habitat": "Slow woodland streams with brushy vegetation.",
+      "Flight Period": "Summer to Fall"
+    },
+    "mo": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "pk": [
+      8,
+      9
+    ],
+    "water": "stream/creek, pond/lake, open area",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da2",
+    "cn": "Powdered Dancer",
+    "sn": "Argia moesta",
+    "fam": "Coenagrionidae",
+    "famCommon":"dancers",
+    "obs": 70,
+    "wiki": "http://en.wikipedia.org/wiki/Powdered_dancer",
+    "st": "common",
+    "desc": "Males pruinecent, females brownish and variable.",
+    "fm": {
+      "Size": "Large: 37-42mm",
+      "Male": "Heavy pruinescense is diagnostic within Dancer group",
+      "Female": "Eyes and body brownish, pattern on top of S9 separates from Blue-fronted.",
+      "Similar Species": "Female very similar to Blue-fronted. Limited Median and humeral stripe.",
+      "Habitat": "Wide variety of moving and still waterways.",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      6,
+      7,
+      8
+    ],
+    "pk": [
+      7
+    ],
+    "water": "stream/creek, pond/lake, open area",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da3",
+    "cn": "Fragile Forktail",
+    "sn": "Ischnura posita",
+    "fam": "Coenagrionidae",
+    "famCommon":"forktails",
+    "obs": 60,
+    "wiki": "http://en.wikipedia.org/wiki/Ischnura_posita",
+    "st": "common",
+    "desc": "A very small species, males greenish and females bluish.",
+    "fm": {
+      "Size": "Small: 22-31mm",
+      "Male": "Light green, abdomen black dorsally, antehumeral stripe interrupted.",
+      "Female": "Can be pruinescent, interrupted antehumeral stripe. Eyes greenish below.",
+      "Similar Species": "Other forktails.",
+      "Habitat": "Likes to fly withing vegetation along ponds and still water.",
+      "Flight Period": "Spring through Fall."
+    },
+    "mo": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "pk": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "water": "vernal pool, pond/lake, marsh",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da4",
+    "cn": "Eastern Forktail",
+    "sn": "Ischnura verticalis",
+    "fam": "Coenagrionidae",
+    "famCommon":"forktails",
+    "obs": 49,
+    "wiki": "http://en.wikipedia.org/wiki/Eastern_forktail",
+    "st": "common",
+    "desc": "Green eyes and face on both sexes, similar to other forktails.",
+    "fm": {
+      "Size": "Small: 20-33mm",
+      "Male": "Eyes and face green, thorax green and black, abdomen tipped blue",
+      "Female": "Immatures are orange, mature eyes and face green, body pruinecent but median and humeral stripes broad.",
+      "Similar Species": "Familiar and Citrine forktails",
+      "Habitat": "heavily vegetated still water bodies.",
+      "Flight Period": "Spring through late Fall."
+    },
+    "mo": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "pk": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "water": "vernal pool, pond/lake, marsh",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da5",
+    "cn": "Blue-fronted Dancer",
+    "sn": "Argia apicalis",
+    "fam": "Coenagrionidae",
+    "famCommon":"dancers",
+    "obs": 44,
+    "wiki": "http://en.wikipedia.org/wiki/Blue-fronted_dancer",
+    "st": "uncommon",
+    "desc": "Very similar to Powdered Dancer but not pruinescent.",
+    "fm": {
+      "Size": "Medium: 30-34mm",
+      "Male": "Blue face and eyes, thorax blue above tan below, abdomen mostly black with blue end.",
+      "Female": "Variable often brownish, eyes brown with very narrow median and humeral stripe (sometimes lacking).",
+      "Similar Species": "Powdered Danceer",
+      "Habitat": "Wide variety of habitat.",
+      "Flight Period": "Summer to early Fall."
+    },
+    "mo": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "pk": [
+      7,
+      8
+    ],
+    "water": "stream/creek, pond/lake, open area",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da6",
+    "cn": "Variable Dancer",
+    "sn": "Argia fumipennis",
+    "fam": "Coenagrionidae",
+    "famCommon":"dancers",
+    "obs": 26,
+    "wiki": "http://en.wikipedia.org/wiki/Variable_dancer",
+    "st": "common",
+    "desc": "Our only violet colored Dancer.",
+    "fm": {
+      "Size": "Medium: 29-34mm",
+      "Male": "Eyes brown, thorax and abdomen with violet, abdomen tip more blue than violet.",
+      "Female": "Eyes brown, humeral strip may be forked, black down the back of abdomen to S8.",
+      "Similar Species": "Females of other Dancers",
+      "Habitat": "Small Streams, ditch water and open spaces.",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      6,
+      7,
+      8
+    ],
+    "pk": [
+      7
+    ],
+    "water": "stream/creek, pond/lake, open area",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da7",
+    "cn": "Stream Bluet",
+    "sn": "Enallagma exsulans",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 19,
+    "wiki": "http://en.wikipedia.org/wiki/Stream_bluet",
+    "st": "common",
+    "desc": "A common bluet of streams and small rivers.",
+    "fm": {
+      "Size": "Medium/Large: 31-37mm",
+      "Male": "Blue-green thorax, abdomen mostly black above. Eyes blue, black above with blue dumbbell on top.",
+      "Female": "Either blue or green thorax. Abdomen black above greenish/bluish below with S9 and 10 blue.",
+      "Similar Species": "Other bluets",
+      "Habitat": "Medium streams and rivers, can tolerate poorer water quality.",
+      "Flight Period": "Late Summer."
+    },
+    "mo": [
+      7,
+      8
+    ],
+    "pk": [
+      7,
+      8
+    ],
+    "water": "stream/creek",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da8",
+    "cn": "Dusky Dancer",
+    "sn": "Argia translata",
+    "fam": "Coenagrionidae",
+    "famCommon":"dancers",
+    "obs": 16,
+    "wiki": "http://en.wikipedia.org/wiki/Dusky_dancer",
+    "st": "rare",
+    "desc": "Males very dark, females brownish.",
+    "fm": {
+      "Size": "Medium: 32-38mm",
+      "Male": "Dark, eyes deep blue, post ocular spots separate. Thorax becoming gray with pruinecense otherwise showing split humeral stripe. Abdomen with narrow blue rings.",
+      "Female": "Eyes brown below. Thorax mostly brown with median stripe and split humeral stripe.",
+      "Similar Species": "Fairly uniquely dark.",
+      "Habitat": "Small streams with sandy or rocky banks.",
+      "Flight Period": "Late Summer through fall."
+    },
+    "mo": [
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "pk": [
+      8,
+      9,
+      10
+    ],
+    "water": "stream/creek",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da9",
+    "cn": "Slender Spreadwing",
+    "sn": "Lestes rectangularis",
+    "fam": "Lestidae",
+    "famCommon":"spreadwings",
+    "obs": 12,
+    "wiki": "http://en.wikipedia.org/wiki/Lestes_rectangularis",
+    "st": "common",
+    "desc": "A long bodied blue and yellow spreadwing with pale outer vein.",
+    "fm": {
+      "Size": "Large: 37-53mm",
+      "Male": "Eyes blue, thorax yellow with blue antehumeral stripe, broad black median. No pruinosity on abdomen.",
+      "Female": "Shorter than male, otherwise similar coloring and pattern.",
+      "Similar Species": "not metalic like Elegant Spreadwing",
+      "Habitat": "Lakes and Ponds, slow moving or still water.",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      6,
+      7,
+      8
+    ],
+    "pk": [
+      7
+    ],
+    "water": "vernal pool, pond/lake, marsh",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da10",
+    "cn": "Orange Bluet",
+    "sn": "Enallagma signatum",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 10,
+    "wiki": "http://en.wikipedia.org/wiki/Orange_bluet",
+    "st": "common",
+    "desc": "Our only truly orange damselfly.",
+    "fm": {
+      "Size": "Medium/Large: 28-37mm",
+      "Male": "Orange eyes, thorax and abdomen tip distinctive.",
+      "Female": "Can be tan, pale orange or bluish. Limited pale on S9 and 10. Antehumeral stripe wider than median. Good luck!",
+      "Similar Species": "Female could resemble blue bluets",
+      "Habitat": "Still water and small streams, ok with some water pollution.",
+      "Flight Period": "Late Summer."
+    },
+    "mo": [
+      7,
+      8
+    ],
+    "pk": [
+      7,
+      8
+    ],
+    "water": "stream/creek, pond/lake",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da11",
+    "cn": "Familiar Bluet",
+    "sn": "Enallagma civile",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 9,
+    "wiki": "https://en.wikipedia.org/wiki/Familiar_bluet",
+    "st": "common",
+    "desc": "A very blue bluet",
+    "fm": {
+      "Size": "Medium/Large: 28-39mm",
+      "Male": "Abdomen has broad blue patches spanning middle segments.",
+      "Female": "Females tan/bluish and may be indistinguishable from similar species, although other species yet to be recorded in MontCo.",
+      "Similar Species": "Northern and Boreal Bluet",
+      "Habitat": "heavily vegetated still water bodies, occasionally streams and rivers.",
+      "Flight Period": "Summer to Fall"
+    },
+    "mo": [
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "pk": [
+      8,
+      9,
+      10
+    ],
+    "water": "pond/lake, marsh, open area",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da12",
+    "cn": "Azure Bluet",
+    "sn": "Enallagma aspersum",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 5,
+    "wiki": "https://en.wikipedia.org/wiki/Enallagma_aspersum",
+    "st": "common",
+    "desc": "Narrow bodied bluet with large post ocular spot/patch.",
+    "fm": {
+      "Size": "Medium: 27-34mm",
+      "Male": "Eyes blue with some black, narrow humeral stripe, abdomen mostly black with some blue on S1 and S7-10.",
+      "Female": "Eyes black and brown with yellowish post ocular spot. Blue thorax and large blue spot on S7.",
+      "Similar Species": "Fairly distinctive in our county.",
+      "Habitat": "heavily vegetated still water bodies.",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      6,
+      7,
+      8
+    ],
+    "pk": [
+      7
+    ],
+    "water": "pond/lake, marsh",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da13",
+    "cn": "Great Spreadwing",
+    "sn": "Archilestes grandis",
+    "fam": "Lestidae",
+    "famCommon":"spreadwings",
+    "obs": 4,
+    "wiki": "http://en.wikipedia.org/wiki/Great_spreadwing",
+    "st": "uncommon",
+    "desc": "Largest Damselfly!",
+    "fm": {
+      "Size": "XL: 50-62mm",
+      "Male": "Eyes light blue, thorax dark with two broad yellow stripes.  Some pruinesences on abdomen tip.",
+      "Female": "Eyes brown, thorax similar to male, abdomen much wider.",
+      "Similar Species": "none.",
+      "Habitat": "Slow streams with wooded banks or degraded semi-urban areas.",
+      "Flight Period": "Late Summer."
+    },
+    "mo": [
+      9
+    ],
+    "pk": [
+      9
+    ],
+    "water": "stream/creek, pond/lake, open area",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da14",
+    "cn": "Citrine Forktail",
+    "sn": "Ischnura hastata",
+    "fam": "Coenagrionidae",
+    "famCommon":"forktails",
+    "obs": 3,
+    "wiki": "http://en.wikipedia.org/wiki/Citrine_forktail",
+    "st": "uncommon",
+    "desc": "Our only truly yellow damselfly",
+    "fm": {
+      "Size": "Small/Medium: 21-27mm",
+      "Male": "Yellow coloring is distinctive",
+      "Female": "Eyes green and black,thorax gray with broad black median,abdomen blackish gray.",
+      "Similar Species": "Female can be confused with Eastern and Fragile Forktail",
+      "Habitat": "Still water and vernal pools, with vegetation.",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      7,
+      8
+    ],
+    "pk": [
+      7,
+      8
+    ],
+    "water": "pond/lake, vernal pool",
+    "pkSrc": "pub"
+  },
+  {
+    "id": "da15",
+    "cn": "Elegant Spreadwing",
+    "sn": "Lestes inaequalis",
+    "fam": "Lestidae",
+    "famCommon":"spreadwings",
+    "obs": 2,
+    "st": "uncommon",
+    "desc": "Very large metalic green spreadwing.",
+    "fm": {
+      "Size": "Small/Medium: 21-27mm",
+      "Male": "Eyes blue and green, thorax metalic green above yellowish below, abdomen metalic green.  Some pruinecense.",
+      "Female": "Eyes green and yellow, metalic green thorax and abdomen including S9 and S10.",
+      "Similar Species": "None recorded in our area.",
+      "Habitat": "Lakes and ponds with abundant vegetation.",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      6,
+      7,
+      8
+    ],
+    "pk": [
+      7
+    ],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "pond/lake, marsh"
+  },
+  {
+    "id": "da16",
+    "cn": "Eastern Red Damsel",
+    "sn": "Amphiagrion saucium",
+    "fam": "Coenagrionidae",
+    "famCommon":"damsels",
+    "obs": 1,
+    "st": "uncommon",
+    "desc": "Striking red abdomen contrasting with darker thorax distinctive.",
+    "fm": {
+      "Size": "Small/Medium: 22-27mm",
+      "Male": "Eyes red-brown, thorax black with red sides, abdomen bright red.",
+      "Female": "Eyes brown, thorax orangish, abdomen red-orange",
+      "Similar Species": "None recorded in our area.",
+      "Habitat": "Marshes with sedges and acid bogs",
+      "Flight Period": "Summer."
+    },
+    "mo": [
+      6,
+      7,
+      8
+    ],
+    "pk": [
+      7
+    ],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "marsh"
+  }
+]

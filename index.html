@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="LA Bugs">
+<meta name="apple-mobile-web-app-title" content="MontCoBugs">
 <meta name="theme-color" content="#1A3C35">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/app-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/app-icon-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/app-icon-192x192.png">
-<title>LA County Invertebrate Field Guide — v3.027</title>
+<title>MontCoBugs — Butterflies & Odonates of Montgomery County, PA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -66,7 +66,6 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .fg{margin-bottom:22px}
 .fgt{font-size:15px;font-weight:700;font-family:var(--fd);padding:0 2px 6px;margin-bottom:10px}
 .fgc{font-weight:400;font-size:12px;color:#999;margin-left:6px}
-/* Photo grid — iNat style */
 .sg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
 @media(min-width:600px){.sg{grid-template-columns:repeat(3,1fr);gap:8px}}
 @media(min-width:900px){.sg{grid-template-columns:repeat(4,1fr);gap:10px}}
@@ -74,6 +73,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .sc::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.12) 40%,transparent 60%);pointer-events:none;border-radius:inherit}
 .sc:active{transform:scale(0.97)}
 .ob{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:var(--green-ok);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 1px 3px rgba(0,0,0,0.3);color:#fff;font-size:11px;font-weight:700}
+.ob-inline{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:var(--green-ok);color:#fff;font-size:9px;font-weight:700;margin-left:5px;flex-shrink:0;box-shadow:0 1px 2px rgba(0,0,0,0.3);vertical-align:middle}
 .cp{position:absolute;inset:0;background-size:cover;background-position:center}
 .cp .ep{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:38px;opacity:0.25}
 .cp .fb{display:none}
@@ -82,13 +82,6 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .csn{font-family:var(--fd);font-size:11px;font-style:italic;color:rgba(255,255,255,0.82);line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,0.6)}
 .badge-col{position:absolute;top:5px;left:5px;z-index:3;display:flex;flex-direction:column;gap:2px;align-items:flex-start;pointer-events:none}.inv-pill{font-size:9px;font-weight:700;background:#C62828;color:#fff;padding:1px 5px;border-radius:3px;font-family:var(--fb);font-style:normal}.intro-pill{font-size:9px;font-weight:700;background:#E65100;color:#fff;padding:1px 5px;border-radius:3px;font-family:var(--fb);font-style:normal}
 .sb,.cd,.ca,.ctr,.pa{display:none}
-/* Species detail sheet */
-.ds-xl{margin:12px 0;padding:10px 12px;background:#f8faf8;border-radius:8px;border:1px solid #e0ebe0}
-.ds-xl-label{font-size:11px;font-weight:600;color:var(--forest);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
-.ds-xl-link{display:flex;align-items:baseline;gap:4px;padding:6px 0;border-bottom:1px solid #eee;text-decoration:none;color:#333;font-size:13px;flex-wrap:wrap}
-.ds-xl-link:last-child{border-bottom:none}
-.ds-xl-sn{font-style:italic;color:#888;font-size:11px}
-.ds-xl-arrow{font-size:10px;color:var(--forest);margin-left:auto;white-space:nowrap}
 .ds-ovr{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1100;display:flex;align-items:flex-end;justify-content:center;animation:fi 0.15s ease}
 .ds-sheet{background:#fff;border-radius:18px 18px 0 0;width:100%;max-width:540px;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 -8px 40px rgba(0,0,0,0.25);animation:ssu 0.25s ease}
 @keyframes ssu{from{transform:translateY(100%)}to{transform:none}}
@@ -112,24 +105,13 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .ds-btn-inat{background:rgba(26,60,53,0.08);color:var(--forest)}
 .ds-btn-myobs{background:rgba(191,164,110,0.15);color:var(--gold-dark, #8B7340)}
 .ds-attr{font-size:8px;color:#aaa;margin-top:8px;line-height:1.3}
-/* Embedded map */
 .ds-map-wrap{position:relative;margin-bottom:14px;border-radius:10px;overflow:hidden;border:1px solid #e0d8cc}
 .ds-map{width:100%;height:240px}
 .ds-map-label{font-size:10px;font-weight:600;color:var(--forest);margin-bottom:6px;letter-spacing:0.04em;text-transform:uppercase}
-/* Tile status pip — top-left corner, only notable statuses */
 .st-pip{position:absolute;top:6px;left:10px;z-index:3;display:flex;align-items:center;gap:3px;padding:2px 7px 2px 5px;border-radius:8px;font-size:7.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 4px rgba(0,0,0,0.3);pointer-events:none;line-height:1}
 .st-pip .st-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-/* Introduced marker — subtle glyph after sci name */
 .endemic-mark{color:#1565C0;font-size:10px;}
 .intro-mark{font-style:normal;font-size:9px;color:rgba(255,255,255,0.7);margin-left:3px;vertical-align:baseline}
-/* Conservation listing badge in detail sheet */
-.ds-cons{margin-bottom:12px;padding:8px 10px;border-radius:8px;border-left:3px solid #C62828;background:rgba(198,40,40,0.06);font-size:11px;line-height:1.5;color:#555}
-.ds-cons-badges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
-.ds-cons-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:6px;font-size:9px;font-weight:700;letter-spacing:0.03em}
-.ds-cons-iucn{background:#C62828;color:#fff}.ds-cons-iucn.vu{background:#E65100}.ds-cons-iucn.en{background:#C62828}.ds-cons-iucn.cr{background:#880E4F}
-.ds-cons-esa{background:#1A237E;color:#fff}
-.ds-cons-cesa{background:#4A148C;color:#fff}
-.ds-cons-state{background:#2E7D32;color:#fff}
 .fms{margin-top:8px;animation:fi 0.2s ease}
 @keyframes fi{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .fmr{display:flex;gap:6px;padding:4px 0;border-bottom:1px solid #f0ebe3;font-size:11px;line-height:1.4}
@@ -148,51 +130,35 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .ftc{font-size:9px;font-weight:400;font-family:var(--fb);opacity:0.4;margin-top:2px}
 .es{text-align:center;padding:40px 20px;color:#999;font-size:14px}
 .hid{display:none !important}
-/* Cross-taxon search results */
 .xtr{font-size:11px;color:#888;margin-bottom:8px;font-style:italic}
-
 .ds-phen{margin:12px 0}
-.ds-phen-label{font-size:10px;font-weight:600;color:var(--forest);margin-bottom:4px;font-family:var(--fh)}
+.ds-phen-label{font-size:10px;font-weight:600;color:var(--forest);margin-bottom:4px}
 .ds-phen-bar{display:flex;gap:2px;height:18px;align-items:end}
 .ds-phen-mo{flex:1;border-radius:2px;font-size:6px;text-align:center;color:#fff;display:flex;align-items:center;justify-content:center;min-width:0;transition:all 0.2s}
 .ds-phen-mo.active{background:var(--forest)}
 .ds-phen-mo.peak{background:var(--gold)}
 .ds-phen-mo.off{background:#e8e0d4;height:8px}
-
-.ds-elev{display:inline-flex;align-items:center;gap:4px;margin:6px 0;padding:4px 8px;background:#f0ebe3;border-radius:4px;font-size:10px;color:#666}
-.ds-elev svg{width:14px;height:14px;fill:var(--forest);opacity:0.6}
-.ds-hp{margin:10px 0;padding:8px 10px;background:#f0ebe3;border-radius:6px;border-left:3px solid var(--green-ok)}
-.ds-hp-label{font-size:10px;font-weight:600;color:var(--forest);margin-bottom:3px;font-family:var(--fh)}
-.ds-hp-list{font-size:11px;color:#555;line-height:1.5}
-
-.ds-inv{display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;background:#C62828;color:#fff;margin-left:6px}
+.ds-water{display:inline-flex;align-items:center;gap:4px;margin:6px 0;padding:4px 8px;background:#f0ebe3;border-radius:4px;font-size:10px;color:#666}
+.ds-water svg{width:14px;height:14px;fill:var(--forest);opacity:0.6}
 .fam-toggle{background:none;border:none;font-size:11px;font-weight:600;color:var(--gold);cursor:pointer;padding:2px 6px;font-family:var(--fb)}
 .fsw.collapsed{display:none}
 .fam-sort-btn{background:rgba(191,164,110,0.15);border:1px solid rgba(191,164,110,0.3);color:var(--gold);border-radius:5px;padding:2px 7px;font-size:9px;font-weight:600;cursor:pointer;font-family:var(--fb)}
 </style>
-<meta name="description" content="A free, open-source field guide to 1073+ invertebrate species of Los Angeles County. Butterflies, bees, beetles, spiders, dragonflies and more — with photos, field marks, seasonality, and observation maps. For informational purposes only.">
-<link rel="canonical" href="https://labugs.org/">
+<meta name="description" content="A free field guide to butterflies, dragonflies, and damselflies of Montgomery County, Pennsylvania — with photos, field marks, seasonality, and observation maps. For informational purposes only.">
+<link rel="canonical" href="https://montcobugs.netlify.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LA County Invertebrate Field Guide">
-<meta property="og:description" content="A free, open-source field guide to 1073+ invertebrate species of Los Angeles County. Butterflies, bees, beetles, spiders, dragonflies and more.">
-<meta property="og:url" content="https://labugs.org/">
-<meta property="og:site_name" content="LAbugs">
+<meta property="og:title" content="MontCoBugs — Butterflies & Odonates of Montgomery County, PA">
+<meta property="og:description" content="A free field guide to butterflies, dragonflies, and damselflies of Montgomery County, Pennsylvania.">
+<meta property="og:site_name" content="MontCoBugs">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LA County Invertebrate Field Guide">
-<meta name="twitter:description" content="Free open-source field guide to 1073+ invertebrate species of LA County. Photos, field marks, seasonality, maps.">
-<meta name="description" content="Free open-source field guide to 1048+ invertebrate species of Los Angeles County, California.">
-<meta name="keywords" content="LA County invertebrates, Los Angeles bugs, California butterflies, LA bees, Southern California insects, field guide, dragonflies, moths, beetles, spiders, scorpions, snails, isopods, iNaturalist">
+<meta name="twitter:title" content="MontCoBugs">
+<meta name="twitter:description" content="Free field guide to butterflies, dragonflies, and damselflies of Montgomery County, PA.">
+<meta name="keywords" content="Montgomery County PA butterflies, MontCo dragonflies, MontCo damselflies, Pennsylvania odonates, field guide, iNaturalist">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta property="og:title" content="LA County Invertebrate Field Guide — 1048+ Species">
-<meta property="og:description" content="Free field guide to 1048+ invertebrate species of LA County.">
-<meta property="og:url" content="https://labugs.org/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://labugs.org/icons/app-icon-512x512.png">
-<link rel="canonical" href="https://labugs.org/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"LA County Invertebrate Field Guide","url":"https://labugs.org","description":"Free PWA field guide to 3,438+ invertebrate species of Los Angeles County","applicationCategory":"ReferenceApplication","operatingSystem":"Any","softwareVersion":"v3.027","author":{"@type":"Organization","name":"labugs.org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MontCoBugs","url":"https://montcobugs.netlify.app","description":"Free field guide to butterflies, dragonflies, and damselflies of Montgomery County, PA","applicationCategory":"ReferenceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body>
-<header class="hdr"><h1>LA County Invertebrate<br>Field Guide <span style="font-size:14px;font-weight:400;opacity:0.6">v3.027</span></h1><p class="sub" id="hSub">3,433 species + 5 subspecies across 15 taxa groups</p></header>
+<header class="hdr"><h1>MontCoBugs</h1><p class="sub" id="hSub">Butterflies &amp; Odonates of Montgomery County, PA</p></header>
 <div id="loadProg" style="display:none;text-align:center;padding:20px 16px;font-family:var(--fb);font-size:14px;color:var(--gold);background:var(--cream)"></div>
 <div class="notch-bg"></div><nav class="tbar" id="tBar"></nav>
 <main class="cnt">
@@ -200,33 +166,47 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <input class="si" id="sInp" type="text" placeholder="Search all species...">
 <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:4px"><div class="slg" id="sLeg" style="margin-bottom:0"></div><button class="scl-toggle" id="sclT">ⓘ criteria</button></div>
 <div class="scl" id="sclB">
-<strong>Status classification criteria</strong> (iNaturalist observation frequency, LA County, place_id=962):<br>
-<span style="color:#3A9B68;font-weight:600">Common</span> >200 obs/year; regularly encountered in habitat. <span style="color:#BFA46E;font-weight:600">Uncommon</span> 20–200 obs/year; present but requires searching. <span style="color:#D4760A;font-weight:600">Rare</span> &lt;20 obs/year; range edge or genuinely scarce. <span style="color:#C62828;font-weight:600">Endangered</span> ESA/CESA/IUCN-listed. <span style="color:#5C6BC0;font-weight:600">Vagrant</span> Non-breeding irregular visitor. <span style="color:#78909C;font-weight:600">Extirpated</span> Formerly present. <span style="color:#9E9E9E;font-weight:600">Historical</span> Not documented recently.
-<br><br><strong>Tile indicators:</strong> Status badges appear on all tiles except Common. <span style="color:#D4760A">✦</span> after the scientific name = introduced/non-native species. <span style="color:#C62828;font-weight:600">⚠ INV</span> = invasive species causing ecological or economic harm. Species with formal conservation listings (IUCN Red List, ESA, CESA) show detailed badges in the species detail view — tap any tile to see.
+<strong>Status classification criteria</strong> (informed by iNaturalist observation frequency for Montgomery County, PA, place_id=1522, cross-checked against PA DCNR and published references):<br>
+<span style="color:#3A9B68;font-weight:600">Common</span> regularly encountered in season within suitable habitat. <span style="color:#BFA46E;font-weight:600">Uncommon</span> present but requires searching. <span style="color:#D4760A;font-weight:600">Rare</span> genuinely scarce or at range edge. <span style="color:#5C6BC0;font-weight:600">Vagrant</span> non-breeding irregular visitor.
+<br><br><strong>Tile indicators:</strong> Status badges appear on all tiles except Common. <span style="color:#D4760A">✦</span> after the scientific name = introduced/non-native species.
 </div>
 <div class="ti" id="tInfo"></div>
 <div id="spCont"></div>
 </main>
-<div class="gnav"><a href="https://la-flora.org">🌿 Flora</a><a href="https://lafungi.org">🍄 Fungi</a><a class="gna">🐛 Bugs</a><a href="https://la-fauna.org">🦎 Fauna</a></div><footer class="ft">Field guide by Rhys Marsh<div class="ftc" style="margin-top:6px">For informational purposes only — not a substitute for expert identification. By using this app you agree to the <a href="https://github.com/rhysmarsh/LAbugs/blob/main/LICENSE" style="color:var(--gold);opacity:0.7;text-decoration:underline">terms &amp; license</a>.</div><div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Ref: Arroyos Foothills Conservancy, CA Bumble Bee Atlas, BumbleBeeWatch, socalbutterflies.com, Essig Museum, UC IPM</div><a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a></footer>
+<footer class="ft">MontCoBugs
+<div class="ftc" style="margin-top:6px">For informational purposes only — not a substitute for expert identification.</div>
+<div class="ftc">Forked from LABugs.org by Rhys Marsh — a field guide to the invertebrates of LA County. Built with his generous permission and shared architecture.</div>
+<div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Odonate reference: PA DCNR, Nescopeck State Park checklist</div>
+<a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.85rem">Original project: LABugs.org →</a>
+<br>
+<a href="https://github.com/SamWStuart/MontCoBugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a>
+</footer>
 <div class="mo hid" id="mOvr"><div class="mm"><div class="mmh"><div><div class="mmt" id="mTit"></div><div class="mms" id="mSub"></div></div><button class="mmc" id="mCl">&times;</button></div><div class="mc" id="mCon"></div><div class="mml"><a id="mLnk" href="#" target="_blank" rel="noopener noreferrer">Open in iNaturalist</a></div></div></div>
 <script>
-const STATUS={"common": {"label": "Common", "color": "#3A9B68", "bg": "#E8F5E9"}, "uncommon": {"label": "Uncommon", "color": "#BFA46E", "bg": "#FFF8E1"}, "rare": {"label": "Rare", "color": "#D4760A", "bg": "#FFF3E0"}, "endangered": {"label": "Endangered", "color": "#C62828", "bg": "#FFEBEE"}, "vagrant": {"label": "Vagrant", "color": "#5C6BC0", "bg": "#E8EAF6"}, "extirpated": {"label": "Extirpated", "color": "#78909C", "bg": "#ECEFF1"}, "historical": {"label": "Historical", "color": "#9E9E9E", "bg": "#F5F5F5"}};
-const TAXA_ORDER=['butterflies','moths','beetles','dragonflies','nativeBees','arachnids','bumblebees','wasps','trueBugs','flies','orthoptera','hoverflies','snails','myriapods','isopods'];
-const TAXA={"butterflies": {"emoji": "🦋", "label": "Butterflies", "iNatTaxonId": 47224, "placeId": 962, "groupBy": "family", "familyColors": {"Papilionidae": "#C5943A", "Pieridae": "#7A8B32", "Lycaenidae": "#3B6BA5", "Nymphalidae": "#C06020", "Hesperiidae": "#6B4F3A", "Riodinidae": "#8B4726"}}, "bumblebees": {"emoji": "🐝", "label": "Bumblebees", "iNatTaxonId": 52775, "placeId": 962, "groupBy": "family", "familyColors": {"Apidae — Bombini": "#D4960A"}}, "dragonflies": {"emoji": "🪁", "label": "Dragonflies", "iNatTaxonId": 47792, "placeId": 962, "groupBy": "family", "familyColors": {"Libellulidae": "#C0392B", "Aeshnidae": "#1A7A6D", "Gomphidae": "#6B8E23", "Coenagrionidae": "#2874A6", "Lestidae": "#27AE60", "Calopterygidae": "#6C3483", "Cordulegastridae": "#8E6B3D"}}, "hoverflies": {"emoji": "🪰", "label": "Hoverflies", "iNatTaxonId": 49995, "placeId": 962, "groupBy": "family", "familyColors": {"Syrphinae": "#E8860C", "Eristalinae": "#7B4B2A", "Pipizinae": "#556B2F"}}, "nativeBees": {"emoji": "🪻", "label": "Native Bees", "iNatTaxonId": 630955, "placeId": 962, "groupBy": "family", "familyColors": {"Halictidae": "#2E7D52", "Megachilidae": "#8B4726", "Apidae": "#4A3680", "Andrenidae": "#B8A060", "Colletidae": "#5B7B72", "Melittidae": "#9B7BAA"}}, "arachnids": {"emoji": "🕷️", "label": "Arachnids", "iNatTaxonId": 47119, "placeId": 962, "groupBy": "family", "familyColors": {"Theridiidae": "#333", "Salticidae": "#2E86C1", "Araneidae": "#D4AC0D", "Agelenidae": "#7B4B2A", "Sparassidae": "#8B6914", "Lycosidae": "#5D6D3E", "Thomisidae": "#D5A6BD", "Pholcidae": "#A0A0A0", "Dysderidae": "#A0522D", "Theraphosidae": "#5C3A1E", "Sicariidae": "#8B0000", "Ctenizidae": "#6B4226", "Hadruridae": "#DAA520", "Vaejovidae": "#C49B65", "Eremobatidae": "#C9A96E", "Trombidiidae": "#DC143C", "Oxyopidae": "#2E8B57", "Cheiracanthiidae": "#BDB76B", "Gnaphosidae": "#696969", "Tetragnathidae": "#708090", "Corinnidae": "#B8860B", "Amaurobiidae": "#7B6B4F", "Ixodidae": "#A0522D", "Desidae": "#4A5568", "Superstitioniidae": "#6B4226", "Trachelidae": "#8B7355", "Buthidae": "#CC6600"}}, "moths": {"emoji": "🦇", "label": "Moths", "iNatTaxonId": 47157, "placeId": 962, "groupBy": "family", "familyColors": {"Sphingidae": "#6B4F3A", "Saturniidae": "#8B6914", "Erebidae": "#A0522D", "Noctuidae": "#555", "Geometridae": "#3CB371", "Pterophoridae": "#A0845C", "Prodoxidae": "#B8A060", "Tortricidae": "#8B7355", "Zygaenidae": "#1A237E", "Pyralidae": "#795548", "Sesiidae": "#D4AC0D", "Crambidae": "#E8860C", "Plutellidae": "#78909C", "Gracillariidae": "#9E9E9E", "Lasiocampidae": "#8D6E63", "Mimallonidae": "#A1887F"}}, "wasps": {"emoji": "🐝", "label": "Wasps", "iNatTaxonId": 52747, "placeId": 962, "groupBy": "family", "familyColors": {"Pompilidae": "#1A1A8B", "Vespidae": "#DAA520", "Sphecidae": "#CD853F", "Crabronidae": "#8B7355", "Mutillidae": "#C0392B", "Agaonidae": "#6B8E23", "Ichneumonidae": "#5F9EA0", "Chrysididae": "#2E8B57", "Braconidae": "#708090", "Tiphiidae": "#333", "Cimbicidae": "#1A237E", "Pelecinidae": "#212121", "Scoliidae": "#8B6914", "Evaniidae": "#37474F", "Cynipidae": "#6D4C41", "Torymidae": "#00897B", "Formicidae": "#D84315"}}, "beetles": {"emoji": "🪲", "label": "Beetles", "iNatTaxonId": 47208, "placeId": 962, "groupBy": "family", "familyColors": {"Coccinellidae": "#C0392B", "Scarabaeidae": "#8B6914", "Tenebrionidae": "#333", "Cerambycidae": "#A0522D", "Buprestidae": "#2E8B57", "Elateridae": "#5F9EA0", "Meloidae": "#DC143C", "Phengodidae": "#3CB371", "Curculionidae": "#6B4F3A", "Belostomatidae": "#555", "Lucanidae": "#5D4037", "Gyrinidae": "#263238", "Dytiscidae": "#1B5E20", "Lampyridae": "#F9A825", "Cleridae": "#D32F2F", "Chrysomelidae": "#FF8F00", "Myrmeleontidae": "#8D6E63", "Cantharidae": "#EF6C00", "Ptinidae": "#795548", "Zopheridae": "#616161", "Dermestidae": "#9E9E9E", "Carabidae": "#1A237E", "Staphylinidae": "#37474F", "Cicindelidae": "#00897B", "Pleocomidae": "#4E342E", "Bostrichidae": "#6D4C41", "Latridiidae": "#BDBDBD", "Forficulidae": "#5D4037"}}, "trueBugs": {"emoji": "🪲", "label": "True Bugs", "iNatTaxonId": 47744, "placeId": 962, "groupBy": "family", "familyColors": {"Reduviidae": "#8B0000", "Pentatomidae": "#2E7D32", "Coreidae": "#795548", "Cicadidae": "#FF8F00", "Cicadellidae": "#1565C0", "Membracidae": "#00838F", "Lygaeidae": "#D84315", "Rhopalidae": "#6A1B9A", "Miridae": "#558B2F", "Chrysopidae": "#4CAF50", "Hemerobiidae": "#8D6E63", "Notonectidae": "#37474F", "Gerridae": "#455A64", "Corixidae": "#607D8B", "Gelastocoridae": "#5D4037", "Largidae": "#E65100", "Aradidae": "#4E342E"}}, "orthoptera": {"emoji": "🦗", "label": "Grasshoppers", "iNatTaxonId": 47651, "placeId": 962, "groupBy": "family", "familyColors": {"Acrididae": "#8B6914", "Tettigoniidae": "#2E7D32", "Gryllidae": "#5D4037", "Stenopelmatidae": "#D4760A", "Mantidae": "#1A7A6D", "Phasmatidae": "#6B8E23", "Heteronemiidae": "#8B7355", "Timematidae": "#556B2F", "Gryllotalpidae": "#795548", "Rhaphidophoridae": "#9E9E9E"}}, "flies": {"emoji": "🪰", "label": "Flies", "iNatTaxonId": 47822, "placeId": 962, "groupBy": "family", "familyColors": {"Asilidae": "#C62828", "Bombyliidae": "#FF8F00", "Tipulidae": "#795548", "Tabanidae": "#5D4037", "Tachinidae": "#37474F", "Calliphoridae": "#1B5E20", "Sarcophagidae": "#616161", "Muscidae": "#455A64", "Dolichopodidae": "#2E7D32", "Stratiomyidae": "#33691E", "Drosophilidae": "#8D6E63", "Culicidae": "#1565C0", "Tephritidae": "#E65100", "Conopidae": "#6A1B9A", "Bibionidae": "#212121", "Scenopinidae": "#757575", "Mydidae": "#1A237E", "Ptychopteridae": "#263238", "Rhagionidae": "#4E342E", "Polleniidae": "#546E7A", "Chironomidae": "#78909C", "Coelopidae": "#37474F", "Ulidiidae": "#5D4037", "Anthomyiidae": "#757575", "Psychodidae": "#9E9E9E", "Braulidae": "#795548", "Anisopodidae": "#616161"}}, "snails": {"emoji": "🐌", "label": "Snails & Slugs", "iNatTaxonId": 47114, "placeId": 962, "groupBy": "family", "familyColors": {"Helicidae": "#795548", "Subulinidae": "#8D6E63", "Helminthoglyptidae": "#FF8F00", "Limacidae": "#607D8B", "Agriolimacidae": "#78909C", "Ariolimacidae": "#FDD835", "Valvatidae": "#1565C0", "Succineidae": "#FFB300", "Vitrinidae": "#81C784"}}, "myriapods": {"emoji": "🐛", "label": "Myriapods", "iNatTaxonId": 144128, "placeId": 962, "groupBy": "family", "familyColors": {"Scolopendridae": "#C62828", "Scutigeridae": "#FF8F00", "Lithobiidae": "#8D6E63", "Linotaeniidae": "#BDBDBD", "Spirostreptidae": "#5D4037", "Paradoxosomatidae": "#37474F", "Spirobolidae": "#795548", "Polydesmidae": "#4E342E", "Polyxenidae": "#9E9E9E", "Scutigerellidae": "#E0E0E0"}}, "isopods": {"emoji": "🦀", "label": "Crustaceans", "iNatTaxonId": 47797, "placeId": 962, "groupBy": "family", "familyColors": {"Armadillidiidae": "#607D8B", "Porcellionidae": "#78909C", "Talitridae": "#FFB300", "Ligiidae": "#37474F", "Branchinectidae": "#1565C0", "Streptocephalidae": "#0D47A1"}}};
-const INTRO_SET=new Set(["Aceria lantanae","Acheta domesticus","Acizzia acaciaebaileyanae","Acizzia hakeae","Acizzia uncatoides","Aedes notoscriptus","Agonoscelis puberula","Agrilus planipennis","Agrotis ipsilon","Akamptogonus novarae","Aleurodicus dugesii","Aleurothrixus floccosus","Alphitobius diaperinus","Amara aenea","Ambigolimax parvipenis","Ambigolimax valentianus","Anacridium aegyptium","Anarsia lineatella","Androniscus dentiger","Anobium punctatum","Anoplodesmus saussurii","Anthidium manicatum","Anthonomus grandis","Anthrenus coloratus","Anthrenus verbasci","Aonidiella aurantii","Aphidius colemani","Aphis cytisorum","Aphis nerii","Apis mellifera","Araneus diadematus","Arion hortensis","Arion rufus","Armadillidium maculatum","Armadillidium nasatum","Armadillidium vulgare","Armadillo officinalis","Arocatus melanocephalus","Attagenus unicolor","Bactericera lavaterae","Bactrocera oleae","Badumna longinqua","Bagrada hilaris","Bemisia tabaci","Biston betularia","Blaniulus guttulatus","Blastophaga psenes","Blastopsylla occidentalis","Blatta orientalis","Blattella germanica","Boreioglycaspis melaleucae","Brachymyrmex patagonicus","Brachypera zoilus","Brachyponera chinensis","Bradybaena similaris","Bryobia praetiosa","Cactoblastis cactorum","Cadra figulilella","Calathus ruficollis","Callosobruchus maculatus","Cantareus apertus","Caradrina morpheus","Carausius morosus","Cardiocondyla mauritanica","Carpophilus hemipterus","Centrocoris volxemi","Cepaea nemoralis","Ceratitis capitata","Cheiracanthium mildei","Cicindela campestris","Cimex lectularius","Clogmia albipunctata","Closterotomus norwegicus","Coccinella septempunctata","Cochlicella barbara","Cochlicopa lubrica","Cornu aspersum","Cotesia glomerata","Crioceris asparagi","Crioceris duodecimpunctata","Cryptamorpha desjardinsi","Cryptolaemus montrouzieri","Cryptolestes ferrugineus","Cryptoneossa triangula","Ctenarytaina eucalypti","Cydia pomonella","Cyptocephala antiguensis","Deroceras laeve","Deroceras reticulatum","Diaphorina citri","Diestrammena asynamora","Drosophila immigrans","Drosophila suzukii","Duponchelia fovealis","Dysdera crocata","Endrosis sarcitrella","Ephestia kuehniella","Epiblema strenuana","Epiphyas postvittana","Eratigena atrica","Eristalis arbustorum","Eristalis tenax","Etiella zinckenella","Euborellia annulipes","Eucalyptolyma maideni","Eucarazzia elegans","Eumerus strigatus","Euphyllura olivina","Eupteryx decemnotata","Evania appendigaster","Falconina gracilis","Fenusa pumila","Forficula auricularia","Furchadaspis zamiae","Geomalacus maculosus","Glycaspis brimblecombei","Gondwanocrypticus platensis","Gonyodiscus rotundatus","Gossyparia spuria","Greenidea psidii","Gryllodes sigillatus","Gryllotalpa gryllotalpa","Hakka himeshimensis","Halmus chalybeus","Halyomorpha halys","Harmonia axyridis","Hasarius adansoni","Heterogaster urticae","Heteropoda venatoria","Hofmannophila pseudospretella","Holocnemus pluchei","Homalodisca vitripennis","Hyles euphorbiae","Hymenia perspectalis","Hypera brunnipennis","Hypera postica","Icerya purchasi","Iris oratoria","Japananus hyalinus","Josephiella microcarpae","Laemostenus complanatus","Lantanophaga pusillidactylus","Lasioderma serricorne","Lasius neglectus","Latrodectus geometricus","Lauria cylindracea","Lauritrioza alacris","Lehmannia valentiana","Lepisma saccharinum","Leptocybe invasa","Leptoglossus zonatus","Limacus flavus","Limax maximus","Linepithema humile","Lissachatina fulica","Lithobius forficatus","Loxosceles rufescens","Lycorma delicatula","Lyctus brunneus","Lymantria dispar","Macrohomotoma gladiata","Macrosiphum rosae","Mamestra brassicae","Mantis religiosa","Margarya chinensis","Megachile apicalis","Megachile rotundata","Megachile sculpturalis","Megacyllene robiniae","Megalonotus sabulicola","Megaselia scalaris","Melanoides tuberculata","Melanostoma mellinum","Menemerus bivittatus","Merodon equestris","Metaltella simoni","Metcalfa pruinosa","Microtheca ochroloma","Milax gagates","Miomantis caffra","Montandoniola confusa","Musca autumnalis","Musca domestica","Myzus persicae","Nezara viridula","Noctua pronuba","Novius cardinalis","Nylanderia bourbonica","Obolodiplosis robiniae","Ocypus olens","Oinophila v-flava","Oligotoma saundersii","Oniscus asellus","Onitis alexis","Onthophagus taurus","Ophelimus maskelli","Ophiomyia camarae","Ophyiulus pilosus","Opsius stactogalus","Osmia cornifrons","Osmia taurus","Otala lactea","Otiorhynchus sulcatus","Oxidus gracilis","Oxycarenus hyalinipennis","Oxychilus alliarius","Oxychilus cellarius","Oxychilus draparnaudi","Pantomorus cervinus","Papilio demoleus","Paralaoma servilis","Parasteatoda tepidariorum","Paratrechina longicornis","Paropsis atomaria","Paropsisterna m-fuscum","Parthenolecanium corni","Pectinophora gossypiella","Periplaneta americana","Phalangium opilio","Phaneroptera nana","Pheidole megacephala","Phidippus audax","Philaenus spumarius","Philoscia muscorum","Pholcus phalangioides","Phoracantha recurva","Phoracantha semipunctata","Phthorimaea operculella","Phyllocnistis citrella","Phyllonorycter platani","Pieris rapae","Plagiodera versicolora","Planococcus citri","Plexippus paykulli","Plodia interpunctella","Plutella xylostella","Polistes dominula","Pollenia rudis","Polydesmus angustus","Polygyra cereolus","Pomacea canaliculata","Popillia japonica","Porcellio laevis","Porcellio scaber","Porcellionides pruinosus","Potamopyrgus antipodarum","Prodidomus rufus","Pseudacysta perseae","Psychoda alternata","Pterocallis alni","Pulvinaria psidii","Pyralis farinalis","Rhinocyllus conicus","Rhopalapion longirostre","Rhyzobius forestieri","Rhyzobius lophanthae","Ruditapes philippinarum","Rumina decollata","Salticus scenicus","Sarucallis kahawaluokalani","Scantius aegyptius","Scotophaeus blackwalli","Scutigera coleoptrata","Scyphophorus acupunctatus","Scytodes thoracica","Shelfordella lateralis","Shivaphis celti","Singhiella simplex","Siphanta acuta","Siphoninus phillyreae","Sitona hispidulus","Solenopsis invicta","Sophonia orientalis","Spoladea recurvalis","Steatoda bipunctata","Steatoda grossa","Steatoda nobilis","Steatoda triangulosa","Stegobium paniceum","Stomoxys calcitrans","Supella longipalpa","Syritta pipiens","Tachystola hemisema","Takecallis arundinariae","Tapinoma melanocephalum","Technomyrmex difficilis","Tenebrio molitor","Tenebrio obscurus","Tenodera sinensis","Tetramorium bicarinatum","Tetramorium immigrans","Tettigonia viridissima","Thaumastocoris peregrinus","Thaumetopoea processionea","Theba pisana","Thermobia domestica","Tigolene clementinus","Tinea pellionella","Tineola bisselliella","Tipula oleracea","Tipula paludosa","Toxoptera aurantii","Trachymela sloanei","Trialeurodes vaporariorum","Tribolium confusum","Trichoniscus pusillus","Trioza adventicia","Umbonia crassicornis","Vespula germanica","Wahlgreniella nervata","Xanthogaleruca luteola","Xerotricha conspurcata","Zaprionus indianus","Zaprionus tuberculatus","Zoropsis spinimana","Zygiella x-notata","Larinioides sclopetarius","Listroderes costirostris","Otiorhynchus rugosostriatus","Nathrius brevipennis","Diaprepes abbreviatus","Trichoferus campestris","Euwallacea fornicatus","Agrilus auroguttatus","Aedes aegypti","Aedes albopictus","Chrysomya rufifacies","Chrysomya megacephala","Ophiomyia kwansonis","Deroceras invadens","Pulvinaria mesembryanthemi","Trioza brevigenae","Ctenarytaina spatulata","Cacopsylla tobirae","Ctenarytaina longicauda","Megastigmus transvaalensis",'Gonipterus platensis','Chilocorus kuwanae','Stenopelmus rufinasus','Calycomyza lantanae','Pegomya carduorum','Eristalinus taeniops','Rhingia campestris','Spodoptera exigua','Agonopterix alstroemeriana']);
-const INVASIVE_SET=new Set(["Aedes notoscriptus","Agrilus planipennis","Anthonomus grandis","Aonidiella aurantii","Arion hortensis","Bactrocera oleae","Bagrada hilaris","Bemisia tabaci","Brachymyrmex patagonicus","Brachyponera chinensis","Cactoblastis cactorum","Ceratitis capitata","Cimex lectularius","Deroceras reticulatum","Diaphorina citri","Drosophila suzukii","Duponchelia fovealis","Epiphyas postvittana","Glycaspis brimblecombei","Halyomorpha halys","Harmonia axyridis","Homalodisca vitripennis","Icerya purchasi","Lasius neglectus","Latrodectus geometricus","Leptocybe invasa","Linepithema humile","Lissachatina fulica","Lycorma delicatula","Lymantria dispar","Margarya chinensis","Megachile sculpturalis","Melanoides tuberculata","Miomantis caffra","Myzus persicae","Nezara viridula","Nylanderia bourbonica","Ophelimus maskelli","Papilio demoleus","Paratrechina longicornis","Pectinophora gossypiella","Phoracantha semipunctata","Phyllocnistis citrella","Planococcus citri","Polistes dominula","Pomacea canaliculata","Popillia japonica","Potamopyrgus antipodarum","Scantius aegyptius","Singhiella simplex","Siphanta acuta","Solenopsis invicta","Steatoda nobilis","Tapinoma melanocephalum","Technomyrmex difficilis","Thaumastocoris peregrinus","Thaumetopoea processionea","Trachymela sloanei","Trialeurodes vaporariorum","Vespula germanica","Xanthogaleruca luteola","Zaprionus indianus","Euwallacea fornicatus","Agrilus auroguttatus","Paropsis atomaria","Trichoferus campestris","Diaprepes abbreviatus","Aedes aegypti","Aedes albopictus","Ophiomyia kwansonis","Deroceras invadens"]);
-const ENDEMIC_SET=new Set(["Acanthopteroctetes unifascia","Aglaothorax amathitis","Aglaothorax longipennis","Aliatypus gulosus","Aliatypus thompsoni","Anachemmis sober","Aphonopelma icenoglei","Apomastus kristenae","Apomastus schlingeri","Aptostichus atomarius","Aptostichus icenoglei","Aptostichus simus","Arethaea brevicauda","Behrensia conchiformis","Bollmanulus catalinae","Burchia semiinflata","Calosaturnia walterorum","Colias harfordii","Decticita balli","Dracotettix monstrosus","Euphilotes allyni","Glaucopsyche lygdamus palosverdesensis","Haplotrema catalinense","Haplotrema guadalupense","Hebestatis theveneti","Helminthoglypta petricola","Helminthoglypta tudiculata","Herpeteros angelus","Hesperarion hemphilli","Hubbardia pentapeltis","Idiostatus aequalis","Leporimetis obesa","Megahexura fulva","Morsea californica","Neduba propsti","Phryganidia californica","Plataea californiaria","Platylyra californica","Proserpinus lucidus","Pyrgulopsis castaicensis","Roperia poulsoni","Sitalcina flava","Sitalcina lobata","Tanaocerus koebelei","Tibicinoides rubrovenosa","Titiotus shantzi","Trimerotropis occidentaloides","Xerarionta kellettii","Titiotus californicus","Strymon avalona","Icaricia neurona","Glyptostoma gabrielense","Micrarionta rufocincta","Micrarionta beatula","Radiocentrum avalonense","Helminthoglypta fontiphila","Aglaothorax costalis","Vespula sulphurea","Philya californiensis"]);
+const STATUS={"common": {"label": "Common", "color": "#3A9B68", "bg": "#E8F5E9"}, "uncommon": {"label": "Uncommon", "color": "#BFA46E", "bg": "#FFF8E1"}, "rare": {"label": "Rare", "color": "#D4760A", "bg": "#FFF3E0"}, "vagrant": {"label": "Vagrant", "color": "#5C6BC0", "bg": "#E8EAF6"}};
+const TAXA_ORDER=['butterflies','dragonflies','damselflies'];
+const TAXA={
+  "butterflies": {"emoji": "🦋", "label": "Butterflies", "iNatTaxonId": 47224, "placeId": 1522, "groupBy": "family",
+    "familyColors": {"Papilionidae": "#C5943A", "Pieridae": "#7A8B32", "Lycaenidae": "#3B6BA5", "Nymphalidae": "#C06020", "Hesperiidae": "#6B4F3A"}},
+  "dragonflies": {"emoji": "🪁", "label": "Dragonflies", "iNatTaxonId": 47927, "placeId": 1522, "groupBy": "family",
+    "familyColors": {"Libellulidae": "#C0392B", "Aeshnidae": "#1A7A6D", "Gomphidae": "#6B8E23", "Corduliidae": "#8B6914", "Cordulegastridae": "#8E6B3D", "Macromiidae": "#5B7B72"}},
+  "damselflies": {"emoji": "🏹", "label": "Damselflies", "iNatTaxonId": 47928, "placeId": 1522, "groupBy": "family",
+    "familyColors": {"Coenagrionidae": "#2874A6", "Lestidae": "#27AE60", "Calopterygidae": "#6C3483"}}
+};
+const INTRO_SET=new Set(["Pieris rapae"]);
+const INVASIVE_SET=new Set([]);
+const ENDEMIC_SET=new Set([]);
 function getOrigin(sp){const sn=sp.sn,sn2=sn.split(' ').slice(0,2).join(' ');if(INVASIVE_SET.has(sn)||INVASIVE_SET.has(sn2))return 'invasive';if(INTRO_SET.has(sn)||INTRO_SET.has(sn2)||sp.intro)return 'introduced';if(ENDEMIC_SET.has(sn)||ENDEMIC_SET.has(sn2))return 'endemic';return 'native';}
 function matchOrigin(sp,f){if(!f)return true;const o=getOrigin(sp);if(f==='native')return o==='native'||o==='endemic';if(f==='introduced')return o==='introduced'||o==='invasive';return o===f;}
-const STATUS_PIP={"uncommon":{dot:"#BFA46E",bg:"rgba(191,164,110,0.4)",text:"#fff",label:"U"},"endangered":{dot:"#C62828",bg:"rgba(198,40,40,0.55)",text:"#fff",label:"EN"},"rare":{dot:"#D4760A",bg:"rgba(212,118,10,0.45)",text:"#fff",label:"R"},"vagrant":{dot:"#5C6BC0",bg:"rgba(92,107,192,0.45)",text:"#fff",label:"VAG"},"extirpated":{dot:"#78909C",bg:"rgba(120,144,156,0.5)",text:"#fff",label:"EX"},"historical":{dot:"#9E9E9E",bg:"rgba(158,158,158,0.5)",text:"#fff",label:"HIST"}};
-const CONSERVATION={"Danaus plexippus":{iucn:"VU",iucnFull:"Vulnerable",esa:"Proposed Threatened (Dec 2024)",cesa:"Candidate",note:"IUCN VU (migratory ssp); USFWS proposed Threatened; CESA candidate. Western population 99% extinction probability at 60yr"},"Euphydryas editha quino":{esa:"Endangered",cesa:"Candidate Endangered",note:"Federally Endangered (ESA 1997). CESA Candidate Endangered (Aug 2025). Extirpated from LA County."},"Glaucopsyche lygdamus palosverdesensis":{esa:"Endangered",note:"Federally Endangered (ESA 1980). LA County endemic — Palos Verdes Peninsula only. Once thought extinct; rediscovered 1994. Captive breeding program."},"Euphilotes allyni":{esa:"Endangered",note:"Federally Endangered (ESA 1976). Restricted to El Segundo dunes/LAX."},"Bombus crotchii":{cesa:"Candidate Endangered",iucn:"EN",iucnFull:"Endangered",note:"CESA candidate (2019 petition). IUCN Endangered. Dramatic decline."},"Bombus pensylvanicus":{iucn:"VU",iucnFull:"Vulnerable",esa:"Under Review",note:"IUCN Vulnerable. USFWS positive 90-day finding (2021). Severe continent-wide decline."},"Bombus fervidus":{iucn:"VU",iucnFull:"Vulnerable",note:"IUCN Vulnerable. Declining across range."},"Streptocephalus woottoni":{esa:"Endangered",note:"Federally Endangered (ESA 1993). Vernal pool specialist."},"Branchinecta lynchi":{esa:"Threatened",note:"Federally Threatened (ESA 1994). Vernal pool specialist."},"Desmocerus californicus":{esa:"Threatened",note:"Federally Threatened (ESA 1980). Elderberry obligate."},"Panoquina errans":{state:"CA SSC",note:"California Species of Special Concern. Coastal salt marsh specialist — habitat critically reduced."},"Helminthoglypta traskii":{state:"CA SSC",note:"Catalina Island endemic. Limited habitat on single island."},"Bombus vandykei":{iucn:"VU",iucnFull:"Vulnerable",note:"IUCN Vulnerable. Cryptic — probably under-reported."},"Aphonopelma eutylenum":{note:"No formal listing but populations impacted by habitat loss and collecting."},"Glyptostoma gabrielense":{note:"San Gabriel Mountains endemic snail. Very restricted range. Habitat specialist of shaded rocky canyons."}};
+function matchWater(sp,f){if(!f)return true;if(!sp.water)return false;return sp.water.toLowerCase().includes(f);}
+const STATUS_PIP={"uncommon":{dot:"#BFA46E",bg:"rgba(191,164,110,0.4)",text:"#fff",label:"U"},"rare":{dot:"#D4760A",bg:"rgba(212,118,10,0.45)",text:"#fff",label:"R"},"vagrant":{dot:"#5C6BC0",bg:"rgba(92,107,192,0.45)",text:"#fff",label:"VAG"}};
+const CONSERVATION={"Danaus plexippus":{iucn:"VU",iucnFull:"Vulnerable",esa:"Proposed Threatened (Dec 2024)",note:"IUCN Vulnerable (migratory population); USFWS proposed Threatened status under review."}};
 const SPECIES_DATA={}
 
 
-const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'alpha',observedFilter:null,originFilter:null,elevFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},lifeListLoading:false,expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
+const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'alpha',observedFilter:null,waterFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},lifeListLoading:false,expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
 
-// === IndexedDB Persistent Photo Cache ===
-const IDB_NAME='invertGuidePhotos',IDB_VER=1,IDB_STORE='photos';
+const IDB_NAME='montcoBugsPhotos',IDB_VER=1,IDB_STORE='photos';
 let idb=null;
 function openIDB(){return new Promise((res,rej)=>{
 try{const r=indexedDB.open(IDB_NAME,IDB_VER);
@@ -263,11 +243,11 @@ if(n>0)console.log('Hydrated '+n+' cached photos from IndexedDB');}
 
 function loadState(){try{const h=location.hash.replace('#','');if(TAXA_ORDER.includes(h))state.activeTaxon=h;const u=localStorage.getItem('inat_username');if(u)state.inatUsername=u;}catch{}}
 function saveU(n){state.inatUsername=n;try{n?localStorage.setItem('inat_username',n):localStorage.removeItem('inat_username')}catch{}}
-function saveT(k){state.activeTaxon=k;state.statusFilter=null;state.familyFilter=null;state.observedFilter=null;state.elevFilter=null;state.searchQuery='';state.expandedCards={};state.expandedSubsp={};for(const sp of(SPECIES_DATA[k]||[])){const c=state.photoCache[sp.sn];if(c&&!c.url&&c._rc){delete state.photoCache[sp.sn];}}try{location.hash=k}catch{}}
+function saveT(k){state.activeTaxon=k;state.statusFilter=null;state.familyFilter=null;state.observedFilter=null;state.waterFilter=null;state.searchQuery='';state.expandedCards={};state.expandedSubsp={};for(const sp of(SPECIES_DATA[k]||[])){const c=state.photoCache[sp.sn];if(c&&!c.url&&c._rc){delete state.photoCache[sp.sn];}}try{location.hash=k}catch{}}
 
 document.getElementById('sclT').addEventListener('click',()=>{document.getElementById('sclB').classList.toggle('show');});
 
-const NAME_ALIASES={"Tharsalea hermes":"Lycaena hermes","Nymphalis milberti":"Aglais milberti","Tharsalea heteronea":"Lycaena heteronea","Tharsalea helloides":"Lycaena helloides","Heraclides rumiko":"Papilio rumiko","Junonia grisea":"Junonia grisea","Burnsius communis":"Pyrgus communis","Burnsius philetas":"Pyrgus philetas","Burnsius albezens":"Pyrgus albescens","Icaricia acmon":"Plebejus acmon","Icaricia icarioides":"Plebejus icarioides","Icaricia melissa":"Plebejus melissa","Icaricia lupini":"Plebejus lupini","Icaricia neurona":"Plebejus neurona","Tharsalea arota":"Lycaena arota","Tharsalea gorgon":"Lycaena gorgon","Tharsalea xanthoides":"Lycaena xanthoides","Plebulina emigdionis":"Philotiella leona","Coenonympha california":"Coenonympha tullia","Argynnis callippe":"Speyeria callippe","Argynnis coronis":"Speyeria coronis","Argynnis egleis":"Speyeria egleis","Zerene cesonia":"Colias cesonia","Abaeis nicippe":"Eurema nicippe","Cecropterus pylades":"Thorybes pylades","Callophrys nelsoni":"Callophrys gryneus nelsoni","Hesperia colorado leussleri":"Hesperia colorado","Satyrium sylvinus":"Satyrium dryope","Zoraena dorsalis":"Cordulegaster dorsalis","Phanogomphus kurilis":"Gomphus kurilis","Leptarctia californiae":"Platyprepia virginalis","Lycaena hermes":"Tharsalea hermes","Aglais milberti":"Nymphalis milberti","Lycaena heteronea":"Tharsalea heteronea","Lycaena helloides":"Tharsalea helloides","Papilio rumiko":"Heraclides rumiko","Pyrgus communis":"Burnsius communis","Pyrgus philetas":"Burnsius philetas","Pyrgus albescens":"Burnsius albezens","Plebejus acmon":"Icaricia acmon","Plebejus icarioides":"Icaricia icarioides","Plebejus melissa":"Icaricia melissa","Plebejus lupini":"Icaricia lupini","Plebejus neurona":"Icaricia neurona","Lycaena arota":"Tharsalea arota","Lycaena gorgon":"Tharsalea gorgon","Lycaena xanthoides":"Tharsalea xanthoides","Philotiella leona":"Plebulina emigdionis","Coenonympha tullia":"Coenonympha california","Speyeria callippe":"Argynnis callippe","Speyeria coronis":"Argynnis coronis","Speyeria egleis":"Argynnis egleis","Colias cesonia":"Zerene cesonia","Eurema nicippe":"Abaeis nicippe","Thorybes pylades":"Cecropterus pylades","Callophrys gryneus nelsoni":"Callophrys nelsoni","Hesperia colorado":"Hesperia colorado leussleri","Satyrium dryope":"Satyrium sylvinus","Cordulegaster dorsalis":"Zoraena dorsalis","Gomphus kurilis":"Phanogomphus kurilis","Platyprepia virginalis":"Leptarctia californiae","Xylocopa californica":"Xylocopa sonorina","Xylocopa sonorina":"Xylocopa californica","Xylocopa californica arizonensis":"Xylocopa sonorina","Agraulis vanillae":"Dione vanillae","Dione vanillae":"Agraulis vanillae","Papilio cresphontes":"Papilio rumiko"};
+const NAME_ALIASES={"Nymphalis milberti":"Aglais milberti","Aglais milberti":"Nymphalis milberti","Burnsius communis":"Pyrgus communis","Pyrgus communis":"Burnsius communis","Cecropterus pylades":"Thorybes pylades","Thorybes pylades":"Cecropterus pylades","Eurema nicippe":"Abaeis nicippe","Abaeis nicippe":"Eurema nicippe","Papilio cresphontes":"Heraclides cresphontes","Heraclides cresphontes":"Papilio cresphontes","Phanogomphus exilis":"Gomphus exilis","Gomphus exilis":"Phanogomphus exilis","Phanogomphus lividus":"Gomphus lividus","Gomphus lividus":"Phanogomphus lividus","Macromia transversa":"Didymops transversa","Didymops transversa":"Macromia transversa","Plathemis lydia":"Libellula lydia","Libellula lydia":"Plathemis lydia"};
 
 let pq=[],pf=false;
 async function fetchPhoto(sp){if(state.photoCache[sp.sn]&&state.photoCache[sp.sn].url)return;
@@ -329,17 +309,16 @@ function sspC(k){return(SPECIES_DATA[k]||[]).filter(sp=>sp.ssp).length;}
 function lC(){const c={};for(const k of TAXA_ORDER){const d=state.lifeListData[k];if(!d){c[k]=0;continue;}let n=0;for(const sp of(SPECIES_DATA[k]||[])){if(sp.ssp)continue;if(isO(sp,k))n++;}c[k]=n;}return c;}
 
 function fmtN(n){return n.toLocaleString();}
-function rSub(){const t=TAXA_ORDER.reduce((a,k)=>a+(SPECIES_DATA[k]||[]).length,0);const ssp=TAXA_ORDER.reduce((a,k)=>a+sspC(k),0);document.getElementById('hSub').textContent=ssp>0?`${fmtN(t-ssp)} species + ${ssp} subspecies across ${TAXA_ORDER.length} taxa groups`:`${fmtN(t)} species across ${TAXA_ORDER.length} taxa groups`;}
+function rSub(){const t=TAXA_ORDER.reduce((a,k)=>a+(SPECIES_DATA[k]||[]).length,0);const ssp=TAXA_ORDER.reduce((a,k)=>a+sspC(k),0);document.getElementById('hSub').textContent=ssp>0?`${fmtN(t-ssp)} species + ${ssp} subspecies — Butterflies, Dragonflies & Damselflies`:`${fmtN(t)} species — Butterflies, Dragonflies & Damselflies`;}
 
 function rTB(){const bar=document.getElementById('tBar'),sc=sC(),lc=lC();
-const hasAF=state.observedFilter||state.statusFilter||state.originFilter||state.elevFilter||state.searchQuery.trim();
+const hasAF=state.observedFilter||state.statusFilter||state.waterFilter||state.searchQuery.trim();
 const fsc=hasAF?{}:sc;
 if(hasAF){for(const k of TAXA_ORDER){let fl=SPECIES_DATA[k]||[];
 if(state.statusFilter)fl=fl.filter(s=>s.st===state.statusFilter);
 if(state.observedFilter==='observed')fl=fl.filter(s=>isO(s,k));
 else if(state.observedFilter==='unobserved')fl=fl.filter(s=>!isO(s,k));
-if(state.originFilter)fl=fl.filter(s=>matchOrigin(s,state.originFilter));
-if(state.elevFilter)fl=fl.filter(s=>s.elev&&s.elev.includes(state.elevFilter));
+if(state.waterFilter)fl=fl.filter(s=>matchWater(s,state.waterFilter));
 if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();fl=fl.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q));}
 fsc[k]=fl.filter(s=>!s.ssp).length;}}
 const hasLL=state.inatUsername&&!state.lifeListLoading&&Object.keys(state.lifeListData).length>0;
@@ -348,7 +327,7 @@ bar.querySelectorAll('.ttab').forEach(b=>b.addEventListener('click',()=>{saveT(b
 
 function rLL(){const el=document.getElementById('llBar'),sc=sC(),lc=lC();
 const k=state.activeTaxon,tc=TAXA[k],tsc=sc[k]||0,tlc=lc[k]||0;
-const hasFilter=!!(state.statusFilter||state.familyFilter||state.observedFilter||state.originFilter||state.elevFilter||state.searchQuery.trim());
+const hasFilter=!!(state.statusFilter||state.familyFilter||state.observedFilter||state.waterFilter||state.searchQuery.trim());
 let fsc=tsc,flc=tlc;
 if(hasFilter&&state.inatUsername){
 let fl=SPECIES_DATA[k]||[];
@@ -357,8 +336,7 @@ if(state.familyFilter)fl=fl.filter(s=>s.fam===state.familyFilter);
 if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();fl=fl.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q)||s.fam.toLowerCase().includes(q));}
 if(state.observedFilter==='observed')fl=fl.filter(s=>isO(s,k));
 if(state.observedFilter==='unobserved')fl=fl.filter(s=>!isO(s,k));
-if(state.originFilter)fl=fl.filter(s=>matchOrigin(s,state.originFilter));
-if(state.elevFilter)fl=fl.filter(s=>s.elev&&s.elev.includes(state.elevFilter));
+if(state.waterFilter)fl=fl.filter(s=>matchWater(s,state.waterFilter));
 fsc=fl.filter(s=>!s.ssp).length;flc=fl.filter(s=>!s.ssp&&isO(s,k)).length;}
 let h=`<div class="llh"><span class="lll">iNaturalist Life List</span><div id="llC"></div></div>`;
 if(state.inatUsername){const p=fsc>0?(flc/fsc*100):0;if(state.lifeListLoading)h+=`<div class="llld">Loading...</div>`;
@@ -378,17 +356,14 @@ h+=`<button class="sp ${state.observedFilter==='observed'?'aa':''}" data-o="obse
 h+=`<button class="sp ${state.observedFilter==='unobserved'?'aa':''}" data-o="unobserved" style="${state.observedFilter==='unobserved'?'background:#C62828;color:#fff;border-color:#C62828':''}" title="Show only not yet observed">○ Unseen</button>`;
 h+=`</span>`;}
 h+=`<span style="margin-left:8px;border-left:1px solid #ddd;padding-left:8px">`;
-const oFils=[['native','Native','#2E7D32'],['introduced','Introduced','#E65100'],['invasive','Invasive','#C62828'],['endemic','Endemic','#1565C0']];
-for(const[ov,ol,oc] of oFils){const oa=state.originFilter===ov;h+=`<button class="sp" data-origin="${ov}" style="${oa?`background:${oc};color:#fff;border-color:${oc}`:`border-color:${oc}40;color:${oc}`}" title="${ol}">${ol}</button>`;}
-h+=`</span>`;
+if(state.activeTaxon==='dragonflies'||state.activeTaxon==='damselflies'){
 h+=`<span style="margin-left:8px;border-left:1px solid #ddd;padding-left:8px">`;
-const eFils=[['coast','Coast'],['low','Lowland'],['foot','Foothill'],['mid','Mid-elev'],['high','Mountain']];
-for(const[ev,el2] of eFils){const ea=state.elevFilter===ev;h+=`<button class="sp" data-elv="${ev}" style="${ea?'background:#5D4037;color:#fff;border-color:#5D4037':'border-color:#5D403740;color:#5D4037'}" title="${el2}">${el2}</button>`;}
-h+=`</span>`;
+const wFils=[['stream/creek','Stream','#1565C0'],['pond/lake','Pond/Lake','#0277BD'],['marsh','Marsh','#00838F'],['vernal pool','Vernal Pool','#00ACC1'],['open area','Open Area','#558B2F']];
+for(const[wv,wl,wc] of wFils){const wa=state.waterFilter===wv;h+=`<button class="sp" data-water="${wv}" style="${wa?`background:${wc};color:#fff;border-color:${wc}`:`border-color:${wc}40;color:${wc}`}" title="${wl}">${wl}</button>`;}
+h+=`</span>`;}
 el.innerHTML=h;el.querySelectorAll('.sp[data-s]').forEach(b=>b.addEventListener('click',()=>{const s=b.dataset.s;state.statusFilter=s===''?null:(state.statusFilter===s?null:s);render();}));
 el.querySelectorAll('.sp[data-o]').forEach(b=>b.addEventListener('click',()=>{const o=b.dataset.o;state.observedFilter=state.observedFilter===o?null:o;render();}));
-el.querySelectorAll('.sp[data-origin]').forEach(b=>b.addEventListener('click',()=>{const o=b.dataset.origin;state.originFilter=state.originFilter===o?null:o;render();}));
-el.querySelectorAll('.sp[data-elv]').forEach(b=>b.addEventListener('click',()=>{const e=b.dataset.elv;state.elevFilter=state.elevFilter===e?null:e;render();}));}
+el.querySelectorAll('.sp[data-water]').forEach(b=>b.addEventListener('click',()=>{const w=b.dataset.water;state.waterFilter=state.waterFilter===w?null:w;render();}));}
 
 function rTI(){var el=document.getElementById('tInfo'),tc=TAXA[state.activeTaxon],sp=SPECIES_DATA[state.activeTaxon]||[],fams=[...new Set(sp.map(function(s){return s.fam;}))],ssp=sspC(state.activeTaxon),spCount=ssp>0?(sp.length-ssp)+' species + '+ssp+' ssp':sp.length+' species';
 var famCounts={};for(var i=0;i<sp.length;i++){var s=sp[i];if(!s.ssp)famCounts[s.fam]=(famCounts[s.fam]||0)+1;}
@@ -396,36 +371,33 @@ var filteredSp=sp.slice();
 if(state.statusFilter)filteredSp=filteredSp.filter(function(s){return s.st===state.statusFilter;});
 if(state.observedFilter==='observed')filteredSp=filteredSp.filter(function(s){return isO(s);});
 if(state.observedFilter==='unobserved')filteredSp=filteredSp.filter(function(s){return !isO(s);});
-if(state.originFilter)filteredSp=filteredSp.filter(function(s){return matchOrigin(s,state.originFilter);
-if(state.elevFilter)filteredSp=filteredSp.filter(function(s){return s.elev&&s.elev.includes(state.elevFilter);});});
+if(state.waterFilter)filteredSp=filteredSp.filter(function(s){return matchWater(s,state.waterFilter);});
 if(state.searchQuery.trim()){var q2=state.searchQuery.toLowerCase();filteredSp=filteredSp.filter(function(s){return s.cn.toLowerCase().includes(q2)||s.sn.toLowerCase().includes(q2)||s.fam.toLowerCase().includes(q2);});}
 var filtFamCounts={};for(var j=0;j<filteredSp.length;j++){var s2=filteredSp[j];if(!s2.ssp)filtFamCounts[s2.fam]=(filtFamCounts[s2.fam]||0)+1;}
-var hasFilters=!!(state.statusFilter||state.observedFilter||state.originFilter||state.elevFilter||state.searchQuery.trim());
+var hasFilters=!!(state.statusFilter||state.observedFilter||state.waterFilter||state.searchQuery.trim());
 var famEntries=Object.entries(tc.familyColors);
 if(state.famSort==='alpha')famEntries.sort(function(a,b){return a[0].localeCompare(b[0]);});
 if(hasFilters)famEntries=famEntries.filter(function(e){return(filtFamCounts[e[0]]||0)>0;});
 var expanded=state.famExpanded||!!state.familyFilter;
 var famCount=famEntries.length;
-var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);chipsHtml+='<span class="fs'+(a?' af':'')+'" data-fam="'+f+'"><span class="fsd" style="background:'+c+'"></span>'+f+' ('+ct+')</span>';}
-var filterInfo=state.familyFilter?' \u00b7 <strong>'+state.familyFilter+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
-el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">iNat '+tc.iNatTaxonId+' \u00b7 LA County</span></div><div class="tim">'+spCount+' \u00b7 '+fams.length+' group'+(fams.length===1?'':'s')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='alpha'?'A\u2192Z':'Taxon')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
+var famCommonLookup={};for(var i2=0;i2<sp.length;i2++){if(sp[i2].famCommon)famCommonLookup[sp[i2].fam]=sp[i2].famCommon;}
+var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=famCommonLookup[f]?famCommonLookup[f]:f;chipsHtml+='<span class="fs'+(a?' af':'')+'" data-fam="'+f+'"><span class="fsd" style="background:'+c+'"></span>'+fLabel+' ('+ct+')</span>';}
+var filterInfo=state.familyFilter?' \u00b7 <strong>'+(famCommonLookup[state.familyFilter]||state.familyFilter)+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
+el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+fams.length+' family'+(fams.length===1?'':' groups')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='alpha'?'A\u2192Z':'Taxon')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
 document.getElementById('famToggle').addEventListener('click',function(){state.famExpanded=!state.famExpanded;rTI();});
 document.getElementById('famSortBtn').addEventListener('click',function(){state.famSort=state.famSort==='alpha'?'taxon':'alpha';render();});
 el.querySelectorAll('.fs').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.fam;state.familyFilter=state.familyFilter===f?null:f;state.famExpanded=!!state.familyFilter;render();});});}
 
-// Cross-taxon search: if query matches species in other taxa, show note
 function rSp(){const cont=document.getElementById('spCont');
 let list=SPECIES_DATA[state.activeTaxon]||[];
 if(state.statusFilter)list=list.filter(s=>s.st===state.statusFilter);
 if(state.familyFilter)list=list.filter(s=>s.fam===state.familyFilter);
 if(state.observedFilter==='observed')list=list.filter(s=>isO(s));
 if(state.observedFilter==='unobserved')list=list.filter(s=>!isO(s));
-if(state.originFilter)list=list.filter(s=>matchOrigin(s,state.originFilter));
-if(state.elevFilter)list=list.filter(s=>s.elev&&s.elev.includes(state.elevFilter));
+if(state.waterFilter)list=list.filter(s=>matchWater(s,state.waterFilter));
 let xtrHtml='';
 if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();
 list=list.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q)||s.fam.toLowerCase().includes(q));
-// Cross-taxon matches
 const otherMatches=[];
 for(const k of TAXA_ORDER){if(k===state.activeTaxon)continue;
 const matches=(SPECIES_DATA[k]||[]).filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q));
@@ -439,26 +411,21 @@ let html=xtrHtml;
 const sortedFamGroups=Object.entries(groups);if(state.famSort==='alpha')sortedFamGroups.sort((a,b)=>a[0].localeCompare(b[0]));
 for(const[fam,spp]of sortedFamGroups){
 const fc=tc.familyColors[fam]||'#999';
-html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${fam}<span class="fgc">(${spp.length})</span></div><div class="sg">`;
+const famLabel=(spp[0]&&spp[0].famCommon)?(spp[0].famCommon.charAt(0).toUpperCase()+spp[0].famCommon.slice(1))+' <span class="fgc" style="font-style:italic;font-weight:400">('+fam+')</span>':fam;
+html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${famLabel}<span class="fgc">(${spp.length})</span></div><div class="sg">`;
 for(const sp of spp){const obs=isO(sp),ca=state.photoCache[sp.sn];
 const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`background:linear-gradient(135deg,${fc}22,${fc}44)`;
 const pip=STATUS_PIP[sp.st];const isIntro=INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 const isInvasive=INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
-html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${obs?`<div class="ob">✓</div>`:''}${isInvasive||pip?`<div class="badge-col">${isInvasive?`<div class="inv-pill">⚠ INV</div>`:''}${isIntro&&!isInvasive?`<div class="intro-pill">INTRO</div>`:''}${pip?`<div class="st-pip" style="background:${pip.bg};color:${pip.text}"><span class="st-dot" style="background:${pip.dot}"></span>${pip.label}</div>`:''}</div>`:''}
+html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${isInvasive||pip?`<div class="badge-col">${isInvasive?`<div class="inv-pill">⚠ INV</div>`:''}${isIntro&&!isInvasive?`<div class="intro-pill">INTRO</div>`:''}${pip?`<div class="st-pip" style="background:${pip.bg};color:${pip.text}"><span class="st-dot" style="background:${pip.dot}"></span>${pip.label}</div>`:''}</div>`:''}
 <div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep">${tc.emoji}</div>`:''}</div>
-<div class="cb"><div class="ccn">${sp.cn}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
+<div class="cb"><div class="ccn">${sp.cn}${obs?`<span class="ob-inline">✓</span>`:''}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
 html+=`</div></div>`;}
 cont.innerHTML=html;aL();ep(list,true);}
 
 
 const MO_NAMES=['J','F','M','A','M','J','J','A','S','O','N','D'];
 
-function rElev(sp){
-if(!sp.elev)return '';
-const labels={'coast':'Coastal (0–300 ft)','low':'Lowland (0–1,500 ft)','foot':'Foothill (500–4,000 ft)','mid':'Mid-elevation (2,000–6,500 ft)','high':'Mountain (5,000–10,000 ft)','alpine':'Alpine (8,000 ft+)','wide':'Sea level to mountains'};
-const parts=sp.elev.split(',').map(e=>labels[e.trim()]||e.trim()).join(' · ');
-return '<div class="ds-elev"><svg viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg>'+parts+'</div>';
-}
 function rPhen(sp){
 if(!sp.mo)return '';
 const mo=sp.mo,pk=sp.pk||[];
@@ -468,22 +435,12 @@ const m=i+1,active=mo.includes(m),peak=pk.includes(m);
 return '<div class="ds-phen-mo '+(peak?'peak':active?'active':'off')+'" style="height:'+(peak?'18px':active?'14px':'8px')+'">'+n+'</div>';
 }).join('')+'</div></div>';
 }
-function rHP(sp){
-if(!sp.hp)return '';
-return '<div class="ds-hp"><div class="ds-hp-label">Host Plants / Larval Food</div><div class="ds-hp-list">'+sp.hp+'</div></div>';
+function rWater(sp){
+if(!sp.water)return '';
+return '<div class="ds-water"><svg viewBox="0 0 24 24"><path d="M12 2c-4 5-7 9-7 13a7 7 0 0014 0c0-4-3-8-7-13z"/></svg>'+sp.water+'</div>';
 }
 
-function rXL(sp){
-if(!sp.xlink||!sp.xlink.length)return '';
-const labels={host:'\u{1F33F} Host Plant',poll:'\u{1F41D} Specialist Plant',gall:'\u{1F33F} Gall Host',pest:'\u{1F33F} Associated Plant'};
-let h='<div class="ds-xl"><div class="ds-xl-label">Plant Associations</div>';
-for(const x of sp.xlink){
-const lbl=labels[x.rel]||'\u{1F33F} Plant';
-const url='https://la-flora.org/?species='+encodeURIComponent(x.sn);
-h+='<a class="ds-xl-link" href="'+url+'" target="_blank" rel="noopener">'+lbl+': <strong>'+x.cn+'</strong> <span class="ds-xl-sn">'+x.sn+'</span> <span class="ds-xl-arrow">\u2197 la-flora</span></a>';}
-return h+'</div>';}
-
-function rFM(sp){if(!sp.fm)return '';let h='';for(const[l,v]of Object.entries(sp.fm))h+=`<div class="ds-fmr"><span class="ds-fml">${l}</span><span class="ds-fmv">${v}</span></div>`;return h;}
+function rFM(sp){if(!sp.fm)return '';let h='';for(const[l,v]of Object.entries(sp.fm)){if(!v)continue;h+=`<div class="ds-fmr"><span class="ds-fml">${l}</span><span class="ds-fmv">${v}</span></div>`;}return h;}
 
 function openDS(sp){
 state.dsSpecies=sp;
@@ -495,32 +452,32 @@ const tid=state.resolvedTids[sp.sn]||'';
 const mapUrl=tid?`https://www.inaturalist.org/observations?place_id=${tc.placeId}&subview=map&taxon_id=${tid}`:`https://www.inaturalist.org/observations?place_id=${tc.placeId}&subview=map&taxon_name=${encodeURIComponent(sp.sn)}`;
 const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`background:linear-gradient(135deg,${fc}22,${fc}44)`;
 const obs=isO(sp);
+const famLabel=sp.famCommon?(sp.famCommon.charAt(0).toUpperCase()+sp.famCommon.slice(1))+' <span style="font-style:italic;opacity:0.7">('+sp.fam+')</span>':sp.fam;
 let h=`<div class="ds-ovr" id="dsOvr"><div class="ds-sheet" id="dsSheet">
 <div class="ds-handle"></div>
 <div class="ds-photo" style="${ps}">${!ca||!ca.url?`<div class="ds-ep">${tc.emoji}</div>`:''}${obs?`<div class="ob" style="top:12px;right:12px;width:26px;height:26px;font-size:14px">✓</div>`:''}</div>
 <div class="ds-body">
 <div class="ds-hdr"><div><div class="ds-cn">${sp.cn}</div><div class="ds-sn">${sp.sn}${sp.ssp?' <span style="font-style:normal;font-size:10px;color:#999;background:#f5f5f5;padding:1px 5px;border-radius:4px">ssp</span>':''}</div></div>
 <span class="ds-sb" style="color:${st.color||'#999'};background:${st.bg||'#f5f5f5'};border:1px solid ${(st.color||'#999')}30">${st.label||sp.st}</span></div>
-<div class="ds-fam"><span class="ds-fd" style="background:${fc}"></span>${sp.fam}${(INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' ')))?'<span style="margin-left:8px;font-size:9px;color:#D4760A;font-weight:600">✦ Introduced</span>'+(INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '))?'<span class="ds-inv">INVASIVE</span>':''):''}</div>
-${(()=>{const c=CONSERVATION[sp.sn]||CONSERVATION[sp.sn.split(' ').slice(0,2).join(' ')];if(!c)return '';let badges='';if(c.iucn)badges+=`<span class="ds-cons-badge ds-cons-iucn ${c.iucn.toLowerCase()}">IUCN ${c.iucnFull||c.iucn}</span>`;if(c.esa)badges+=`<span class="ds-cons-badge ds-cons-esa">ESA ${c.esa}</span>`;if(c.cesa)badges+=`<span class="ds-cons-badge ds-cons-cesa">CESA ${c.cesa}</span>`;if(c.state)badges+=`<span class="ds-cons-badge ds-cons-state">${c.state}</span>`;return `<div class="ds-cons"><div class="ds-cons-badges">${badges}</div>${c.note||''}</div>`;})()}
-<div class="ds-desc">${sp.desc}</div>${rElev(sp)}${rPhen(sp)}${rHP(sp)}${rXL(sp)}
-<div class="ds-map-label">LA County Observations</div>
+<div class="ds-fam"><span class="ds-fd" style="background:${fc}"></span>${famLabel}${(INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' ')))?'<span style="margin-left:8px;font-size:9px;color:#D4760A;font-weight:600">✦ Introduced</span>'+(INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '))?'<span class="ds-inv">INVASIVE</span>':''):''}</div>
+${(()=>{const c=CONSERVATION[sp.sn]||CONSERVATION[sp.sn.split(' ').slice(0,2).join(' ')];if(!c)return '';let badges='';if(c.iucn)badges+=`<span class="ds-cons-badge ds-cons-iucn ${c.iucn.toLowerCase()}">IUCN ${c.iucnFull||c.iucn}</span>`;if(c.esa)badges+=`<span class="ds-cons-badge ds-cons-esa">ESA ${c.esa}</span>`;return `<div class="ds-cons"><div class="ds-cons-badges">${badges}</div>${c.note||''}</div>`;})()}
+<div class="ds-desc">${sp.desc}</div>${rPhen(sp)}${rWater(sp)}
+<div class="ds-fms">${rFM(sp)}</div>
+<div class="ds-map-label">MontCo Observations</div>
 <div class="ds-map-wrap">
 <div class="ds-map" id="dsMap"></div>
 </div>
-<div class="ds-fms">${rFM(sp)}</div>
 <div class="ds-acts"><a class="ds-btn ds-btn-inat" href="${mapUrl}" target="_blank" rel="noopener noreferrer">View on iNaturalist →</a>${state.inatUsername&&tid?`<a class="ds-btn ds-btn-myobs" href="https://www.inaturalist.org/observations?user_id=${encodeURIComponent(state.inatUsername)}&taxon_id=${tid}&verifiable=any" target="_blank" rel="noopener noreferrer">My Observations →</a>`:''}</div>
 ${ca&&ca.attr?`<div class="ds-attr">${eH(ca.attr)}</div>`:''}
 </div></div></div>`;
 document.body.insertAdjacentHTML('beforeend',h);
 const ovr=document.getElementById('dsOvr'),sheet=document.getElementById('dsSheet');
 ovr.addEventListener('click',e=>{if(e.target===ovr)closeDS();});
-// Initialize embedded Leaflet map
 setTimeout(()=>{
 const el=document.getElementById('dsMap');if(!el)return;
 try{
 const m=L.map(el,{zoomControl:false,attributionControl:false});
-m.fitBounds([[33.70,-118.95],[34.82,-117.65]],{padding:[5,5]});
+m.fitBounds([[40.05,-75.55],[40.30,-75.10]],{padding:[5,5]});
 L.control.zoom({position:'topright'}).addTo(m);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18}).addTo(m);
 if(tid){
@@ -531,7 +488,6 @@ state.dsMap=m;
 setTimeout(()=>m.invalidateSize(),100);
 }catch{el.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:12px;padding:16px;text-align:center;background:#f5f5f5">Map requires network.<br><a href="${mapUrl}" target="_blank" style="color:var(--forest)">View on iNaturalist →</a></div>`;}
 },80);
-// Swipe-down to close
 let sy=null;
 sheet.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;},{passive:true});
 sheet.addEventListener('touchmove',e=>{if(sy!==null&&sheet.scrollTop<=0){const dy=e.touches[0].clientY-sy;if(dy>60){closeDS();sy=null;}}},{passive:true});
@@ -545,11 +501,11 @@ function eH(s){const d=document.createElement('div');d.textContent=s;return d.in
 
 function oM(sp){const tc=TAXA[state.activeTaxon],tid=state.resolvedTids[sp.sn]||'';
 const u=tid?`https://www.inaturalist.org/observations?place_id=${tc.placeId}&subview=map&taxon_id=${tid}`:`https://www.inaturalist.org/observations?place_id=${tc.placeId}&subview=map&taxon_name=${encodeURIComponent(sp.sn)}`;
-document.getElementById('mTit').textContent=sp.cn;document.getElementById('mSub').textContent=`${sp.sn} — LA County`;
+document.getElementById('mTit').textContent=sp.cn;document.getElementById('mSub').textContent=`${sp.sn} — Montgomery County, PA`;
 document.getElementById('mLnk').href=u;document.getElementById('mOvr').classList.remove('hid');
 setTimeout(()=>{if(state.leafletMap){state.leafletMap.remove();state.leafletMap=null;}const el=document.getElementById('mCon');el.innerHTML='';
 try{const m=L.map(el);
-m.fitBounds([[33.70,-118.95],[34.82,-117.65]],{padding:[10,10]});
+m.fitBounds([[40.05,-75.55],[40.30,-75.10]],{padding:[10,10]});
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18}).addTo(m);
 if(tid)L.tileLayer(`https://api.inaturalist.org/v1/grid/{z}/{x}/{y}.png?taxon_id=${tid}&place_id=${tc.placeId}&color=%233A9B68&opacity=0.7`,{maxZoom:18,opacity:0.8}).addTo(m);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,opacity:0.8}).addTo(m);
@@ -567,7 +523,6 @@ loadState();
 hydrateCache().catch(()=>{});
 
 
-/* === v3.027 Data Loader === */
 const DATA_GROUPS=TAXA_ORDER;
 let _dataLoaded=0,_dataTotal=DATA_GROUPS.length;
 
@@ -587,7 +542,7 @@ function updateLoadProgress(){
 async function loadAllData(){
   if(location.protocol==='file:'){
     const el=document.getElementById('loadProg');
-    if(el){el.innerHTML='<b>Local file detected.</b> The v3 split architecture requires an HTTP server.<br>Run <code style="background:#1A3C35;color:#BFA46E;padding:2px 6px;border-radius:3px">python3 -m http.server 8000</code> in the folder containing index.html,<br>then open <a href="http://localhost:8000" style="color:#BFA46E">http://localhost:8000</a>';el.style.display='block';el.style.padding='20px 16px';el.style.lineHeight='1.8';}
+    if(el){el.innerHTML='<b>Local file detected.</b> This app requires an HTTP server.<br>Run <code style="background:#1A3C35;color:#BFA46E;padding:2px 6px;border-radius:3px">python3 -m http.server 8000</code> in the folder containing index.html,<br>then open <a href="http://localhost:8000" style="color:#BFA46E">http://localhost:8000</a>';el.style.display='block';el.style.padding='20px 16px';el.style.lineHeight='1.8';}
     return;
   }
   const lp=document.getElementById('loadProg');if(lp){lp.style.display='block';lp.textContent='Loading species data\u2026';}
@@ -610,7 +565,6 @@ async function loadAllData(){
   if(state.inatUsername)fetchLL();
 }
 
-/* === End Data Loader === */
 loadAllData();
 
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
@@ -640,8 +594,7 @@ if(srch){state.searchQuery=srch;const si=document.getElementById('sInp');if(si)s
 if(location.hash.startsWith('#species/')){
 findAndOpenSpecies(decodeURIComponent(location.hash.slice(9)).replace(/_/g,' '));}
 }
-// Check deep-link after data loads
-const _dlisten=setInterval(()=>{if(Object.keys(SPECIES_DATA).length>=15){clearInterval(_dlisten);checkDeepLink();}},200);
+const _dlisten=setInterval(()=>{if(Object.keys(SPECIES_DATA).length>=TAXA_ORDER.length){clearInterval(_dlisten);checkDeepLink();}},200);
 </script>
 </body>
 </html>

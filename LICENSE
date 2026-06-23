@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2025-2026 Rhys Marsh
+Copyright (c) 2026 Sam Stuart
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +23,16 @@ SOFTWARE.
 
 ---
 
+This project (MontCoBugs) is a fork of LABugs.org by Rhys Marsh
+(https://github.com/rhysmarsh/LAbugs), adapted to cover the butterflies,
+dragonflies, and damselflies of Montgomery County, Pennsylvania. The
+original application architecture, design, and approach are Rhys Marsh's
+work, used here with gratitude under the MIT License above.
+
 Species photographs are sourced from iNaturalist (inaturalist.org) and are
 subject to their respective Creative Commons licenses as specified by the
-original observers. Species descriptions are original works by the author.
-Taxonomic data is sourced from the Catalogue of Life, ITIS, and other
-public taxonomic databases.
+original observers. Species descriptions for MontCo Bugs are original works
+by Sam Stuart. Taxonomic data is sourced from the Catalogue of Life, ITIS,
+and other public taxonomic databases. Odonate seasonal and habitat data is
+informed by the Pennsylvania DCNR Nescopeck State Park dragonfly and
+damselfly checklist.
