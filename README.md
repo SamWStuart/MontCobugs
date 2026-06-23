@@ -1,85 +1,64 @@
-# LA County Invertebrate Field Guide
+# MontCoBugs
 
-**[labugs.org](https://labugs.org)** · v3.026 · 3,438 species across 15 taxa groups
+A free, open-source field guide to the butterflies, dragonflies, and damselflies of Montgomery County, Pennsylvania — with photos, field marks, seasonality, and observation maps.
 
-A self-contained progressive web app (PWA) field guide to the invertebrates of Los Angeles County, California. Works offline after first visit. No login required.
+🦋 **[Visit the live site →](https://montcobugs.netlify.app)**
 
-## Species Coverage
+## About
 
-| Group | Species |
-|---|---|
-| Moths | 574 |
-| Beetles | 567 |
-| True Bugs & Allies | 470 |
-| Flies | 403 |
-| Wasps & Ants | 298 |
-| Arachnids | 281 |
-| Snails & Mollusks | 200 |
-| Native Bees | 176 |
-| Butterflies | 153 |
-| Orthoptera | 144 |
-| Dragonflies & Damselflies | 72 |
-| Myriapods | 37 |
-| Hoverflies | 36 |
-| Crustaceans | 18 |
-| Bumblebees | 9 |
-| **Total** | **3,438** |
+MontCoBugs covers:
+- **Butterflies** — 73+ species
+- **Dragonflies** — 38+ species
+- **Damselflies** — 16+ species
 
-## Features
+Each species entry includes a photo (pulled live from iNaturalist), field marks, flight period, habitat, conservation status where relevant, and a map of observations within Montgomery County.
 
-- **Offline-capable PWA** — network-first service worker caches all data for offline use
-- **iNaturalist life list integration** — log in with your iNat username to track observed species
-- **Photo cards** — CC-licensed images from iNaturalist for every species
-- **Ecological associations (hp)** — species-specific notes on host plants, prey, habitat, and ecological role (100% coverage, 79% unique)
-- **Cross-links to host plants** — 969 species (28%) link directly to [la-flora.org](https://la-flora.org) with one-tap deep linking
-- **Peak month data** — 833 species (24%) with documented peak activity months from published sources and iNaturalist phenology
-- **Elevation filter** — Coast / Lowland / Foothill / Mid-elev / Mountain toggle chips
-- **Rarity filter** — Common / Uncommon / Rare / Vagrant / Endangered, calibrated from published description evidence
-- **Origin filter** — Native / Introduced / Invasive / Endemic
-- **Family browser** — expandable family chips with species counts, sortable alphabetically or by taxonomic order
-- **Cross-group search** — search finds species across all 15 taxa groups with "Also found in" navigation
-- **Deep-link URLs** — `?species=Scientific+name`, `?search=term`, `#species/Scientific_name`
-- **iOS safe-area support** — Dynamic Island / notch-aware sticky navigation
-- **Full SEO** — JSON-LD WebApplication schema, Open Graph tags, canonical URL
+## Origins
 
-## Rarity Distribution
+This project is a fork of **[LABugs.org](https://github.com/rhysmarsh/LAbugs)** by Rhys Marsh, an outstanding field guide to the invertebrates of Los Angeles County, California. The architecture, design language, and core app logic are his work — MontCoBugs adapts that foundation for a much smaller scope (three taxa groups instead of LA's fifteen) and a different region, with new species data, descriptions, and Pennsylvania-specific habitat/seasonality information.
 
-| Status | Species | % |
-|---|---|---|
-| Common | 451 | 13% |
-| Uncommon | 2,864 | 83% |
-| Rare | 68 | 2% |
-| Vagrant | 46 | 1% |
-| Endangered | 7 | <1% |
+If you're interested in building something similar for your own region, start with [Rhys's original repo](https://github.com/rhysmarsh/LAbugs) — it's well worth a look.
 
-Rarity labels are derived from published description evidence only — no estimation.
+## Data sources
 
-## Cross-Guide Ecosystem
+- **Species lists & photos** — [iNaturalist](https://www.inaturalist.org), via their public API (place_id=1522 for Montgomery County, PA)
+- **Odonate seasonality & habitat** — Pennsylvania DCNR's Nescopeck State Park dragonfly & damselfly checklist
+- **Species descriptions & field marks** — original content, written from personal field experience and published references
+- **Taxonomy** — Catalogue of Life, ITIS, and current iNaturalist taxonomic consensus
 
-This guide is part of the LA County Field Guide Suite:
+## Tech stack
 
-| Guide | URL | Species |
-|---|---|---|
-| 🌿 Plants, Mosses & Lichens | [la-flora.org](https://la-flora.org) | 1,476 |
-| 🐛 Invertebrates | [labugs.org](https://labugs.org) | 3,438 |
-| 🍄 Fungi | [lafungi.org](https://lafungi.org) | 724 |
-| 🦎 Wildlife | [la-fauna.org](https://la-fauna.org) | 252 |
+No build step, no framework — just `index.html`, a handful of JSON data files, and a service worker for offline support. Deployed as a static site on Netlify.
 
-Cross-linking between guides: 969 invertebrate species link to host plants on la-flora.org. 46 species reference fungal associates on lafungi.org. 146 species reference vertebrate predators seeded for la-fauna.org.
+```
+MontCoBugs/
+├── index.html       — the entire app
+├── manifest.json     — PWA configuration
+├── sw.js             — service worker (offline caching)
+├── icons/            — app icons
+└── data/
+    ├── butterflies.json
+    ├── dragonflies.json
+    └── damselflies.json
+```
 
-## Architecture
+## Running locally
 
-Two-file PWA: `index.html` (77 KB) + 15 JSON data files in `data/` (~1,880 KB total). Service worker (`sw.js`) caches all assets for offline use. No build step, no framework, no dependencies.
+Browsers block `fetch()` requests from `file://` pages, so you'll need a local server:
 
-## Data Sources
+```bash
+python3 -m http.server 8000
+```
 
-- **Species data**: iNaturalist research-grade observations for LA County
-- **Photos**: CC-licensed images via iNaturalist API
-- **Ecological associations**: Hogue *Insects of the Los Angeles Basin* (1993), Powell & Hogue *California Insects* (2020), Emmel & Emmel *Butterflies of Southern California* (1973), Manolis *Dragonflies and Damselflies of California* (2003), Michener *Bees of the World* (2007), Williams et al. *Bumble Bees of North America* (2014), Xerces Society pollinator lists, UC IPM, CA Bumble Bee Atlas
-- **Maps**: ESRI + iNaturalist
+Then open `http://localhost:8000` in your browser.
 
+## Contributing
+
+Found an error in a species description, or have a sighting that should update our species list? Open an issue or pull request — this is very much a living document.
 ## License
 
-GPL v3. See [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). MontCoBugs is built on Rhys Marsh's original MIT-licensed LABugs.org project; his copyright notice is preserved alongside this project's.
 
-For informational purposes only — not a substitute for expert identification.
+## Disclaimer
+
+For informational purposes only — not a substitute for expert identification. Species status classifications are informed by iNaturalist observation frequency and published references but should not be taken as definitive scientific assessment.
