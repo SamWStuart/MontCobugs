@@ -197,6 +197,18 @@ const TAXA={
     "familyColors": {"Coenagrionidae": "#2874A6", "Lestidae": "#27AE60", "Calopterygidae": "#6C3483"},
     "familyOrder": ["Calopterygidae", "Lestidae", "Coenagrionidae"]}
 };
+// Explicit phylogenetic species order for butterflies, following the PA statewide checklist
+// sequence (subfamily blocks within each family, e.g. satyrs cluster at the end of Nymphalidae).
+// Falls back to scientific-name sort for any species not listed here.
+const SPECIES_ORDER={
+  butterflies: ["Epargyreus clarus","Urbanus proteus","Cecropterus lyciades","Cecropterus pylades","Erynnis juvenalis","Erynnis horatius","Erynnis baptisiae","Burnsius communis","Pholisora catullus","Atalopedes huron","Nastra lherminier","Ancyloxypha numitor","Hylephila phyleus","Polites peckius","Polites themistocles","Limochores origenes","Limochores mystic","Polites egeremet","Vernia verna","Anatrytone logan","Lon hobomok","Lon zabulon","Poanes viator","Euphyes vestris","Panoquina ocola","Battus philenor","Eurytides marcellus","Papilio polyxenes","Papilio glaucus","Papilio troilus","Heraclides cresphontes","Anthocharis midea","Pieris rapae","Colias philodice","Colias eurytheme","Phoebis sennae","Eurema nicippe","Feniseca tarquinius","Lycaena hypophlaeas","Callophrys gryneus","Satyrium favonius","Satyrium titus","Satyrium calanus","Calycopis cecrops","Strymon melinus","Parrhasius m-album","Cupido comyntas","Celastrina ladon","Celastrina neglecta","Celastrina neglectamajor","Libytheana carinenta","Danaus plexippus","Euptoieta claudia","Argynnis cybele","Boloria bellona","Limenitis arthemis","Limenitis archippus","Asterocampa celtis","Asterocampa clyton","Phyciodes tharos","Phyciodes cocyta","Euphydryas phaeton","Junonia coenia","Polygonia interrogationis","Polygonia comma","Aglais milberti","Nymphalis antiopa","Vanessa virginiensis","Vanessa cardui","Vanessa atalanta","Lethe appalachia","Megisto cymela","Cercyonis pegala"]
+};
+function speciesOrderIndex(sp){
+  const order=SPECIES_ORDER[state.activeTaxon];
+  if(!order)return -1;
+  const i=order.indexOf(sp.sn);
+  return i===-1?9999:i; // unknown species sort to the end rather than the start
+}
 const INTRO_SET=new Set(["Pieris rapae"]);
 const INVASIVE_SET=new Set([]);
 const ENDEMIC_SET=new Set([]);
@@ -421,11 +433,11 @@ const fc=tc.familyColors[fam]||'#999';
 // Sub-group by famCommon (genus-level grouping like "dancers", "bluets") within this family
 const subGroups={};
 for(const sp of spp){const key=sp.famCommon||'';if(!subGroups[key])subGroups[key]=[];subGroups[key].push(sp);}
-for(const key in subGroups){subGroups[key].sort((a,b)=>a.sn.localeCompare(b.sn));}
+for(const key in subGroups){subGroups[key].sort((a,b)=>{const oa=speciesOrderIndex(a),ob=speciesOrderIndex(b);if(oa!==-1&&ob!==-1&&SPECIES_ORDER[state.activeTaxon])return oa-ob;return a.sn.localeCompare(b.sn);});}
 // Order sub-groups by their first appearance in the scientific-name-sorted family list, so it stays stable
 const subGroupOrder=[];
 const seen=new Set();
-const famSortedBySn=[...spp].sort((a,b)=>a.sn.localeCompare(b.sn));
+const famSortedBySn=[...spp].sort((a,b)=>{const oa=speciesOrderIndex(a),ob=speciesOrderIndex(b);if(oa!==-1&&ob!==-1&&SPECIES_ORDER[state.activeTaxon])return oa-ob;return a.sn.localeCompare(b.sn);});
 for(const sp of famSortedBySn){const key=sp.famCommon||'';if(!seen.has(key)){seen.add(key);subGroupOrder.push(key);}}
 const famLabel=fam;
 html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${famLabel}<span class="fgc">(${spp.length})</span></div>`;
