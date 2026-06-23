@@ -66,6 +66,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .fg{margin-bottom:22px}
 .fgt{font-size:15px;font-weight:700;font-family:var(--fd);padding:0 2px 6px;margin-bottom:10px}
 .fgc{font-weight:400;font-size:12px;color:#999;margin-left:6px}
+.fgsub{font-size:12px;font-weight:600;font-family:var(--fb);padding:0 2px 4px;margin:10px 0 6px;text-transform:uppercase;letter-spacing:0.04em;opacity:0.75}
 .sg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
 @media(min-width:600px){.sg{grid-template-columns:repeat(3,1fr);gap:8px}}
 @media(min-width:900px){.sg{grid-template-columns:repeat(4,1fr);gap:10px}}
@@ -187,11 +188,14 @@ const STATUS={"common": {"label": "Common", "color": "#3A9B68", "bg": "#E8F5E9"}
 const TAXA_ORDER=['butterflies','dragonflies','damselflies'];
 const TAXA={
   "butterflies": {"emoji": "🦋", "label": "Butterflies", "iNatTaxonId": 47224, "placeId": 1522, "groupBy": "family",
-    "familyColors": {"Papilionidae": "#C5943A", "Pieridae": "#7A8B32", "Lycaenidae": "#3B6BA5", "Nymphalidae": "#C06020", "Hesperiidae": "#6B4F3A"}},
+    "familyColors": {"Papilionidae": "#C5943A", "Pieridae": "#7A8B32", "Lycaenidae": "#3B6BA5", "Nymphalidae": "#C06020", "Hesperiidae": "#6B4F3A"},
+    "familyOrder": ["Papilionidae", "Pieridae", "Lycaenidae", "Nymphalidae", "Hesperiidae"]},
   "dragonflies": {"emoji": "🪁", "label": "Dragonflies", "iNatTaxonId": 47927, "placeId": 1522, "groupBy": "family",
-    "familyColors": {"Libellulidae": "#C0392B", "Aeshnidae": "#1A7A6D", "Gomphidae": "#6B8E23", "Corduliidae": "#8B6914", "Cordulegastridae": "#8E6B3D", "Macromiidae": "#5B7B72"}},
+    "familyColors": {"Libellulidae": "#C0392B", "Aeshnidae": "#1A7A6D", "Gomphidae": "#6B8E23", "Corduliidae": "#8B6914", "Cordulegastridae": "#8E6B3D", "Macromiidae": "#5B7B72"},
+    "familyOrder": ["Aeshnidae", "Gomphidae", "Cordulegastridae", "Macromiidae", "Corduliidae", "Libellulidae"]},
   "damselflies": {"emoji": "🏹", "label": "Damselflies", "iNatTaxonId": 47928, "placeId": 1522, "groupBy": "family",
-    "familyColors": {"Coenagrionidae": "#2874A6", "Lestidae": "#27AE60", "Calopterygidae": "#6C3483"}}
+    "familyColors": {"Coenagrionidae": "#2874A6", "Lestidae": "#27AE60", "Calopterygidae": "#6C3483"},
+    "familyOrder": ["Calopterygidae", "Lestidae", "Coenagrionidae"]}
 };
 const INTRO_SET=new Set(["Pieris rapae"]);
 const INVASIVE_SET=new Set([]);
@@ -204,7 +208,7 @@ const CONSERVATION={"Danaus plexippus":{iucn:"VU",iucnFull:"Vulnerable",esa:"Pro
 const SPECIES_DATA={}
 
 
-const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'alpha',observedFilter:null,waterFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},lifeListLoading:false,expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
+const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'taxon',observedFilter:null,waterFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},lifeListLoading:false,expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
 
 const IDB_NAME='montcoBugsPhotos',IDB_VER=1,IDB_STORE='photos';
 let idb=null;
@@ -376,14 +380,15 @@ if(state.searchQuery.trim()){var q2=state.searchQuery.toLowerCase();filteredSp=f
 var filtFamCounts={};for(var j=0;j<filteredSp.length;j++){var s2=filteredSp[j];if(!s2.ssp)filtFamCounts[s2.fam]=(filtFamCounts[s2.fam]||0)+1;}
 var hasFilters=!!(state.statusFilter||state.observedFilter||state.waterFilter||state.searchQuery.trim());
 var famEntries=Object.entries(tc.familyColors);
-if(state.famSort==='alpha')famEntries.sort(function(a,b){return a[0].localeCompare(b[0]);});
+if(state.famSort==='taxon'&&tc.familyOrder){famEntries.sort(function(a,b){return tc.familyOrder.indexOf(a[0])-tc.familyOrder.indexOf(b[0]);});}
+else{famEntries.sort(function(a,b){return a[0].localeCompare(b[0]);});}
 if(hasFilters)famEntries=famEntries.filter(function(e){return(filtFamCounts[e[0]]||0)>0;});
 var expanded=state.famExpanded||!!state.familyFilter;
 var famCount=famEntries.length;
 var famCommonLookup={};for(var i2=0;i2<sp.length;i2++){if(sp[i2].famCommon)famCommonLookup[sp[i2].fam]=sp[i2].famCommon;}
 var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=famCommonLookup[f]?famCommonLookup[f]:f;chipsHtml+='<span class="fs'+(a?' af':'')+'" data-fam="'+f+'"><span class="fsd" style="background:'+c+'"></span>'+fLabel+' ('+ct+')</span>';}
 var filterInfo=state.familyFilter?' \u00b7 <strong>'+(famCommonLookup[state.familyFilter]||state.familyFilter)+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
-el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+fams.length+' family'+(fams.length===1?'':' groups')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='alpha'?'A\u2192Z':'Taxon')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
+el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+fams.length+' family'+(fams.length===1?'':' groups')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='taxon'?'Taxon':'A\u2192Z')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
 document.getElementById('famToggle').addEventListener('click',function(){state.famExpanded=!state.famExpanded;rTI();});
 document.getElementById('famSortBtn').addEventListener('click',function(){state.famSort=state.famSort==='alpha'?'taxon':'alpha';render();});
 el.querySelectorAll('.fs').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.fam;state.familyFilter=state.familyFilter===f?null:f;state.famExpanded=!!state.familyFilter;render();});});}
@@ -408,19 +413,35 @@ if(!list.length&&xtrHtml){cont.innerHTML=xtrHtml+`<div class="es">No matches in 
 const tc=TAXA[state.activeTaxon],groups={};
 for(const sp of list){if(!groups[sp.fam])groups[sp.fam]=[];groups[sp.fam].push(sp);}
 let html=xtrHtml;
-const sortedFamGroups=Object.entries(groups);if(state.famSort==='alpha')sortedFamGroups.sort((a,b)=>a[0].localeCompare(b[0]));
+const sortedFamGroups=Object.entries(groups);
+if(state.famSort==='taxon'&&tc.familyOrder){sortedFamGroups.sort((a,b)=>tc.familyOrder.indexOf(a[0])-tc.familyOrder.indexOf(b[0]));}
+else{sortedFamGroups.sort((a,b)=>a[0].localeCompare(b[0]));}
 for(const[fam,spp]of sortedFamGroups){
 const fc=tc.familyColors[fam]||'#999';
-const famLabel=(spp[0]&&spp[0].famCommon)?(spp[0].famCommon.charAt(0).toUpperCase()+spp[0].famCommon.slice(1))+' <span class="fgc" style="font-style:italic;font-weight:400">('+fam+')</span>':fam;
-html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${famLabel}<span class="fgc">(${spp.length})</span></div><div class="sg">`;
-for(const sp of spp){const obs=isO(sp),ca=state.photoCache[sp.sn];
+// Sub-group by famCommon (genus-level grouping like "dancers", "bluets") within this family
+const subGroups={};
+for(const sp of spp){const key=sp.famCommon||'';if(!subGroups[key])subGroups[key]=[];subGroups[key].push(sp);}
+for(const key in subGroups){subGroups[key].sort((a,b)=>a.sn.localeCompare(b.sn));}
+// Order sub-groups by their first appearance in the scientific-name-sorted family list, so it stays stable
+const subGroupOrder=[];
+const seen=new Set();
+const famSortedBySn=[...spp].sort((a,b)=>a.sn.localeCompare(b.sn));
+for(const sp of famSortedBySn){const key=sp.famCommon||'';if(!seen.has(key)){seen.add(key);subGroupOrder.push(key);}}
+const famLabel=fam;
+html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${famLabel}<span class="fgc">(${spp.length})</span></div>`;
+for(const key of subGroupOrder){
+const subSpp=subGroups[key];
+if(key){html+=`<div class="fgsub" style="color:${fc}">${key.charAt(0).toUpperCase()+key.slice(1)}<span class="fgc">(${subSpp.length})</span></div>`;}
+html+=`<div class="sg">`;
+for(const sp of subSpp){const obs=isO(sp),ca=state.photoCache[sp.sn];
 const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`background:linear-gradient(135deg,${fc}22,${fc}44)`;
 const pip=STATUS_PIP[sp.st];const isIntro=INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 const isInvasive=INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${isInvasive||pip?`<div class="badge-col">${isInvasive?`<div class="inv-pill">⚠ INV</div>`:''}${isIntro&&!isInvasive?`<div class="intro-pill">INTRO</div>`:''}${pip?`<div class="st-pip" style="background:${pip.bg};color:${pip.text}"><span class="st-dot" style="background:${pip.dot}"></span>${pip.label}</div>`:''}</div>`:''}
 <div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep">${tc.emoji}</div>`:''}</div>
 <div class="cb"><div class="ccn">${sp.cn}${obs?`<span class="ob-inline">✓</span>`:''}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
-html+=`</div></div>`;}
+html+=`</div>`;}
+html+=`</div>`;}
 cont.innerHTML=html;aL();ep(list,true);}
 
 
