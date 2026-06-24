@@ -8,7 +8,7 @@
     "obs": 927,
     "wiki": "https://en.wikipedia.org/wiki/Atalopedes_huron",
     "st": "common",
-    "desc": "Formerly Sachem - a ubiquitous later summer Skipper. ",
+    "desc": "Formerly Sachem - a ubiquitous later summer Skipper. This abundant Skipper is worth learning carefully as it has a lot of variation and you will see it more frequently then any other Skipper.",
     "fm": {
       "Wingspan": "Zabulon/Hobomok Skipper size",
       "Upperside": "Look for Large black patch on forewing.  Female with two pale spots on Forewing.",
@@ -40,7 +40,7 @@
     "obs": 785,
     "wiki": "http://en.wikipedia.org/wiki/Monarch_butterfly",
     "st": "common",
-    "desc": "Most familiar butterfly.  Beautiful orange wings with black veins and white spots.",
+    "desc": "This is probably the most familiar butterfly.  Beautiful orange wings with black veins and white spots.",
     "fm": {
       "Wingspan": "2 inches (large)",
       "Upperside": "Orange with black veins and white spots",
@@ -73,7 +73,7 @@
     "obs": 640,
     "wiki": "http://en.wikipedia.org/wiki/Papilio_glaucus",
     "st": "common",
-    "desc": "Distinctive, yellow and black striped butterfly",
+    "desc": "Distinctive, yellow and black striped butterfly that sometimes shows a dark morph that could be confused with Black Swallowtail.",
     "fm": {
       "Wingspan": "2.5 inches (large)",
       "Upperside": "Yellow wings with black border and internal stripes.  Can show black morph.",
@@ -106,7 +106,7 @@
     "obs": 580,
     "wiki": "http://en.wikipedia.org/wiki/Papilio_polyxenes",
     "st": "uncommon",
-    "desc": "Should be separated from other dark swallowtails with careful examinattion of forewing color & pattern.",
+    "desc": "While Black is our most common black swallowtail, Eastern Tiger Swallow tail frequently shows a dark morph and Spicebrush Swallowtail, seen briefly can cause identification issues.  Black and Tiger have different shapes which may be helpful but a careful examination of wing pattern, especially underwing pattern, might be key to unlocking a dark Swallowtail's true identity.",
     "fm": {
       "Wingspan": "1.5 in, smaller than Eastern Tiger Swallowtail",
       "Upperside": "Forewing distinctive with yellow spotting on Male and Females.",
@@ -141,7 +141,7 @@
     "obs": 409,
     "wiki": "http://en.wikipedia.org/wiki/Pieris_rapae",
     "st": "common",
-    "desc": "A ubiquitous butterfly found in many habitats",
+    "desc": "A ubiquitous butterfly found in many habitats. Underwings can be quite colorful but often seen in flight when white wings are obvious.",
     "fm": {
       "Wingspan": "< 1 inch (medium-small)",
       "Upperside": "White with three black spots",
@@ -178,7 +178,7 @@
     "obs": 355,
     "wiki": "https://en.wikipedia.org/wiki/Zabulon_skipper",
     "st": "common",
-    "desc": "A small grass Skipper with dramatic sexual dimorphism.  Similar to Hobomock Skipper but with distinctive underwing patterns.",
+    "desc": "A small grass Skipper with dramatic sexual dimorphism. At times this species is abundant.  Worth spending time with it when available as getting to know its sexual and individual variation inside-out may help alert you to other species.  Similar to Hobomock Skipper but with distinctive underwing patterns.",
     "fm": {
       "Wingspan": "<1 inch",
       "Upperside": "Male hindwing with bright yellow-orange bordered with black.  Female with disinctive white spots on forewing.",
@@ -242,7 +242,7 @@
     "obs": 292,
     "wiki": "http://en.wikipedia.org/wiki/Limenitis_arthemis",
     "st": "uncommon",
-    "desc": "A striking black and blue butterfly similar in appearance to Pipevine Swallowtail.",
+    "desc": "A striking black and blue butterfly similar in appearance to Pipevine Swallowtail. Also know as Red-spotted Purple.",
     "fm": {
       "Wingspan": "<1 inch",
       "Upperside": "Black with iridescent blue. Orange spots on forewing.",
@@ -275,7 +275,7 @@
     "obs": 260,
     "wiki": "http://en.wikipedia.org/wiki/Eastern_tailed-blue",
     "st": "common",
-    "desc": "A small blue butterfly with distinctive tail-like extensions on the hindwings.",
+    "desc": "A small blue butterfly that flys low to the ground with distinctive tail-like extensions on the hindwings.",
     "fm": {
       "Wingspan": "0.5 inches (small)",
       "Upperside": "Blue with small tails on hindwing and orange spots.",
@@ -311,7 +311,7 @@
     "obs": 237,
     "wiki": "http://en.wikipedia.org/wiki/Epargyreus_clarus",
     "st": "common",
-    "desc": "A medium sized skipper with distinctive silver band on the hindwing.",
+    "desc": "A medium sized spreadwing skipper with distinctive silver band on the hindwing and large orange stripe on forewing.  Only Hoary Edge a much less common butterfly should pose any real identification issues.  Silver-spotteds are conspiculous and un-shy.",
     "fm": {
       "Wingspan": "1.25 inches (medium)",
       "Upperside": "Brownish or tawny. Forewing shape somewhat triangular",
@@ -344,7 +344,7 @@
     "obs": 234,
     "wiki": "http://en.wikipedia.org/wiki/Vanessa_atalanta",
     "st": "common",
-    "desc": "Distinctive black butterfly with red bands and white spots.",
+    "desc": "A distinctive black butterfly with red bands and white spots.",
     "fm": {
       "Wingspan": ">1 inch",
       "Upperside": "Black with stunning red bands on forewing and hindwing",
@@ -379,7 +379,7 @@
     "obs": 211,
     "wiki": "http://en.wikipedia.org/wiki/Pearl_crescent",
     "st": "common",
-    "desc": "An abundant little butterfly with a spreadwing behavior",
+    "desc": "An abundant little butterfly with a spreadwing behavior that can be numerous in open areas.",
     "fm": {
       "Wingspan": "3/4 inch",
       "Upperside": "mosaic orange & black wings with strong blackish border",
@@ -448,7 +448,7 @@
     "obs": 204,
     "wiki": "http://en.wikipedia.org/wiki/Papilio_troilus",
     "st": "uncommon",
-    "desc": "Very similar to Black Swallowtail but lacks yellow markings.",
+    "desc": "Very similar to Black Swallowtail but lacks yellow markings.  Could also be confused with Red Spotted Admiral or Pipevine Swallowtail which is much less common in our area.",
     "fm": {
       "Wingspan": "~Black Swallowtail sized",
       "Upperside": "Black with bluish-white markings especially in hindwing",
@@ -480,7 +480,7 @@
     "obs": 130,
     "wiki": "http://en.wikipedia.org/wiki/Euptoieta_claudia",
     "st": "uncommon",
-    "desc": "A fairly unique butterfly, with brownish-orange and pale wings with black cell borders and spotting.",
+    "desc": "A fairly unique butterfly. From above looks similar to other Fritillarys, with brownish-orange and pale wings with black cell borders and spotting.  From below it is quite different from our other Fritillarys.",
     "fm": {
       "Wingspan": ">American Lady butterfly",
       "Upperside": "Dramatic pattern of dull and pale orange bordered by black, some black spots.",
@@ -514,7 +514,7 @@
     "obs": 117,
     "wiki": "http://en.wikipedia.org/wiki/Polygonia_comma",
     "st": "uncommon",
-    "desc": "Very similar to Question Mark.",
+    "desc": "Very similar to Question Mark and often and eespecially in flight may be indistinquishable.  Important to know the sex and to wait for it to land in order to examin spotting on forewing.",
     "fm": {
       "Wingspan": "Smaller than American Lady and Question Mark",
       "Upperside": "Orangish with fewer black spots in FW. HW can be dark or bright orange (brood specific)",
@@ -552,7 +552,7 @@
     "obs": 116,
     "wiki": "http://en.wikipedia.org/wiki/Red-banded_hairstreak",
     "st": "uncommon",
-    "desc": "Probably the most common Hairstreak in the county. Moves North in late Summer.",
+    "desc": "Probably the most common Hairstreak in the county and worth knowing well.  It has more orange on it's underwing than most Hairstreaks and moves North in late Summer when it becomes more common.",
     "fm": {
       "Wingspan": "Smaller than Gray Hairstreak.",
       "Upperside": "Bright blue.",
@@ -570,7 +570,6 @@
       10
     ],
     "pk": [
-      5,
       8,
       9
     ],
@@ -621,9 +620,9 @@
     "obs": 95,
     "wiki": "http://en.wikipedia.org/wiki/Celastrina_neglecta",
     "st": "uncommon",
-    "desc": "Basically same as Spring Azure",
+    "desc": "Basically the same as Spring Azure but flies later in the year.  It has no orange spotting and lacks tails.",
     "fm": {
-      "Wingspan": "Bigger than an ETB",
+      "Wingspan": "Bigger than an Eastern Tailed Blue.",
       "Upperside": "Blue with paler edging.  No tails, no red marks.",
       "Underside": "Pale with neat black markings",
       "Flight Period": "Summer and Fall",
@@ -691,7 +690,7 @@
     "obs": 90,
     "wiki": "http://en.wikipedia.org/wiki/Megisto_cymela",
     "st": "uncommon",
-    "desc": "A understated and distinctive Butterfly with unique flight style.",
+    "desc": "A ligth brown, understated and distinctive Butterfly with unique flight style. Can be quite common in appropriate habitat or the right time of year.",
     "fm": {
       "Wingspan": "3/4 of an inch",
       "Upperside": "Gray-brown with four eyes.",
@@ -927,7 +926,7 @@
     "obs": 56,
     "wiki": "http://en.wikipedia.org/wiki/Erynnis_horatius",
     "st": "uncommon",
-    "desc": "A large very dark Skipper with several lookalikes.",
+    "desc": "A large very dark spreadwing Skipper with several lookalikes.",
     "fm": {
       "Wingspan": "Similar to Northern Cloudywing.",
       "Upperside": "Very dark, male with small pale spot near FW Cell end. Female appears more mottled.",
@@ -957,7 +956,7 @@
     "obs": 48,
     "wiki": "http://en.wikipedia.org/wiki/Erynnis_baptisiae",
     "st": "uncommon",
-    "desc": "A small very dark Skipper with mottled patterns.",
+    "desc": "A small very dark spreadwing Skipper with mottled patterns.",
     "fm": {
       "Wingspan": "Smaller than Horace and Juvenal's.",
       "Upperside": "Has a patch of four white fingers on outer portion of forewing.",
@@ -990,7 +989,7 @@
     "obs": 42,
     "wiki": "http://en.wikipedia.org/wiki/Asterocampa_celtis",
     "st": "uncommon",
-    "desc": "The more showy of our two Emperors",
+    "desc": "The more showy of our two Emperors.",
     "fm": {
       "Wingspan": "Size of American Lady",
       "Upperside": "White spotting in Forewing, hindwing lighter with black spots.",
@@ -1052,7 +1051,7 @@
     "obs": 31,
     "wiki": "http://en.wikipedia.org/wiki/Feniseca",
     "st": "uncommon",
-    "desc": "An unique and unmistakable butterfly.",
+    "desc": "A unique and unmistakable butterfly. Unlike many butterflies with carnivorous caterpillars - they eat Wooly Affids!",
     "fm": {
       "Wingspan": "Similar to Red-banded hairstreak",
       "Upperside": "Orange with blotchy black on the forewing",
@@ -1088,7 +1087,7 @@
     "obs": 30,
     "wiki": "http://en.wikipedia.org/wiki/Appalachian_azure",
     "st": "rare",
-    "desc": "Basically identical to other blues, but larger.",
+    "desc": "Basically identical to other Azures, but larger.  This one should be identified with caution.  Seeing it alongside a Summer Azure might be a good first step, or laying eggs on it's host plant. Of the ~30 records in iNaturalist, 29 are of catapillars and only one is of an adult butterfly.  ID we care!",
     "fm": {
       "Wingspan": "Larger than Summer Azure.",
       "Upperside": "Blue",
@@ -1116,9 +1115,9 @@
     "obs": 27,
     "wiki": "http://en.wikipedia.org/wiki/Phoebis_sennae",
     "st": "common",
-    "desc": "A large, plane and colorful Sulphur.",
+    "desc": "A large, plain and colorful Sulphur.",
     "fm": {
-      "Wingspan": "A 1/3 larger than Small White",
+      "Wingspan": "One third larger than Small White",
       "Upperside": "Only seen in flight.",
       "Underside": "Males lack most markings, females with some pink on FW and white spots on HW.",
       "Flight Period": "Fall",
@@ -1236,7 +1235,7 @@
     "obs": 23,
     "wiki": "http://en.wikipedia.org/wiki/Nastra_lherminier",
     "st": "uncommon",
-    "desc": "A dull small Grass Skipper.",
+    "desc": "A dull, small Grass Skipper. It really lacks a lof of the strong field marks our other Skippers display.",
     "fm": {
       "Wingspan": "Larger than Least Skipper",
       "Upperside": "Dull brownish",
@@ -1265,7 +1264,7 @@
     "obs": 23,
     "wiki": "https://en.wikipedia.org/wiki/Burnsius_communis",
     "st": "uncommon",
-    "desc": "A delightful spreadwing Skipper",
+    "desc": "A delightful spreadwing Skipper.  This black and white beauty can't really be confused with anything else in our area.  The only surprise is the habitat you might find it in as it thrives in some of the most \"disturbed\" areas.",
     "fm": {
       "Wingspan": "Half an Inch",
       "Upperside": "Beautiful White with black checkerboard, bluish body",
@@ -1327,7 +1326,7 @@
     "obs": 18,
     "wiki": "http://en.wikipedia.org/wiki/Papilio_cresphontes",
     "st": "uncommon",
-    "desc": "A massive butterfly with distinct upperwing pattern.",
+    "desc": "A massive butterfly with distinct upperwing pattern. It's a slow flapper, almost gliding around but can move quickly enough.",
     "fm": {
       "Wingspan": "It's biiig",
       "Upperside": "Almost black with Yellow Bars forming X's in Forewing.",
@@ -1389,7 +1388,7 @@
     "obs": 16,
     "wiki": "https://en.wikipedia.org/wiki/Battus_philenor",
     "st": "uncommon",
-    "desc": "Stunning dark blue Swallowtail",
+    "desc": "A stunning dark blue Swallowtail. A few other Swallowtails or even a Red-spotted Admiral could be mistakenly ID as Pipevine but this species is unique.  Get a good look at one and it's easy to appreciate it's subtle shape and color differences.",
     "fm": {
       "Wingspan": "Similar to Black Swallowtail",
       "Upperside": "Dark with darkblue Hindwing.",
@@ -1424,7 +1423,7 @@
     "obs": 15,
     "wiki": "https://en.wikipedia.org/wiki/American_snout",
     "st": "uncommon",
-    "desc": "A distinctive, tiny elephantine nosed butterfly.",
+    "desc": "A distinctive, tiny elephantine nosed butterfly. Snouts like to move around but aren't really fast, they are quick but have a certain floppyness to their flight.  Plus you can often spot the nose even in flight.",
     "fm": {
       "Wingspan": "Small, a bit bigger than a Pearl Crecent",
       "Upperside": "Brown and Orange with white marks at tip of pointed Forewing.",
@@ -1488,7 +1487,7 @@
     "obs": 13,
     "wiki": "http://en.wikipedia.org/wiki/Parrhasius_m-album",
     "st": "uncommon",
-    "desc": "A beautiful Hairstreak to be enjoyed if seen.",
+    "desc": "A beautiful Hairstreak to be enjoyed if seen.  Other Hairstreaks can alsoo show partial M-like markings on their hindwing.  Look also for orange limited to a single spot and a small white bar on the interior leading edge of the hindwing.",
     "fm": {
       "Wingspan": "Larger than Red-banded Hairstreak.",
       "Upperside": "Bright blue.",
@@ -1521,7 +1520,7 @@
     "obs": 12,
     "wiki": "http://en.wikipedia.org/wiki/Satyrium_calanus",
     "st": "uncommon",
-    "desc": "A dull and featureless Hairstreak",
+    "desc": "A dull and featureless Hairstreak. Pale lines on underside are limited and fewer in number compared with rarer Striped Hairstreak.",
     "fm": {
       "Wingspan": "Similar size to Red-banded Hairstreak",
       "Upperside": "Grayish",
