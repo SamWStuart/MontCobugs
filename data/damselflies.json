@@ -8,7 +8,7 @@
     "obs": 138,
     "wiki": "http://en.wikipedia.org/wiki/Ebony_jewelwing",
     "st": "common",
-    "desc": "A real stunner, dark and iridescent.",
+    "desc": "A real stunner, dark winged and iridescent that is mostly green but sometimes appears blue.",
     "fm": {
       "Size": "Large: 39-57mm",
       "Male": "iridescent green body and smokey black wings.",
@@ -41,7 +41,7 @@
     "obs": 70,
     "wiki": "http://en.wikipedia.org/wiki/Powdered_dancer",
     "st": "common",
-    "desc": "Males pruinecent, females brownish and variable.",
+    "desc": "Males pruinecent, females brownish and variable. Males of this species are very common and unafraid to get close to observers.  Sometimes they show a broad humeral stripe and othertimes they are all powdery.",
     "fm": {
       "Size": "Large: 37-42mm",
       "Male": "Heavy pruinescense is diagnostic within Dancer group",
@@ -70,7 +70,7 @@
     "obs": 60,
     "wiki": "http://en.wikipedia.org/wiki/Ischnura_posita",
     "st": "common",
-    "desc": "A very small species, males greenish and females bluish.",
+    "desc": "A very small, narrow bodied species, males greenish and females bluish.  This species is shy and moves away when approached even slowly.",
     "fm": {
       "Size": "Small: 22-31mm",
       "Male": "Light green, abdomen black dorsally, antehumeral stripe interrupted.",
@@ -107,7 +107,7 @@
     "obs": 49,
     "wiki": "http://en.wikipedia.org/wiki/Eastern_forktail",
     "st": "common",
-    "desc": "Green eyes and face on both sexes, similar to other forktails.",
+    "desc": "Green eyes and face on both sexes, similar to other forktails. A shy species that can perch low in vegetation and will flee into shady areas.",
     "fm": {
       "Size": "Small: 20-33mm",
       "Male": "Eyes and face green, thorax green and black, abdomen tipped blue",
@@ -144,7 +144,7 @@
     "obs": 44,
     "wiki": "http://en.wikipedia.org/wiki/Blue-fronted_dancer",
     "st": "uncommon",
-    "desc": "Very similar to Powdered Dancer but not pruinescent.",
+    "desc": "Very similar to Powdered Dancer but not pruinescent. A very deeply blue thorax sometimes with light tan below.  Face often mostly blue.",
     "fm": {
       "Size": "Medium: 30-34mm",
       "Male": "Blue face and eyes, thorax blue above tan below, abdomen mostly black with blue end.",
@@ -490,5 +490,35 @@
     "hp": "",
     "pkSrc": "pub",
     "water": "marsh"
+  },
+   {
+    "id": "da17",
+    "cn": "Double-striped Bluet",
+    "sn": "Enallagma basidens",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 1,
+    "st": "rare",
+    "desc": "Deeply blue bluet with multiple throacic stripes. Humeral strip divided by narrow blue stripe giving this species it's name. Female also has it.",
+    "fm": {
+      "Size": "Small/Medium: 21-28mm",
+      "Male": "Eyes mostly blue, blue with broad black humeral and median stripe each bisected with narrow blue stripe, abdomen very blue with black triangles on S6&7.",
+      "Female": "Similar to male but tan-brown and black.",
+      "Similar Species": "Other bluets may confuse at a distance but note all blue eyes and double thoracic striping.",
+      "Habitat": "Ponds and lakes",
+      "Flight Period": "Spring through Fall."
+    },
+    "mo": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "pk": [],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "pond/lake"
   }
 ]

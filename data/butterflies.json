@@ -1456,7 +1456,7 @@
     "obs": 14,
     "wiki": "https://en.wikipedia.org/wiki/Lycaena_phlaeas",
     "st": "uncommon",
-    "desc": "Like Hairstreaks but with vivid orange blocks on wing.",
+    "desc": "Very small and quick flying like an ETB but more directional. Vivid orange color easy to spot even when flying.",
     "fm": {
       "Wingspan": "Similar size to Red-banded Hairstreak",
       "Upperside": "Forewing with broad orange block spotted with black, HW graish with orange band.",
@@ -1471,7 +1471,6 @@
       9
     ],
     "pk": [
-      6,
       8,
       9
     ],
@@ -1608,9 +1607,9 @@
     "obs": 10,
     "wiki": "http://en.wikipedia.org/wiki/Celastrina_ladon",
     "st": "common",
-    "desc": "Virtualy identical to Summer Azure but flies in the spring.",
+    "desc": "Virtualy identical to Summer Azure but flies early in the spring.",
     "fm": {
-      "Wingspan": "Smaller than ETB",
+      "Wingspan": "Smaller than ETB, lacking orange spots of any kind and often flying higher.",
       "Upperside": "Blue",
       "Underside": "Pale blue with neat black markings, margin maybe muddier",
       "Flight Period": "April",
