@@ -69,11 +69,11 @@
     "famCommon":"forktails",
     "obs": 60,
     "wiki": "http://en.wikipedia.org/wiki/Ischnura_posita",
-    "st": "common",
+    "st": "uncommon",
     "desc": "A very small, narrow bodied species, males greenish and females bluish.  This species is shy and moves away when approached even slowly.",
     "fm": {
       "Size": "Small: 22-31mm",
-      "Male": "Light green, abdomen black dorsally, antehumeral stripe interrupted.",
+      "Male": "Light green, abdomen black dorsally, antehumeral stripe interrupted like an exclamation mark!",
       "Female": "Can be pruinescent, interrupted antehumeral stripe. Eyes greenish below.",
       "Similar Species": "Other forktails.",
       "Habitat": "Likes to fly withing vegetation along ponds and still water.",
@@ -106,7 +106,7 @@
     "famCommon":"forktails",
     "obs": 49,
     "wiki": "http://en.wikipedia.org/wiki/Eastern_forktail",
-    "st": "common",
+    "st": "uncommon",
     "desc": "Green eyes and face on both sexes, similar to other forktails. A shy species that can perch low in vegetation and will flee into shady areas.",
     "fm": {
       "Size": "Small: 20-33mm",
@@ -175,7 +175,7 @@
     "obs": 26,
     "wiki": "http://en.wikipedia.org/wiki/Variable_dancer",
     "st": "common",
-    "desc": "Our only violet colored Dancer.",
+    "desc": "Our only violet colored Dancer. This one is such a pleasure to see sunning itself on a rock.",
     "fm": {
       "Size": "Medium: 29-34mm",
       "Male": "Eyes brown, thorax and abdomen with violet, abdomen tip more blue than violet.",
@@ -204,7 +204,7 @@
     "obs": 19,
     "wiki": "http://en.wikipedia.org/wiki/Stream_bluet",
     "st": "common",
-    "desc": "A common bluet of streams and small rivers.",
+    "desc": "A common bluet of streams and small rivers. This one has a mostly dark abdomen which can be helpful at a distance.",
     "fm": {
       "Size": "Medium/Large: 31-37mm",
       "Male": "Blue-green thorax, abdomen mostly black above. Eyes blue, black above with blue dumbbell on top.",
