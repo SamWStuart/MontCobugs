@@ -70,7 +70,7 @@
     "obs": 60,
     "wiki": "http://en.wikipedia.org/wiki/Ischnura_posita",
     "st": "uncommon",
-    "desc": "A very small, narrow bodied species, males greenish and females bluish.  This species is shy and moves away when approached even slowly.",
+    "desc": "A small, green-eyed damselfly with distinctive exclamation mark ante-humeral mark. Males can show blue, green or yellow-green throax and narrow abdomen. Females can be bruinescent and dark ante-humeral mark.",
     "fm": {
       "Size": "Small: 22-31mm",
       "Male": "Light green, abdomen black dorsally, antehumeral stripe interrupted like an exclamation mark!",
@@ -107,7 +107,7 @@
     "obs": 49,
     "wiki": "http://en.wikipedia.org/wiki/Eastern_forktail",
     "st": "uncommon",
-    "desc": "Green eyes and face on both sexes, similar to other forktails. A shy species that can perch low in vegetation and will flee into shady areas.",
+    "desc": "Forktails are small green-eyed dragonflies, slow moving often flying only a few inches when disturbed.  They fly close to grass and often between blades. If not overlooked, easy to observe.",
     "fm": {
       "Size": "Small: 20-33mm",
       "Male": "Eyes and face green, thorax green and black, abdomen tipped blue",
@@ -143,13 +143,13 @@
     "famCommon":"dancers",
     "obs": 44,
     "wiki": "http://en.wikipedia.org/wiki/Blue-fronted_dancer",
-    "st": "uncommon",
-    "desc": "Very similar to Powdered Dancer but not pruinescent. A very deeply blue thorax sometimes with light tan below.  Face often mostly blue.",
+    "st": "common",
+    "desc": "Most likley to be seen away from water. It is similar to Powdered Dancer but lacks pruinescents, but has a deeply blue thorax sometimes with light tan below.  Face mostly blue.",
     "fm": {
       "Size": "Medium: 30-34mm",
       "Male": "Blue face and eyes, thorax blue above tan below, abdomen mostly black with blue end.",
       "Female": "Variable often brownish, eyes brown with very narrow median and humeral stripe (sometimes lacking).",
-      "Similar Species": "Powdered Danceer",
+      "Similar Species": "Powdered Dancer and some females of other species.",
       "Habitat": "Wide variety of habitat.",
       "Flight Period": "Summer to early Fall."
     },
@@ -175,7 +175,7 @@
     "obs": 26,
     "wiki": "http://en.wikipedia.org/wiki/Variable_dancer",
     "st": "common",
-    "desc": "Our only violet colored Dancer. This one is such a pleasure to see sunning itself on a rock.",
+    "desc": "Our only violet colored Dancer. This one is such a pleasure to see, just drink in those colors.",
     "fm": {
       "Size": "Medium: 29-34mm",
       "Male": "Eyes brown, thorax and abdomen with violet, abdomen tip more blue than violet.",
@@ -203,8 +203,8 @@
     "famCommon":"bluets",
     "obs": 19,
     "wiki": "http://en.wikipedia.org/wiki/Stream_bluet",
-    "st": "common",
-    "desc": "A common bluet of streams and small rivers. This one has a mostly dark abdomen which can be helpful at a distance.",
+    "st": "uncommon",
+    "desc": "Common to see in small numbers on large streams or a river. This one has a mostly dark abdomen and very narrow humeral stripe as well as reduced blue on S9.",
     "fm": {
       "Size": "Medium/Large: 31-37mm",
       "Male": "Blue-green thorax, abdomen mostly black above. Eyes blue, black above with blue dumbbell on top.",
@@ -233,7 +233,7 @@
     "obs": 16,
     "wiki": "http://en.wikipedia.org/wiki/Dusky_dancer",
     "st": "rare",
-    "desc": "Males very dark, females brownish.",
+    "desc": "Males very dark with all dark eyes, females brownish.",
     "fm": {
       "Size": "Medium: 32-38mm",
       "Male": "Dark, eyes deep blue, post ocular spots separate. Thorax becoming gray with pruinecense otherwise showing split humeral stripe. Abdomen with narrow blue rings.",
@@ -265,7 +265,7 @@
     "famCommon":"spreadwings",
     "obs": 12,
     "wiki": "http://en.wikipedia.org/wiki/Lestes_rectangularis",
-    "st": "common",
+    "st": "uncommon",
     "desc": "A long bodied blue and yellow spreadwing with pale outer vein.",
     "fm": {
       "Size": "Large: 37-53mm",
@@ -294,8 +294,8 @@
     "famCommon":"bluets",
     "obs": 10,
     "wiki": "http://en.wikipedia.org/wiki/Orange_bluet",
-    "st": "common",
-    "desc": "Our only truly orange damselfly.",
+    "st": "rare",
+    "desc": "Our only truly orange Bluet but beware some immatures of other species may have orange appearance.",
     "fm": {
       "Size": "Medium/Large: 28-37mm",
       "Male": "Orange eyes, thorax and abdomen tip distinctive.",
@@ -324,12 +324,12 @@
     "obs": 9,
     "wiki": "https://en.wikipedia.org/wiki/Familiar_bluet",
     "st": "common",
-    "desc": "A very blue bluet",
+    "desc": "The bluet with the most blue on the abdomen. Tipically males have small separated posocular spots.  Females wildly polymorphic and can be tan, brown, blue dark blue or even greenish.",
     "fm": {
       "Size": "Medium/Large: 28-39mm",
-      "Male": "Abdomen has broad blue patches spanning middle segments.",
-      "Female": "Females tan/bluish and may be indistinguishable from similar species, although other species yet to be recorded in MontCo.",
-      "Similar Species": "Northern and Boreal Bluet",
+      "Male": "Abdomen has broad blue patches on all of the middle segments. Median stripe on thorax widest, humeral stripe can be narrow but middle sized compared to Stream and Azure.",
+      "Female": "Females tan or bluish usually with tan or brown eyes, sometimes green eyes. May be indistinguishable from similar species, although other species yet to be recorded in MontCo.",
+      "Similar Species": "Northern, Hagen, Tule and Boreal Bluet",
       "Habitat": "heavily vegetated still water bodies, occasionally streams and rivers.",
       "Flight Period": "Summer to Fall"
     },
@@ -356,8 +356,8 @@
     "famCommon":"bluets",
     "obs": 5,
     "wiki": "https://en.wikipedia.org/wiki/Enallagma_aspersum",
-    "st": "common",
-    "desc": "Narrow bodied bluet with large post ocular spot/patch.",
+    "st": "uncommon",
+    "desc": "Narrow bodied bluet with large post ocular spot/patch. Typically vividly coloreed, middle of abdomen mostly black.",
     "fm": {
       "Size": "Medium: 27-34mm",
       "Male": "Eyes blue with some black, narrow humeral stripe, abdomen mostly black with some blue on S1 and S7-10.",
@@ -385,8 +385,8 @@
     "famCommon":"spreadwings",
     "obs": 4,
     "wiki": "http://en.wikipedia.org/wiki/Great_spreadwing",
-    "st": "uncommon",
-    "desc": "Largest Damselfly!",
+    "st": "rare",
+    "desc": "Largest Damselfly and tendency to hold wings outstretched when perched makes this one easy to identify.",
     "fm": {
       "Size": "XL: 50-62mm",
       "Male": "Eyes light blue, thorax dark with two broad yellow stripes.  Some pruinesences on abdomen tip.",
@@ -412,7 +412,7 @@
     "famCommon":"forktails",
     "obs": 3,
     "wiki": "http://en.wikipedia.org/wiki/Citrine_forktail",
-    "st": "uncommon",
+    "st": "rare",
     "desc": "Our only truly yellow damselfly",
     "fm": {
       "Size": "Small/Medium: 21-27mm",
@@ -440,7 +440,7 @@
     "fam": "Lestidae",
     "famCommon":"spreadwings",
     "obs": 2,
-    "st": "uncommon",
+    "st": "rare",
     "desc": "Very large metalic green spreadwing.",
     "fm": {
       "Size": "Small/Medium: 21-27mm",
@@ -469,7 +469,7 @@
     "fam": "Coenagrionidae",
     "famCommon":"damsels",
     "obs": 1,
-    "st": "uncommon",
+    "st": "rare",
     "desc": "Striking red abdomen contrasting with darker thorax distinctive.",
     "fm": {
       "Size": "Small/Medium: 22-27mm",

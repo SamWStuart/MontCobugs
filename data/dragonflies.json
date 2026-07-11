@@ -8,7 +8,7 @@
     "obs": 177,
     "wiki": "https://en.wikipedia.org/wiki/Blue_dasher",
     "st": "common",
-    "desc": "A friendly, easy photographed species.",
+    "desc": "A friendly, small and distictive dragonfly who is easily photographed.",
     "fm": {
       "Size": "Small: 28-45mm",
       "Male": "Eyes green-blue, face white, thorax yellow and black striped abdomen pruinescent.",
@@ -37,7 +37,7 @@
     "obs": 145,
     "wiki": "http://en.wikipedia.org/wiki/Common_whitetail",
     "st": "uncommon",
-    "desc": "Males are conspicuous and easily identified.",
+    "desc": "Males are conspicuous and easily identified by black wing patches on mid-wing. Females have 12 spots on wing but differ from 12-spotted Skimmer in those marks and abdomen pattern.",
     "fm": {
       "Size": "Medium: 42-48mm",
       "Male": "Pale Blue/white abdomen, dark head and thorax.  Wings with large dark panels and some white at base of HW.",
@@ -70,7 +70,7 @@
     "obs": 58,
     "wiki": "http://en.wikipedia.org/wiki/Erythemis_simplicicollis",
     "st": "common",
-    "desc": "One of our most distinctive female Dragonflies.",
+    "desc": "One of our most distinctive female Dragonflies. Females are unmistakable, but males can resemble other blue and green species.  Look always for pale cersus at tip of abdomen.",
     "fm": {
       "Size": "Medium: 38-44mm",
       "Male": "Eyes and face green, thorax and abdomen pruinescent, legs white.",
@@ -103,7 +103,7 @@
     "obs": 45,
     "wiki": "http://en.wikipedia.org/wiki/Sympetrum_vicinum",
     "st": "common",
-    "desc": "Males are entirely red",
+    "desc": "Face color is key for Meadowhawks ID. Males are entirely red, females are very colorful and lack red.  Females pose a real ID challenge and amount of black on abdomen is key to separating from other red Meadowhawks.",
     "fm": {
       "Size": "Small: 31-35mm",
       "Male": "All red with narrow black median on S9",
@@ -165,7 +165,7 @@
     "obs": 34,
     "wiki": "http://en.wikipedia.org/wiki/Eastern_amberwing",
     "st": "common",
-    "desc": "A delightful tiny, colorful winged dragonfly.",
+    "desc": "A delightful tiny, colorful winged dragonfly who is common at marshy, vernal ponds.",
     "fm": {
       "Size": "X-Small: 20-25mm",
       "Male": "Orange winged and tiny should separate it from anything else.",
@@ -193,8 +193,8 @@
     "famCommon":"skimmers",
     "obs": 32,
     "wiki": "https://en.wikipedia.org/wiki/Twelve-spotted_skimmer",
-    "st": "common",
-    "desc": "",
+    "st": "uncommon",
+    "desc": "A large skimmer with distinctive wing pattern.  But beware look-a-likes like the female Common Whitetail.  The shape of spots in wing will make this ID easy.",
     "fm": {
       "Size": "Large: 52-57mm",
       "Male": "Has three dark spots per wing interspersed with pruinescent patches.",
@@ -222,8 +222,8 @@
     "famCommon":"darners",
     "obs": 21,
     "wiki": "http://en.wikipedia.org/wiki/Green_darner",
-    "st": "common",
-    "desc": "An essential part of Summer in MontCo.",
+    "st": "uncommon",
+    "desc": "An essential part of Summer in MontCo. This is our most frequently encountered darner but is not as numerous as other species in habitat.  It is a very big species, so no real chance of confusion with similarly colored Eastern Pondhawks or Blue Dashers who perch more and are smaller.",
     "fm": {
       "Size": "X-Large: 68-79mm",
       "Male": "Eyes and thora green, abdomen blue with dorsal black widening towards tip.",
@@ -292,7 +292,7 @@
     "obs": 18,
     "wiki": "http://en.wikipedia.org/wiki/Libellula_incesta",
     "st": "common",
-    "desc": "Very similar to Great Blue Skimmer",
+    "desc": "Males are darkly pruinescent, with dark eyes and face and use conspicuous perches to defend territory.",
     "fm": {
       "Size": "Medium: 50-52mm",
       "Male": "Eyes brown, face dark blue, body blue-blackish.",
@@ -320,7 +320,7 @@
     "famCommon":"skimmers",
     "obs": 17,
     "wiki": "http://en.wikipedia.org/wiki/Libellula_semifasciata",
-    "st": "common",
+    "st": "uncommon",
     "desc": "A standout, brightly colored Skimmer",
     "fm": {
       "Size": "Medium: 45-48mm",
@@ -381,7 +381,7 @@
     "obs": 14,
     "wiki": "http://en.wikipedia.org/wiki/Halloween_pennant",
     "st": "uncommon",
-    "desc": "A colorful winged dragonfly, easy to identify on the wing.",
+    "desc": "A colorfully patterned winged dragonfly, easy to identify and very approachable.",
     "fm": {
       "Size": "Small: 36-42mm",
       "Male": "Wings golden with three brownish stripes, wingtip pale. Eyes reddish, face orange, body orange and black.",
@@ -409,7 +409,7 @@
     "famCommon":"darners",
     "obs": 10,
     "wiki": "http://en.wikipedia.org/wiki/Shadow_darner",
-    "st": "common",
+    "st": "uncommon",
     "desc": "Our most common Mosaic Darner.",
     "fm": {
       "Size": "Large: 64-73mm",
@@ -443,7 +443,7 @@
     "obs": 9,
     "wiki": "http://en.wikipedia.org/wiki/Black_saddlebags",
     "st": "common",
-    "desc": "The only Saddlebag that is black, easy to identify on the wing.",
+    "desc": "The only Saddlebag that is black, easy to identify on the wing.  It rarely perches so get a picture if you find one stopped!",
     "fm": {
       "Size": "Medium: 51-55mm",
       "Male": "Black interior patch on HW. Dark head and body, abdomen black except S7 which is yellow.",
@@ -538,7 +538,7 @@
     "obs": 6,
     "wiki": "http://en.wikipedia.org/wiki/Arigomphus_villosipes",
     "st": "common",
-    "desc": "Both sexes have a horn-like structure at their occiput, reminiscent of a Unicorn.",
+    "desc": "Both sexes have a horn-like structure at their occiput, reminiscent of a Unicorn. Cersus pale or white.",
     "fm": {
       "Size": "Medium: 50-58mm",
       "Male": "Eyes blue-green, face pale, thorax striped on front otherwise mostly pale green, abdomen with yellow points, S8-9 black, S10 pale.",
@@ -600,13 +600,13 @@
     "obs": 6,
     "wiki": "https://en.wikipedia.org/wiki/Stylogomphus_albistylus",
     "st": "uncommon",
-    "desc": "A very small clubtail!",
+    "desc": "A very small clubtail is possibly it's most distinctive feature.",
     "fm": {
       "Size": "Small: 31-36mm",
       "Male": "Eyes green/blue, face yellow, throax with four black stripes, abdomen dark with yellow rings, cerci white.",
       "Female": "Similar to male, more patterned on abdomen.",
       "Similar Species": "No other Clubtail in our area this small",
-      "Habitat": "Small clear creeks with sandy/rocky shoreline.",
+      "Habitat": "Small clear creeks with sandy shore line and sunny rocks for perching.",
       "Flight Period": "Summer."
     },
     "mo": [
@@ -815,7 +815,7 @@
     "famCommon":"darners",
     "obs": 2,
     "wiki": "http://en.wikipedia.org/wiki/Boyeria_vinosa",
-    "st": "common",
+    "st": "rare",
     "desc": "A dark spotted darner.",
     "fm": {
       "Size": "Large: 60-71mm",
@@ -849,7 +849,7 @@
     "obs": 2,
     "wiki": "http://en.wikipedia.org/wiki/Dragonhunter",
     "st": "uncommon",
-    "desc": "A massive Clubtail, a Odonate predator too!",
+    "desc": "A massive Clubtail with bold yellow and black markings, an Odonate predator too!",
     "fm": {
       "Size": "X-Large: 73-90mm",
       "Male": "Small green eyes, yellow face, thorax boldly black & yellow striped, abdomen with yellow on side and triangles dorsally.",
@@ -877,7 +877,7 @@
     "famCommon":"emeralds",
     "obs": 2,
     "wiki": "https://en.wikipedia.org/wiki/Neurocordulia_obsoleta",
-    "st": "uncommon",
+    "st": "rare",
     "desc": "A crepuscular species that perches during the day.",
     "fm": {
       "Size": "Medium: 43-48mm",
@@ -935,7 +935,7 @@
     "obs": 2,
     "wiki": "http://en.wikipedia.org/wiki/Sympetrum_ambiguum",
     "st": "uncommon",
-    "desc": "Our most patriotic Meadowhawk",
+    "desc": "Our most patriotic Meadowhawk, males should be distinctive.  Females ID'd with care looking at amount of black on abdomen segments.",
     "fm": {
       "Size": "Small: 36-38mm",
       "Male": "Face and eyes blue, thorax white-gray and abdomen orange-red with black.",
@@ -996,7 +996,7 @@
     "obs": 1,
     "wiki": "http://en.wikipedia.org/wiki/Comet_darner",
     "st": "rare",
-    "desc": "The lone red \"Green Darner\" of the group.",
+    "desc": "The lone red \"Green Darner\" of the group. This one is a strong flyer like Green Darner but even a blurry in-flight photo can be diagnostic.",
     "fm": {
       "Size": "X-Large: 75-87mm",
       "Male": "Green face, eyes and thorax, abdomen orange-red.",
@@ -1028,7 +1028,7 @@
     "famCommon":"emeralds",
     "obs": 1,
     "wiki": "http://en.wikipedia.org/wiki/Epitheca_princeps",
-    "st": "common",
+    "st": "uncommon",
     "desc": "A long narrowbodied Baskettail with bold wing markings",
     "fm": {
       "Size": "Large: 59-75mm",
@@ -1058,7 +1058,7 @@
     "obs": 1,
     "wiki": "https://en.wikipedia.org/wiki/White-faced_meadowhawk",
     "st": "uncommon",
-    "desc": "One of three possible small red dragonflies in our area",
+    "desc": "One of three possible small red dragonflies in our area.  It's face is mostly white - not tan or red.",
     "fm": {
       "Size": "Small: 31-39mm",
       "Male": "Face white, eyes deep burgundy, thorax red, abdomen red with black triangles on side.",
