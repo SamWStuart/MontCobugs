@@ -440,6 +440,7 @@
     "fam": "Lestidae",
     "famCommon":"spreadwings",
     "obs": 2,
+    "wiki": "https://en.wikipedia.org/wiki/Lestes_inaequalis",
     "st": "rare",
     "desc": "Very large metalic green spreadwing.",
     "fm": {
@@ -470,6 +471,7 @@
     "famCommon":"damsels",
     "obs": 1,
     "st": "rare",
+    "wiki": "https://en.wikipedia.org/wiki/Amphiagrion_saucium",
     "desc": "Striking red abdomen contrasting with darker thorax distinctive.",
     "fm": {
       "Size": "Small/Medium: 22-27mm",
@@ -499,6 +501,7 @@
     "famCommon":"bluets",
     "obs": 1,
     "st": "rare",
+    "wiki": "https://en.wikipedia.org/wiki/Double-striped_bluet",
     "desc": "Deeply blue bluet with multiple throacic stripes. Humeral strip divided by narrow blue stripe giving this species it's name. Female also has it.",
     "fm": {
       "Size": "Small/Medium: 21-28mm",
@@ -529,6 +532,7 @@
     "famCommon":"bluets",
     "obs": 2,
     "st": "rare",
+    "wiki": "http://en.wikipedia.org/wiki/Slender_Bluet",
     "desc": "Combination of very blue head & thorax with mostly dark abdomen makes this a distinctive bluet. Very narrow humeral stripe, big blue ocular patches and narrow blue rings at base of abdominal segments key ID points.",
     "fm": { 
       "Size": "Medium: 29-32mm",
