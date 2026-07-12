@@ -1168,5 +1168,34 @@
     ],
     "water": "stream/creek",
     "pkSrc": "pub"
+  },
+  {
+    "id": "dr39",
+    "cn": "Cyrano Darner",
+    "sn": "Nasiaeschna pentacantha",
+    "fam": "Aeshnidae",
+    "famCommon":"darners",
+    "obs": 2,
+    "wiki": "https://en.wikipedia.org/wiki/Nasiaeschna",
+    "st": "rare",
+    "desc": "A large blue-eyed darner with broad green thoracic stripes on side and front of thorax. Abdomen dark with blue dorsally and spotting on side.",
+    "fm": {
+      "Size": "Large: 62-73mm",
+      "Male": "Blue eyes, dark thorax with two broad green stripes in side. Front of thorax has \"L-shaped\" green stripe. Abdomen dark with blue dorsally and spotting on side.",
+      "Female": "Similar to male",
+      "Similar Species": "Resembles Mosaic Darners but comhination of eye color and broad thoracic stripes should separate them.",
+      "Habitat": "Wooded Swamps, lakes and marshes.",
+      "Flight Period": "Spring to Mid Summer"
+    },
+    "mo": [
+      5,
+      6,
+      7
+    ],
+    "pk": [
+      7
+    ],
+    "water": "pond/lake,marsh",
+    "pkSrc": "pub"
   }
 ]

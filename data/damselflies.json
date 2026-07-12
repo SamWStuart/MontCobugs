@@ -520,5 +520,34 @@
     "hp": "",
     "pkSrc": "pub",
     "water": "pond/lake"
+  },
+  {
+    "id": "da18",
+    "cn": "Slender Bluet",
+    "sn": "Enallagma traviatum",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 2,
+    "st": "rare",
+    "desc": "Combination of very blue head & thorax with mostly dark abdomen makes this a distinctive bluet. Very narrow humeral stripe, big blue ocular patches and narrow blue rings at base of abdominal segments key ID points.",
+    "fm": { 
+      "Size": "Medium: 29-32mm",
+      "Male": "Eyes blue, large ocular spot is blue, thorax very blue with narrow black humeral stripe and broader median stripe, abdomen mostly dark above begining on S2-7.",
+      "Female": "Similar to male but with wider humeral and thicker abdomen.",
+      "Similar Species": "Similar to Stream Bluet but note difference in S8 and blue of eyes and ocular patches.",
+      "Habitat": "Ponds and lakes with lots of vegetation.",
+      "Flight Period": "Spring through Fall."
+    },
+    "mo": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "pk": [],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "pond/lake"
   }
 ]
