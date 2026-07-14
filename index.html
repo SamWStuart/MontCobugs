@@ -406,7 +406,7 @@ var famCount=famEntries.length;
 var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=f.charAt(0).toUpperCase()+f.slice(1);chipsHtml+='<button class="sp" data-fam="'+f+'" style="background:'+(a?c:c+'22')+';color:'+(a?'#fff':c)+';border:1px solid '+c+(a?'':'88')+'">'+fLabel+' <span style="opacity:0.75;font-size:10px">('+ct+')</span></button>';}
 var filterInfo=state.familyFilter?' \u00b7 <strong>'+(state.familyFilter.charAt(0).toUpperCase()+state.familyFilter.slice(1))+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
 el.innerHTML='<div class="tit"><span style="display:inline-flex;width:20px;height:20px;vertical-align:middle;margin-right:4px">'+tc.emoji+'</span>'+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+famCount+' group'+(famCount===1?'':'s')+filterInfo+'</div><div class="fsw" id="famChips" style="margin-top:8px">'+chipsHtml+'</div>';
-el.querySelectorAll('.fs').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.fam;state.familyFilter=state.familyFilter===f?null:f;state.famExpanded=!!state.familyFilter;render();});});}
+el.querySelectorAll('[data-fam]').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.fam;state.familyFilter=state.familyFilter===f?null:f;render();});});}
 
 function rSp(){const cont=document.getElementById('spCont');
 const tc=TAXA[state.activeTaxon];
