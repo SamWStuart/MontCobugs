@@ -30,7 +30,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .notch-bg{position:fixed;top:0;left:0;right:0;height:var(--safe-top);background:var(--cream);z-index:49;pointer-events:none}
 .tbar::-webkit-scrollbar{display:none}
 .ttab{flex:1 0 auto;min-width:52px;padding:8px 6px 6px;background:none;border:none;border-bottom:3px solid transparent;display:flex;flex-direction:column;align-items:center;gap:1px;opacity:0.42;transition:all 0.25s}
-.ttab.active{opacity:1;border-bottom-color:var(--forest)}.ttab .em{font-size:18px;line-height:1.1}
+.ttab.active{opacity:1;border-bottom-color:var(--forest)}.ttab .em{font-size:18px;line-height:1.1;display:flex;align-items:center;justify-content:center}.ttab .em svg{width:22px;height:22px}
 .ttab .lb{font-size:8px;font-weight:500;color:var(--forest);letter-spacing:0.01em;white-space:nowrap}
 .ttab.active .lb{font-weight:700}.ttab .ct{font-size:7px;font-weight:600;color:#999}.ttab .ct.ho{color:var(--green-ok)}
 .cnt{padding:0 12px 100px}
@@ -58,11 +58,11 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .tit{font-size:14px;font-weight:700;font-family:var(--fd);color:var(--forest);margin-bottom:4px}
 .tim{font-size:11px;color:#666;line-height:1.4}
 .fsw{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.fs{display:flex;align-items:center;gap:3px;font-size:9px;color:#555;cursor:pointer;padding:2px 5px;border-radius:5px;border:1px solid transparent;transition:all 0.15s}
-.fs:hover{background:#f5f0e8;border-color:#e0d8cc}
-.fs.af{background:var(--forest);color:#fff;border-color:var(--forest)}
-.fs.af .fsd{border:1px solid #fff}
-.fsd{width:8px;height:8px;border-radius:2px;display:inline-block}
+
+
+
+
+
 .fg{margin-bottom:22px}
 .fgt{font-size:15px;font-weight:700;font-family:var(--fd);padding:0 2px 6px;margin-bottom:10px}
 .fgc{font-weight:400;font-size:12px;color:#999;margin-left:6px}
@@ -141,9 +141,9 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .ds-phen-mo.off{background:#e8e0d4;height:8px}
 .ds-water{display:inline-flex;align-items:center;gap:4px;margin:6px 0;padding:4px 8px;background:#f0ebe3;border-radius:4px;font-size:10px;color:#666}
 .ds-water svg{width:14px;height:14px;fill:var(--forest);opacity:0.6}
-.fam-toggle{background:none;border:none;font-size:11px;font-weight:600;color:var(--gold);cursor:pointer;padding:2px 6px;font-family:var(--fb)}
-.fsw.collapsed{display:none}
-.fam-sort-btn{background:rgba(191,164,110,0.15);border:1px solid rgba(191,164,110,0.3);color:var(--gold);border-radius:5px;padding:2px 7px;font-size:9px;font-weight:600;cursor:pointer;font-family:var(--fb)}
+
+
+
 </style>
 <meta name="description" content="A free field guide to butterflies, dragonflies, and damselflies of Montgomery County, Pennsylvania — with photos, field marks, seasonality, and observation maps. For informational purposes only.">
 <link rel="canonical" href="https://montcobugs.netlify.app/">
@@ -187,22 +187,20 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 const STATUS={"common": {"label": "Common", "color": "#3A9B68", "bg": "#E8F5E9"}, "uncommon": {"label": "Uncommon", "color": "#BFA46E", "bg": "#FFF8E1"}, "rare": {"label": "Rare", "color": "#D4760A", "bg": "#FFF3E0"}, "vagrant": {"label": "Vagrant", "color": "#5C6BC0", "bg": "#E8EAF6"}};
 const TAXA_ORDER=['butterflies','dragonflies','damselflies'];
 const TAXA={
-  "butterflies": {"emoji": "🦋", "label": "Butterflies", "iNatTaxonId": 47224, "placeId": 1522, "groupBy": "family",
-    "familyColors": {"Papilionidae": "#C5943A", "Pieridae": "#7A8B32", "Lycaenidae": "#3B6BA5", "Nymphalidae": "#C06020", "Hesperiidae": "#6B4F3A"},
-    "familyOrder": ["Papilionidae", "Pieridae", "Lycaenidae", "Nymphalidae", "Hesperiidae"]},
-  "dragonflies": {"emoji": "🪁", "label": "Dragonflies", "iNatTaxonId": 47927, "placeId": 1522, "groupBy": "family",
-    "familyColors": {"Libellulidae": "#C0392B", "Aeshnidae": "#1A7A6D", "Gomphidae": "#6B8E23", "Corduliidae": "#8B6914", "Cordulegastridae": "#8E6B3D", "Macromiidae": "#5B7B72"},
-    "familyOrder": ["Aeshnidae", "Gomphidae", "Cordulegastridae", "Macromiidae", "Corduliidae", "Libellulidae"]},
-  "damselflies": {"emoji": "🏹", "label": "Damselflies", "iNatTaxonId": 47928, "placeId": 1522,
+  "butterflies": {"emoji": '<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="14" rx="2" ry="4" fill="#111"/><rect x="18.5" y="18" width="3" height="14" rx="1.5" fill="#111"/><line x1="19" y1="11" x2="14" y2="4" stroke="#111" stroke-width="0.8"/><line x1="21" y1="11" x2="26" y2="4" stroke="#111" stroke-width="0.8"/><circle cx="13.5" cy="3.5" r="1.2" fill="#111"/><circle cx="26.5" cy="3.5" r="1.2" fill="#111"/><path d="M19,16 Q6,8 2,16 Q4,26 19,22 Z" fill="#E8710A"/><path d="M21,16 Q34,8 38,16 Q36,26 21,22 Z" fill="#E8710A"/><path d="M19,22 Q8,22 6,30 Q10,38 19,32 Z" fill="#E8710A"/><path d="M21,22 Q32,22 34,30 Q30,38 21,32 Z" fill="#E8710A"/><path d="M19,16 Q6,8 2,16 Q4,26 19,22" fill="none" stroke="#111" stroke-width="2.5"/><path d="M21,16 Q34,8 38,16 Q36,26 21,22" fill="none" stroke="#111" stroke-width="2.5"/><path d="M19,22 Q8,22 6,30 Q10,38 19,32" fill="none" stroke="#111" stroke-width="2.5"/><path d="M21,22 Q32,22 34,30 Q30,38 21,32" fill="none" stroke="#111" stroke-width="2.5"/><circle cx="3.5" cy="17" r="1.2" fill="white"/><circle cx="5" cy="23" r="1" fill="white"/><circle cx="36.5" cy="17" r="1.2" fill="white"/><circle cx="35" cy="23" r="1" fill="white"/><circle cx="7" cy="33" r="1" fill="white"/><circle cx="33" cy="33" r="1" fill="white"/></svg>',
+    "label": "Butterflies", "iNatTaxonId": 47224, "placeId": 1522,
     "groupField": "famCommon",
-    "familyColors": {
-      "jewelwings":  "#6C3483",
-      "spreadwings": "#27AE60",
-      "dancers":     "#1565C0",
-      "bluets":      "#2874A6",
-      "forktails":   "#0D47A1",
-      "damsels":     "#C0392B"
-    },
+    "familyColors": {"swallowtails": "#C5943A", "sulphurs": "#7A8B32", "blues/hairstreaks": "#3B6BA5", "brushfoots": "#C06020", "skippers": "#6B4F3A"},
+    "familyOrder": ["swallowtails","sulphurs","blues/hairstreaks","brushfoots","skippers"]},
+  "dragonflies": {"emoji": '<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><ellipse cx="20" cy="6" rx="5" ry="3.5" fill="#1A7A6D"/><ellipse cx="17" cy="4.5" rx="3.5" ry="3" fill="#0F5A50"/><ellipse cx="23" cy="4.5" rx="3.5" ry="3" fill="#0F5A50"/><rect x="17" y="9" width="6" height="8" rx="2" fill="#1A7A6D"/><path d="M18,17 L17.5,35 Q20,38 22.5,35 L22,17 Z" fill="#1A7A6D"/><line x1="18" y1="21" x2="22" y2="21" stroke="#0F5A50" stroke-width="0.7"/><line x1="18" y1="25" x2="22" y2="25" stroke="#0F5A50" stroke-width="0.7"/><line x1="18" y1="29" x2="22" y2="29" stroke="#0F5A50" stroke-width="0.7"/><path d="M17,10 Q2,10 1,15 Q2,19 17,16 Z" fill="#1A7A6D" opacity="0.55"/><path d="M23,10 Q38,10 39,15 Q38,19 23,16 Z" fill="#1A7A6D" opacity="0.55"/><path d="M17,15 Q1,17 1,23 Q3,27 17,22 Z" fill="#1A7A6D" opacity="0.38"/><path d="M23,15 Q39,17 39,23 Q37,27 23,22 Z" fill="#1A7A6D" opacity="0.38"/></svg>',
+    "label": "Dragonflies", "iNatTaxonId": 47927, "placeId": 1522,
+    "groupField": "famCommon",
+    "familyColors": {"darners": "#1A7A6D", "clubtails": "#6B8E23", "spiketails": "#8E6B3D", "cruisers": "#5B7B72", "emeralds": "#8B6914", "dashers": "#C0392B", "skimmers": "#A93226"},
+    "familyOrder": ["darners","clubtails","spiketails","cruisers","emeralds","dashers","skimmers"]},
+  "damselflies": {"emoji": '<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g transform="translate(20,20) rotate(45)"><rect x="-9" y="-19" width="18" height="4" rx="1.5" fill="#2874A6"/><ellipse cx="-7" cy="-18" rx="4" ry="3" fill="#1A5276"/><ellipse cx="7" cy="-18" rx="4" ry="3" fill="#1A5276"/><rect x="-2.5" y="-15" width="5" height="7" rx="1.5" fill="#2874A6"/><rect x="-1.5" y="-8" width="3" height="26" rx="1.5" fill="#2874A6"/><line x1="-1.5" y1="-2" x2="1.5" y2="-2" stroke="#1A5276" stroke-width="0.6"/><line x1="-1.5" y1="4" x2="1.5" y2="4" stroke="#1A5276" stroke-width="0.6"/><line x1="-1.5" y1="10" x2="1.5" y2="10" stroke="#1A5276" stroke-width="0.6"/><ellipse cx="-5.5" cy="-5" rx="2.5" ry="14" fill="#2874A6" opacity="0.6"/><ellipse cx="5.5" cy="-5" rx="2.5" ry="14" fill="#2874A6" opacity="0.6"/><ellipse cx="-3.5" cy="-5" rx="1.5" ry="13" fill="#2874A6" opacity="0.35"/><ellipse cx="3.5" cy="-5" rx="1.5" ry="13" fill="#2874A6" opacity="0.35"/></g></svg>',
+    "label": "Damselflies", "iNatTaxonId": 47928, "placeId": 1522,
+    "groupField": "famCommon",
+    "familyColors": {"jewelwings": "#6C3483", "spreadwings": "#27AE60", "dancers": "#1565C0", "bluets": "#2874A6", "forktails": "#0D47A1", "damsels": "#C0392B"},
     "familyOrder": ["jewelwings","spreadwings","dancers","bluets","forktails","damsels"]}
 };
 const SPECIES_ORDER={
@@ -405,11 +403,9 @@ else if(state.famSort!=='taxon'){famEntries.sort(function(a,b){return a[0].local
 if(hasFilters)famEntries=famEntries.filter(function(e){return(filtFamCounts[e[0]]||0)>0;});
 var expanded=state.famExpanded||!!state.familyFilter;
 var famCount=famEntries.length;
-var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=f.charAt(0).toUpperCase()+f.slice(1);chipsHtml+='<span class="fs'+(a?' af':'')+'" data-fam="'+f+'"><span class="fsd" style="background:'+c+'"></span>'+fLabel+' ('+ct+')</span>';}
+var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=f.charAt(0).toUpperCase()+f.slice(1);chipsHtml+='<button class="sp" data-fam="'+f+'" style="background:'+(a?c:c+'22')+';color:'+(a?'#fff':c)+';border:1px solid '+c+(a?'':'88')+'">'+fLabel+' <span style="opacity:0.75;font-size:10px">('+ct+')</span></button>';}
 var filterInfo=state.familyFilter?' \u00b7 <strong>'+(state.familyFilter.charAt(0).toUpperCase()+state.familyFilter.slice(1))+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
-el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+famCount+' group'+(famCount===1?'':'s')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='taxon'?'Taxon':'A\u2192Z')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
-document.getElementById('famToggle').addEventListener('click',function(){state.famExpanded=!state.famExpanded;rTI();});
-document.getElementById('famSortBtn').addEventListener('click',function(){state.famSort=state.famSort==='taxon'?'alpha':'taxon';render();});
+el.innerHTML='<div class="tit"><span style="display:inline-flex;width:20px;height:20px;vertical-align:middle;margin-right:4px">'+tc.emoji+'</span>'+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+famCount+' group'+(famCount===1?'':'s')+filterInfo+'</div><div class="fsw" id="famChips" style="margin-top:8px">'+chipsHtml+'</div>';
 el.querySelectorAll('.fs').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.fam;state.familyFilter=state.familyFilter===f?null:f;state.famExpanded=!!state.familyFilter;render();});});}
 
 function rSp(){const cont=document.getElementById('spCont');
@@ -453,7 +449,7 @@ const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`backgrou
 const pip=STATUS_PIP[sp.st];const isIntro=INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 const isInvasive=INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${isInvasive||pip?`<div class="badge-col">${isInvasive?`<div class="inv-pill">⚠ INV</div>`:''}${isIntro&&!isInvasive?`<div class="intro-pill">INTRO</div>`:''}${pip?`<div class="st-pip" style="background:${pip.bg};color:${pip.text}"><span class="st-dot" style="background:${pip.dot}"></span>${pip.label}</div>`:''}</div>`:''}
-<div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep">${tc.emoji}</div>`:''}</div>
+<div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep"><span style="display:inline-flex;width:36px;height:36px">${tc.emoji}</span></div>`:''}</div>
 <div class="cb"><div class="ccn">${sp.cn}${obs?`<span class="ob-inline">✓</span>`:''}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
 html+=`</div></div>`;
 }else{
@@ -474,7 +470,7 @@ const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`backgrou
 const pip=STATUS_PIP[sp.st];const isIntro=INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 const isInvasive=INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
 html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${isInvasive||pip?`<div class="badge-col">${isInvasive?`<div class="inv-pill">⚠ INV</div>`:''}${isIntro&&!isInvasive?`<div class="intro-pill">INTRO</div>`:''}${pip?`<div class="st-pip" style="background:${pip.bg};color:${pip.text}"><span class="st-dot" style="background:${pip.dot}"></span>${pip.label}</div>`:''}</div>`:''}
-<div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep">${tc.emoji}</div>`:''}</div>
+<div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep"><span style="display:inline-flex;width:36px;height:36px">${tc.emoji}</span></div>`:''}</div>
 <div class="cb"><div class="ccn">${sp.cn}${obs?`<span class="ob-inline">✓</span>`:''}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
 html+=`</div>`;}
 html+=`</div>`;}}
@@ -509,7 +505,7 @@ const obs=isO(sp);
 const famLabel=sp.famCommon?(sp.famCommon.charAt(0).toUpperCase()+sp.famCommon.slice(1))+' <span style="font-style:italic;opacity:0.7">('+sp.fam+')</span>':sp.fam;
 let h=`<div class="ds-ovr" id="dsOvr"><div class="ds-sheet" id="dsSheet">
 <div class="ds-handle"></div>
-<div class="ds-photo" style="${ps}">${!ca||!ca.url?`<div class="ds-ep">${tc.emoji}</div>`:''}${obs?`<div class="ob" style="top:12px;right:12px;width:26px;height:26px;font-size:14px">✓</div>`:''}</div>
+<div class="ds-photo" style="${ps}">${!ca||!ca.url?`<div class="ds-ep"><span style="display:inline-flex;width:48px;height:48px">${tc.emoji}</span></div>`:''}${obs?`<div class="ob" style="top:12px;right:12px;width:26px;height:26px;font-size:14px">✓</div>`:''}</div>
 <div class="ds-body">
 <div class="ds-hdr"><div><div class="ds-cn">${sp.cn}</div><div class="ds-sn">${sp.sn}${sp.ssp?' <span style="font-style:normal;font-size:10px;color:#999;background:#f5f5f5;padding:1px 5px;border-radius:4px">ssp</span>':''}</div></div>
 <span class="ds-sb" style="color:${st.color||'#999'};background:${st.bg||'#f5f5f5'};border:1px solid ${(st.color||'#999')}30">${st.label||sp.st}</span></div>
@@ -576,7 +572,7 @@ let _dataLoaded=0,_dataTotal=DATA_GROUPS.length;
 function updateLoadProgress(){
   const pct=Math.round((_dataLoaded/_dataTotal)*100);
   const el=document.getElementById('loadProg');
-  if(el){if(_dataLoaded<_dataTotal){el.innerHTML='<div style="font-size:28px;margin-bottom:8px">🔬</div>Loading species data\u2026 '+pct+'%';el.style.display='block';}else{el.style.display='none';}}
+  if(el){if(_dataLoaded<_dataTotal){el.innerHTML='<div style="font-size:28px;margin-bottom:8px">🌿</div>Loading species data\u2026 '+pct+'%';el.style.display='block';}else{el.style.display='none';}}
 }
 
 async function loadAllData(){

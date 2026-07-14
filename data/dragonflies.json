@@ -552,8 +552,6 @@
       7
     ],
     "pk": [
-      6,
-      7
     ],
     "water": "pond/lake",
     "pkSrc": "pub"
@@ -801,8 +799,6 @@
       5
     ],
     "pk": [
-      4,
-      5
     ],
     "water": "stream/creek, pond/lake, open area",
     "pkSrc": "pub"
@@ -1134,8 +1130,6 @@
       9
     ],
     "pk": [
-      8,
-      9
     ],
     "water": "stream/creek",
     "pkSrc": "pub"

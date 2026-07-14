@@ -29,7 +29,7 @@
       8,
       9
     ],
-    "water": "stream/creek, pond/lake, open area",
+    "water": "stream/creek",
     "pkSrc": "pub"
   },
   {
@@ -47,7 +47,7 @@
       "Male": "Heavy pruinescense is diagnostic within Dancer group",
       "Female": "Eyes and body brownish, pattern on top of S9 separates from Blue-fronted.",
       "Similar Species": "Female very similar to Blue-fronted. Limited Median and humeral stripe.",
-      "Habitat": "Wide variety of moving and still waterways.",
+      "Habitat": "Frequently encountered in wide variety of moving and still waterways.",
       "Flight Period": "Summer."
     },
     "mo": [
@@ -232,7 +232,7 @@
     "famCommon":"dancers",
     "obs": 16,
     "wiki": "http://en.wikipedia.org/wiki/Dusky_dancer",
-    "st": "rare",
+    "st": "uncommon",
     "desc": "Males very dark with all dark eyes, females brownish.",
     "fm": {
       "Size": "Medium: 32-38mm",
@@ -330,7 +330,7 @@
       "Male": "Abdomen has broad blue patches on all of the middle segments. Median stripe on thorax widest, humeral stripe can be narrow but middle sized compared to Stream and Azure.",
       "Female": "Females tan or bluish usually with tan or brown eyes, sometimes green eyes. May be indistinguishable from similar species, although other species yet to be recorded in MontCo.",
       "Similar Species": "Northern, Hagen, Tule and Boreal Bluet",
-      "Habitat": "heavily vegetated still water bodies, occasionally streams and rivers.",
+      "Habitat": "Locally common at heavily vegetated still water bodies, occasionally streams and rivers.",
       "Flight Period": "Summer to Fall"
     },
     "mo": [
@@ -363,7 +363,7 @@
       "Male": "Eyes blue with some black, narrow humeral stripe, abdomen mostly black with some blue on S1 and S7-10.",
       "Female": "Eyes black and brown with yellowish post ocular spot. Blue thorax and large blue spot on S7.",
       "Similar Species": "Fairly distinctive in our county.",
-      "Habitat": "heavily vegetated still water bodies.",
+      "Habitat": "Heavily vegetated still water bodies.",
       "Flight Period": "Summer."
     },
     "mo": [
@@ -427,8 +427,6 @@
       8
     ],
     "pk": [
-      7,
-      8
     ],
     "water": "pond/lake, vernal pool",
     "pkSrc": "pub"
