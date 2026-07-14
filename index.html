@@ -180,7 +180,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 <div class="ftc">Data: iNaturalist · Photos: CC-licensed · Maps: ESRI + iNat · Odonate reference: PA DCNR, Nescopeck State Park checklist</div>
 <a href="https://github.com/rhysmarsh/LAbugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.85rem">Original project: LABugs.org →</a>
 <br>
-<a href="https://github.com/SamWStuart/MontCoBugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a>
+<a href="https://github.com/SamWStuart/MontCobugs" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;color:var(--gold);font-family:var(--fb);font-weight:600;text-decoration:none;font-size:0.95rem">Fork this on GitHub →</a>
 </footer>
 <div class="mo hid" id="mOvr"><div class="mm"><div class="mmh"><div><div class="mmt" id="mTit"></div><div class="mms" id="mSub"></div></div><button class="mmc" id="mCl">&times;</button></div><div class="mc" id="mCon"></div><div class="mml"><a id="mLnk" href="#" target="_blank" rel="noopener noreferrer">Open in iNaturalist</a></div></div></div>
 <script>
@@ -193,13 +193,18 @@ const TAXA={
   "dragonflies": {"emoji": "🪁", "label": "Dragonflies", "iNatTaxonId": 47927, "placeId": 1522, "groupBy": "family",
     "familyColors": {"Libellulidae": "#C0392B", "Aeshnidae": "#1A7A6D", "Gomphidae": "#6B8E23", "Corduliidae": "#8B6914", "Cordulegastridae": "#8E6B3D", "Macromiidae": "#5B7B72"},
     "familyOrder": ["Aeshnidae", "Gomphidae", "Cordulegastridae", "Macromiidae", "Corduliidae", "Libellulidae"]},
-  "damselflies": {"emoji": "🏹", "label": "Damselflies", "iNatTaxonId": 47928, "placeId": 1522, "groupBy": "family",
-    "familyColors": {"Coenagrionidae": "#2874A6", "Lestidae": "#27AE60", "Calopterygidae": "#6C3483"},
-    "familyOrder": ["Calopterygidae", "Lestidae", "Coenagrionidae"]}
+  "damselflies": {"emoji": "🏹", "label": "Damselflies", "iNatTaxonId": 47928, "placeId": 1522,
+    "groupField": "famCommon",
+    "familyColors": {
+      "jewelwings":  "#6C3483",
+      "spreadwings": "#27AE60",
+      "dancers":     "#1565C0",
+      "bluets":      "#2874A6",
+      "forktails":   "#0D47A1",
+      "damsels":     "#C0392B"
+    },
+    "familyOrder": ["jewelwings","spreadwings","dancers","bluets","forktails","damsels"]}
 };
-// Explicit phylogenetic species order for butterflies, following the PA statewide checklist
-// sequence (subfamily blocks within each family, e.g. satyrs cluster at the end of Nymphalidae).
-// Falls back to scientific-name sort for any species not listed here.
 const SPECIES_ORDER={
   butterflies: ["Epargyreus clarus","Urbanus proteus","Cecropterus lyciades","Cecropterus pylades","Erynnis juvenalis","Erynnis horatius","Erynnis baptisiae","Burnsius communis","Pholisora catullus","Atalopedes huron","Nastra lherminier","Ancyloxypha numitor","Hylephila phyleus","Polites peckius","Polites themistocles","Limochores origenes","Limochores mystic","Polites egeremet","Vernia verna","Anatrytone logan","Lon hobomok","Lon zabulon","Poanes viator","Euphyes vestris","Panoquina ocola","Battus philenor","Eurytides marcellus","Papilio polyxenes","Papilio glaucus","Papilio troilus","Heraclides cresphontes","Anthocharis midea","Pieris rapae","Colias philodice","Colias eurytheme","Phoebis sennae","Eurema nicippe","Feniseca tarquinius","Lycaena hypophlaeas","Callophrys gryneus","Satyrium favonius","Satyrium titus","Satyrium calanus","Calycopis cecrops","Strymon melinus","Parrhasius m-album","Cupido comyntas","Celastrina ladon","Celastrina neglecta","Celastrina neglectamajor","Libytheana carinenta","Danaus plexippus","Euptoieta claudia","Argynnis cybele","Boloria bellona","Limenitis arthemis","Limenitis archippus","Asterocampa celtis","Asterocampa clyton","Phyciodes tharos","Phyciodes cocyta","Euphydryas phaeton","Junonia coenia","Polygonia interrogationis","Polygonia comma","Aglais milberti","Nymphalis antiopa","Vanessa virginiensis","Vanessa cardui","Vanessa atalanta","Lethe appalachia","Megisto cymela","Cercyonis pegala"]
 };
@@ -207,7 +212,7 @@ function speciesOrderIndex(sp){
   const order=SPECIES_ORDER[state.activeTaxon];
   if(!order)return -1;
   const i=order.indexOf(sp.sn);
-  return i===-1?9999:i; // unknown species sort to the end rather than the start
+  return i===-1?9999:i;
 }
 const INTRO_SET=new Set(["Pieris rapae"]);
 const INVASIVE_SET=new Set([]);
@@ -218,7 +223,6 @@ function matchWater(sp,f){if(!f)return true;if(!sp.water)return false;return sp.
 const STATUS_PIP={"uncommon":{dot:"#BFA46E",bg:"rgba(191,164,110,0.4)",text:"#fff",label:"U"},"rare":{dot:"#D4760A",bg:"rgba(212,118,10,0.45)",text:"#fff",label:"R"},"vagrant":{dot:"#5C6BC0",bg:"rgba(92,107,192,0.45)",text:"#fff",label:"VAG"}};
 const CONSERVATION={"Danaus plexippus":{iucn:"VU",iucnFull:"Vulnerable",esa:"Proposed Threatened (Dec 2024)",note:"IUCN Vulnerable (migratory population); USFWS proposed Threatened status under review."}};
 const SPECIES_DATA={}
-
 
 const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'taxon',observedFilter:null,waterFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},lifeListLoading:false,expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
 
@@ -348,8 +352,8 @@ let fsc=tsc,flc=tlc;
 if(hasFilter&&state.inatUsername){
 let fl=SPECIES_DATA[k]||[];
 if(state.statusFilter)fl=fl.filter(s=>s.st===state.statusFilter);
-if(state.familyFilter)fl=fl.filter(s=>s.fam===state.familyFilter);
-if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();fl=fl.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q)||s.fam.toLowerCase().includes(q));}
+if(state.familyFilter)fl=fl.filter(s=>(tc.groupField?s[tc.groupField]:s.fam)===state.familyFilter);
+if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();fl=fl.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q)||(s.famCommon||s.fam).toLowerCase().includes(q));}
 if(state.observedFilter==='observed')fl=fl.filter(s=>isO(s,k));
 if(state.observedFilter==='unobserved')fl=fl.filter(s=>!isO(s,k));
 if(state.waterFilter)fl=fl.filter(s=>matchWater(s,state.waterFilter));
@@ -376,69 +380,90 @@ h+=`<span style="margin-left:8px;border-left:1px solid #ddd;padding-left:8px">`;
 const wFils=[['stream/creek','Stream','#1565C0'],['pond/lake','Pond/Lake','#0277BD'],['marsh','Marsh','#00838F'],['vernal pool','Vernal Pool','#00ACC1'],['open area','Open Area','#558B2F']];
 for(const[wv,wl,wc] of wFils){const wa=state.waterFilter===wv;h+=`<button class="sp" data-water="${wv}" style="${wa?`background:${wc};color:#fff;border-color:${wc}`:`border-color:${wc}40;color:${wc}`}" title="${wl}">${wl}</button>`;}
 h+=`</span>`;}
-el.innerHTML=h;el.querySelectorAll('.sp[data-s]').forEach(b=>b.addEventListener('click',()=>{const s=b.dataset.s;state.statusFilter=s===''?null:(state.statusFilter===s?null:s);render();}));
+el.innerHTML=h;
+el.querySelectorAll('.sp[data-s]').forEach(b=>b.addEventListener('click',()=>{const s=b.dataset.s;state.statusFilter=s===''?null:(state.statusFilter===s?null:s);render();}));
 el.querySelectorAll('.sp[data-o]').forEach(b=>b.addEventListener('click',()=>{const o=b.dataset.o;state.observedFilter=state.observedFilter===o?null:o;render();}));
 el.querySelectorAll('.sp[data-water]').forEach(b=>b.addEventListener('click',()=>{const w=b.dataset.water;state.waterFilter=state.waterFilter===w?null:w;render();}));}
 
-function rTI(){var el=document.getElementById('tInfo'),tc=TAXA[state.activeTaxon],sp=SPECIES_DATA[state.activeTaxon]||[],fams=[...new Set(sp.map(function(s){return s.fam;}))],ssp=sspC(state.activeTaxon),spCount=ssp>0?(sp.length-ssp)+' species + '+ssp+' ssp':sp.length+' species';
-var famCounts={};for(var i=0;i<sp.length;i++){var s=sp[i];if(!s.ssp)famCounts[s.fam]=(famCounts[s.fam]||0)+1;}
+function rTI(){var el=document.getElementById('tInfo'),tc=TAXA[state.activeTaxon],sp=SPECIES_DATA[state.activeTaxon]||[],ssp=sspC(state.activeTaxon),spCount=ssp>0?(sp.length-ssp)+' species + '+ssp+' ssp':sp.length+' species';
+// Build group key for this taxon: famCommon if groupField set, else fam
+var gf=tc.groupField||null;
+var groupKeys=[...new Set(sp.map(function(s){return gf?s[gf]:s.fam;}))];
+var famCounts={};for(var i=0;i<sp.length;i++){var s=sp[i];var gk=gf?s[gf]:s.fam;if(!s.ssp)famCounts[gk]=(famCounts[gk]||0)+1;}
 var filteredSp=sp.slice();
 if(state.statusFilter)filteredSp=filteredSp.filter(function(s){return s.st===state.statusFilter;});
 if(state.observedFilter==='observed')filteredSp=filteredSp.filter(function(s){return isO(s);});
 if(state.observedFilter==='unobserved')filteredSp=filteredSp.filter(function(s){return !isO(s);});
 if(state.waterFilter)filteredSp=filteredSp.filter(function(s){return matchWater(s,state.waterFilter);});
-if(state.searchQuery.trim()){var q2=state.searchQuery.toLowerCase();filteredSp=filteredSp.filter(function(s){return s.cn.toLowerCase().includes(q2)||s.sn.toLowerCase().includes(q2)||s.fam.toLowerCase().includes(q2);});}
-var filtFamCounts={};for(var j=0;j<filteredSp.length;j++){var s2=filteredSp[j];if(!s2.ssp)filtFamCounts[s2.fam]=(filtFamCounts[s2.fam]||0)+1;}
+if(state.searchQuery.trim()){var q2=state.searchQuery.toLowerCase();filteredSp=filteredSp.filter(function(s){return s.cn.toLowerCase().includes(q2)||s.sn.toLowerCase().includes(q2)||(s.famCommon||s.fam).toLowerCase().includes(q2);});}
+var filtFamCounts={};for(var j=0;j<filteredSp.length;j++){var s2=filteredSp[j];var gk2=gf?s2[gf]:s2.fam;if(!s2.ssp)filtFamCounts[gk2]=(filtFamCounts[gk2]||0)+1;}
 var hasFilters=!!(state.statusFilter||state.observedFilter||state.waterFilter||state.searchQuery.trim());
+// Build chip entries from familyColors keys (already in right order if familyOrder followed)
 var famEntries=Object.entries(tc.familyColors);
-if(state.famSort==='taxon'&&tc.familyOrder){famEntries.sort(function(a,b){return tc.familyOrder.indexOf(a[0])-tc.familyOrder.indexOf(b[0]);});}
-else{famEntries.sort(function(a,b){return a[0].localeCompare(b[0]);});}
+if(tc.familyOrder){famEntries.sort(function(a,b){return tc.familyOrder.indexOf(a[0])-tc.familyOrder.indexOf(b[0]);});}
+else if(state.famSort!=='taxon'){famEntries.sort(function(a,b){return a[0].localeCompare(b[0]);});}
 if(hasFilters)famEntries=famEntries.filter(function(e){return(filtFamCounts[e[0]]||0)>0;});
 var expanded=state.famExpanded||!!state.familyFilter;
 var famCount=famEntries.length;
-var famCommonLookup={};for(var i2=0;i2<sp.length;i2++){if(sp[i2].famCommon)famCommonLookup[sp[i2].fam]=sp[i2].famCommon;}
-var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=famCommonLookup[f]?famCommonLookup[f]:f;chipsHtml+='<span class="fs'+(a?' af':'')+'" data-fam="'+f+'"><span class="fsd" style="background:'+c+'"></span>'+fLabel+' ('+ct+')</span>';}
-var filterInfo=state.familyFilter?' \u00b7 <strong>'+(famCommonLookup[state.familyFilter]||state.familyFilter)+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
-el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+fams.length+' family'+(fams.length===1?'':' groups')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='taxon'?'Taxon':'A\u2192Z')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
+var chipsHtml='';for(var k=0;k<famEntries.length;k++){var f=famEntries[k][0],c=famEntries[k][1],a=state.familyFilter===f,ct=hasFilters?(filtFamCounts[f]||0):(famCounts[f]||0);var fLabel=f.charAt(0).toUpperCase()+f.slice(1);chipsHtml+='<span class="fs'+(a?' af':'')+'" data-fam="'+f+'"><span class="fsd" style="background:'+c+'"></span>'+fLabel+' ('+ct+')</span>';}
+var filterInfo=state.familyFilter?' \u00b7 <strong>'+(state.familyFilter.charAt(0).toUpperCase()+state.familyFilter.slice(1))+'</strong> <button onclick="state.familyFilter=null;render()" style="background:none;border:none;color:#C62828;font-size:11px;font-weight:700">\u2715</button>':'';
+el.innerHTML='<div class="tit">'+tc.emoji+' '+tc.label+'<span style="font-weight:400;font-size:12px;color:#888;margin-left:8px">Montgomery County, PA</span></div><div class="tim">'+spCount+' \u00b7 '+famCount+' group'+(famCount===1?'':'s')+filterInfo+'</div><div style="display:flex;align-items:center;gap:6px;margin-top:6px"><button class="fam-toggle" id="famToggle">'+(expanded?'\u25be':'\u25b8')+' '+famCount+' groups</button><button class="fam-sort-btn" id="famSortBtn">'+(state.famSort==='taxon'?'Taxon':'A\u2192Z')+'</button></div><div class="fsw'+(expanded?'':' collapsed')+'" id="famChips">'+chipsHtml+'</div>';
 document.getElementById('famToggle').addEventListener('click',function(){state.famExpanded=!state.famExpanded;rTI();});
-document.getElementById('famSortBtn').addEventListener('click',function(){state.famSort=state.famSort==='alpha'?'taxon':'alpha';render();});
+document.getElementById('famSortBtn').addEventListener('click',function(){state.famSort=state.famSort==='taxon'?'alpha':'taxon';render();});
 el.querySelectorAll('.fs').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.fam;state.familyFilter=state.familyFilter===f?null:f;state.famExpanded=!!state.familyFilter;render();});});}
 
 function rSp(){const cont=document.getElementById('spCont');
+const tc=TAXA[state.activeTaxon];
+const gf=tc.groupField||null; // famCommon for damselflies, null for others
 let list=SPECIES_DATA[state.activeTaxon]||[];
 if(state.statusFilter)list=list.filter(s=>s.st===state.statusFilter);
-if(state.familyFilter)list=list.filter(s=>s.fam===state.familyFilter);
+// Filter by group key (famCommon for damselflies, fam for others)
+if(state.familyFilter)list=list.filter(s=>(gf?s[gf]:s.fam)===state.familyFilter);
 if(state.observedFilter==='observed')list=list.filter(s=>isO(s));
 if(state.observedFilter==='unobserved')list=list.filter(s=>!isO(s));
 if(state.waterFilter)list=list.filter(s=>matchWater(s,state.waterFilter));
 let xtrHtml='';
 if(state.searchQuery.trim()){const q=state.searchQuery.toLowerCase();
-list=list.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q)||s.fam.toLowerCase().includes(q));
+list=list.filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q)||(s.famCommon||s.fam).toLowerCase().includes(q));
 const otherMatches=[];
 for(const k of TAXA_ORDER){if(k===state.activeTaxon)continue;
 const matches=(SPECIES_DATA[k]||[]).filter(s=>s.cn.toLowerCase().includes(q)||s.sn.toLowerCase().includes(q));
 if(matches.length)otherMatches.push({taxon:k,count:matches.length,emoji:TAXA[k].emoji,label:TAXA[k].label});}
 if(otherMatches.length){xtrHtml=`<div class="xtr">Also found in: ${otherMatches.map(m=>`<button onclick="state.activeTaxon='${m.taxon}';try{location.hash='${m.taxon}'}catch(e){};render()" style="background:none;border:none;color:var(--forest);font-weight:600;text-decoration:underline;cursor:pointer;font-size:11px">${m.emoji} ${m.label} (${m.count})</button>`).join(' · ')}</div>`;}}
 if(!list.length&&!xtrHtml){cont.innerHTML=`<div class="es">No species match your filters.</div>`;return;}
-if(!list.length&&xtrHtml){cont.innerHTML=xtrHtml+`<div class="es">No matches in ${TAXA[state.activeTaxon].label}.</div>`;return;}
-const tc=TAXA[state.activeTaxon],groups={};
-for(const sp of list){if(!groups[sp.fam])groups[sp.fam]=[];groups[sp.fam].push(sp);}
+if(!list.length&&xtrHtml){cont.innerHTML=xtrHtml+`<div class="es">No matches in ${tc.label}.</div>`;return;}
+// Group by famCommon (damselflies) or fam (butterflies, dragonflies)
+const groups={};
+for(const sp of list){const gk=gf?sp[gf]:sp.fam;if(!groups[gk])groups[gk]=[];groups[gk].push(sp);}
 let html=xtrHtml;
 const sortedFamGroups=Object.entries(groups);
-if(state.famSort==='taxon'&&tc.familyOrder){sortedFamGroups.sort((a,b)=>tc.familyOrder.indexOf(a[0])-tc.familyOrder.indexOf(b[0]));}
+if(tc.familyOrder){sortedFamGroups.sort((a,b)=>tc.familyOrder.indexOf(a[0])-tc.familyOrder.indexOf(b[0]));}
 else{sortedFamGroups.sort((a,b)=>a[0].localeCompare(b[0]));}
 for(const[fam,spp]of sortedFamGroups){
 const fc=tc.familyColors[fam]||'#999';
-// Sub-group by famCommon (genus-level grouping like "dancers", "bluets") within this family
+const famLabel=fam.charAt(0).toUpperCase()+fam.slice(1);
+// For non-groupField taxa (butterflies, dragonflies): sub-group by famCommon
+// For groupField taxa (damselflies): render cards directly, no subgroups needed
+if(gf){
+// Damselflies: outer group IS the famCommon, just sort and render
+spp.sort((a,b)=>a.sn.localeCompare(b.sn));
+html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${famLabel}<span class="fgc">(${spp.length})</span></div><div class="sg">`;
+for(const sp of spp){const obs=isO(sp),ca=state.photoCache[sp.sn];
+const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`background:linear-gradient(135deg,${fc}22,${fc}44)`;
+const pip=STATUS_PIP[sp.st];const isIntro=INTRO_SET.has(sp.sn)||INTRO_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
+const isInvasive=INVASIVE_SET.has(sp.sn)||INVASIVE_SET.has(sp.sn.split(' ').slice(0,2).join(' '));
+html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${isInvasive||pip?`<div class="badge-col">${isInvasive?`<div class="inv-pill">⚠ INV</div>`:''}${isIntro&&!isInvasive?`<div class="intro-pill">INTRO</div>`:''}${pip?`<div class="st-pip" style="background:${pip.bg};color:${pip.text}"><span class="st-dot" style="background:${pip.dot}"></span>${pip.label}</div>`:''}</div>`:''}
+<div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep">${tc.emoji}</div>`:''}</div>
+<div class="cb"><div class="ccn">${sp.cn}${obs?`<span class="ob-inline">✓</span>`:''}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
+html+=`</div></div>`;
+}else{
+// Butterflies & dragonflies: sub-group by famCommon within each family
 const subGroups={};
 for(const sp of spp){const key=sp.famCommon||'';if(!subGroups[key])subGroups[key]=[];subGroups[key].push(sp);}
 for(const key in subGroups){subGroups[key].sort((a,b)=>{const oa=speciesOrderIndex(a),ob=speciesOrderIndex(b);if(oa!==-1&&ob!==-1&&SPECIES_ORDER[state.activeTaxon])return oa-ob;return a.sn.localeCompare(b.sn);});}
-// Order sub-groups by their first appearance in the scientific-name-sorted family list, so it stays stable
-const subGroupOrder=[];
-const seen=new Set();
+const subGroupOrder=[];const seen=new Set();
 const famSortedBySn=[...spp].sort((a,b)=>{const oa=speciesOrderIndex(a),ob=speciesOrderIndex(b);if(oa!==-1&&ob!==-1&&SPECIES_ORDER[state.activeTaxon])return oa-ob;return a.sn.localeCompare(b.sn);});
 for(const sp of famSortedBySn){const key=sp.famCommon||'';if(!seen.has(key)){seen.add(key);subGroupOrder.push(key);}}
-const famLabel=fam;
 html+=`<div class="fg"><div class="fgt" style="color:${fc};border-bottom:2px solid ${fc}30">${famLabel}<span class="fgc">(${spp.length})</span></div>`;
 for(const key of subGroupOrder){
 const subSpp=subGroups[key];
@@ -452,9 +477,8 @@ html+=`<div class="sc" style="border-left-color:${fc}" data-sid="${sp.id}">${isI
 <div class="cp" style="${ps}">${!ca||!ca.url?`<div class="ep">${tc.emoji}</div>`:''}</div>
 <div class="cb"><div class="ccn">${sp.cn}${obs?`<span class="ob-inline">✓</span>`:''}</div><div class="csn">${sp.sn}${isIntro?'<span class="intro-mark"> ✦</span>':''}${ENDEMIC_SET.has(sp.sn)?'<span class="endemic-mark"> ★</span>':''}</div></div></div>`;}
 html+=`</div>`;}
-html+=`</div>`;}
+html+=`</div>`;}}
 cont.innerHTML=html;aL();ep(list,true);}
-
 
 const MO_NAMES=['J','F','M','A','M','J','J','A','S','O','N','D'];
 
@@ -462,8 +486,7 @@ function rPhen(sp){
 if(!sp.mo)return '';
 const mo=sp.mo,pk=sp.pk||[];
 return '<div class="ds-phen"><div class="ds-phen-label">Seasonality</div><div class="ds-phen-bar">'+
-MO_NAMES.map((n,i)=>{
-const m=i+1,active=mo.includes(m),peak=pk.includes(m);
+MO_NAMES.map((n,i)=>{const m=i+1,active=mo.includes(m),peak=pk.includes(m);
 return '<div class="ds-phen-mo '+(peak?'peak':active?'active':'off')+'" style="height:'+(peak?'18px':active?'14px':'8px')+'">'+n+'</div>';
 }).join('')+'</div></div>';
 }
@@ -471,7 +494,6 @@ function rWater(sp){
 if(!sp.water)return '';
 return '<div class="ds-water"><svg viewBox="0 0 24 24"><path d="M12 2c-4 5-7 9-7 13a7 7 0 0014 0c0-4-3-8-7-13z"/></svg>'+sp.water+'</div>';
 }
-
 function rFM(sp){if(!sp.fm)return '';let h='';for(const[l,v]of Object.entries(sp.fm)){if(!v)continue;h+=`<div class="ds-fmr"><span class="ds-fml">${l}</span><span class="ds-fmv">${v}</span></div>`;}return h;}
 
 function openDS(sp){
@@ -479,7 +501,7 @@ state.dsSpecies=sp;
 if(!state.photoCache[sp.sn]||!state.photoCache[sp.sn].url){
 delete state.photoCache[sp.sn];
 pq.unshift(sp);ppq().then(()=>{const ca2=state.photoCache[sp.sn];if(ca2&&ca2.url){const ph=document.querySelector('.ds-photo');if(ph){ph.style.background=`url(${ca2.url}) center/cover no-repeat`;const ep=ph.querySelector('.ds-ep');if(ep)ep.remove();}const at=document.querySelector('.ds-attr');if(at&&ca2.attr)at.textContent=ca2.attr;}});}
-const tc=TAXA[state.activeTaxon],fc=tc.familyColors[sp.fam]||'#999',ca=state.photoCache[sp.sn],st=STATUS[sp.st]||{};
+const tc=TAXA[state.activeTaxon],fc=tc.familyColors[sp.famCommon]||tc.familyColors[sp.fam]||'#999',ca=state.photoCache[sp.sn],st=STATUS[sp.st]||{};
 const tid=state.resolvedTids[sp.sn]||'';
 const mapUrl=tid?`https://www.inaturalist.org/observations?place_id=${tc.placeId}&subview=map&taxon_id=${tid}`:`https://www.inaturalist.org/observations?place_id=${tc.placeId}&subview=map&taxon_name=${encodeURIComponent(sp.sn)}`;
 const ps=ca&&ca.url?`background:url(${ca.url}) center/cover no-repeat`:`background:linear-gradient(135deg,${fc}22,${fc}44)`;
@@ -496,9 +518,7 @@ ${(()=>{const c=CONSERVATION[sp.sn]||CONSERVATION[sp.sn.split(' ').slice(0,2).jo
 <div class="ds-desc">${sp.desc}</div>${rPhen(sp)}${rWater(sp)}
 <div class="ds-fms">${rFM(sp)}</div>
 <div class="ds-map-label">MontCo Observations</div>
-<div class="ds-map-wrap">
-<div class="ds-map" id="dsMap"></div>
-</div>
+<div class="ds-map-wrap"><div class="ds-map" id="dsMap"></div></div>
 <div class="ds-acts"><a class="ds-btn ds-btn-inat" href="${mapUrl}" target="_blank" rel="noopener noreferrer">View on iNaturalist →</a>${state.inatUsername&&tid?`<a class="ds-btn ds-btn-myobs" href="https://www.inaturalist.org/observations?user_id=${encodeURIComponent(state.inatUsername)}&taxon_id=${tid}&verifiable=any" target="_blank" rel="noopener noreferrer">My Observations →</a>`:''}</div>
 ${ca&&ca.attr?`<div class="ds-attr">${eH(ca.attr)}</div>`:''}
 </div></div></div>`;
@@ -512,12 +532,9 @@ const m=L.map(el,{zoomControl:false,attributionControl:false});
 m.fitBounds([[40.05,-75.55],[40.30,-75.10]],{padding:[5,5]});
 L.control.zoom({position:'topright'}).addTo(m);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18}).addTo(m);
-if(tid){
-L.tileLayer(`https://api.inaturalist.org/v1/grid/{z}/{x}/{y}.png?taxon_id=${tid}&place_id=${tc.placeId}&color=%233A9B68&opacity=0.7`,{maxZoom:18,opacity:0.8}).addTo(m);
-}
+if(tid){L.tileLayer(`https://api.inaturalist.org/v1/grid/{z}/{x}/{y}.png?taxon_id=${tid}&place_id=${tc.placeId}&color=%233A9B68&opacity=0.7`,{maxZoom:18,opacity:0.8}).addTo(m);}
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,opacity:0.8}).addTo(m);
-state.dsMap=m;
-setTimeout(()=>m.invalidateSize(),100);
+state.dsMap=m;setTimeout(()=>m.invalidateSize(),100);
 }catch{el.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:12px;padding:16px;text-align:center;background:#f5f5f5">Map requires network.<br><a href="${mapUrl}" target="_blank" style="color:var(--forest)">View on iNaturalist →</a></div>`;}
 },80);
 let sy=null;
@@ -527,8 +544,7 @@ sheet.addEventListener('touchend',()=>{sy=null;},{passive:true});}
 
 function closeDS(){if(state.dsMap){state.dsMap.remove();state.dsMap=null;}const o=document.getElementById('dsOvr');if(o)o.remove();if(state.dsSpecies){pp(state.dsSpecies);state.dsSpecies=null;}}
 
-function aL(){
-document.querySelectorAll('.sc[data-sid]').forEach(t=>t.addEventListener('click',()=>{const sp=(SPECIES_DATA[state.activeTaxon]||[]).find(s=>s.id===t.dataset.sid);if(sp)openDS(sp);}));}
+function aL(){document.querySelectorAll('.sc[data-sid]').forEach(t=>t.addEventListener('click',()=>{const sp=(SPECIES_DATA[state.activeTaxon]||[]).find(s=>s.id===t.dataset.sid);if(sp)openDS(sp);}));}
 function eH(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 function oM(sp){const tc=TAXA[state.activeTaxon],tid=state.resolvedTids[sp.sn]||'';
@@ -554,21 +570,13 @@ document.getElementById('sInp').value=state.searchQuery;rSp();}
 loadState();
 hydrateCache().catch(()=>{});
 
-
 const DATA_GROUPS=TAXA_ORDER;
 let _dataLoaded=0,_dataTotal=DATA_GROUPS.length;
 
 function updateLoadProgress(){
   const pct=Math.round((_dataLoaded/_dataTotal)*100);
   const el=document.getElementById('loadProg');
-  if(el){
-    if(_dataLoaded<_dataTotal){
-      el.innerHTML='<div style="font-size:28px;margin-bottom:8px">🔬</div>Loading species data\u2026 '+pct+'%';
-      el.style.display='block';
-    }else{
-      el.style.display='none';
-    }
-  }
+  if(el){if(_dataLoaded<_dataTotal){el.innerHTML='<div style="font-size:28px;margin-bottom:8px">🔬</div>Loading species data\u2026 '+pct+'%';el.style.display='block';}else{el.style.display='none';}}
 }
 
 async function loadAllData(){
@@ -579,22 +587,11 @@ async function loadAllData(){
   }
   const lp=document.getElementById('loadProg');if(lp){lp.style.display='block';lp.textContent='Loading species data\u2026';}
   const promises=DATA_GROUPS.map(async g=>{
-    try{
-      const r=await fetch('data/'+g+'.json');
-      if(!r.ok)throw new Error(r.status);
-      SPECIES_DATA[g]=await r.json();
-    }catch(e){
-      console.warn('Failed to load '+g+':',e);
-      SPECIES_DATA[g]=[];
-    }
-    _dataLoaded++;
-    updateLoadProgress();
-    if(g===state.activeTaxon)render();
+    try{const r=await fetch('data/'+g+'.json');if(!r.ok)throw new Error(r.status);SPECIES_DATA[g]=await r.json();}
+    catch(e){console.warn('Failed to load '+g+':',e);SPECIES_DATA[g]=[];}
+    _dataLoaded++;updateLoadProgress();if(g===state.activeTaxon)render();
   });
-  await Promise.all(promises);
-  rSub();
-  render();
-  if(state.inatUsername)fetchLL();
+  await Promise.all(promises);rSub();render();if(state.inatUsername)fetchLL();
 }
 
 loadAllData();
@@ -612,19 +609,15 @@ const alias=Object.entries(NAME_ALIASES).find(([k,v])=>k.toLowerCase()===q||v.to
 if(alias){const [k,v]=alias;const alt=(k.toLowerCase()===q?v:k).toLowerCase();
 for(const g of TAXA_ORDER){const sp=(SPECIES_DATA[g]||[]).find(s=>s.sn.toLowerCase()===q||s.sn.toLowerCase()===alt||s.cn.toLowerCase()===q);
 if(sp){if(g!==state.activeTaxon){saveT(g);render();}setTimeout(()=>openDS(sp),300);return;}}return;}
-for(const k of TAXA_ORDER){
-const sp=(SPECIES_DATA[k]||[]).find(s=>s.sn.toLowerCase()===q||s.cn.toLowerCase()===q);
-if(sp){if(k!==state.activeTaxon){saveT(k);render();}
-setTimeout(()=>openDS(sp),300);return;}}
+for(const k of TAXA_ORDER){const sp=(SPECIES_DATA[k]||[]).find(s=>s.sn.toLowerCase()===q||s.cn.toLowerCase()===q);
+if(sp){if(k!==state.activeTaxon){saveT(k);render();}setTimeout(()=>openDS(sp),300);return;}}
 }
 function checkDeepLink(){
 const params=new URLSearchParams(location.search);
-const sq=params.get('species');
-if(sq){findAndOpenSpecies(sq);return;}
+const sq=params.get('species');if(sq){findAndOpenSpecies(sq);return;}
 const srch=params.get('search');
 if(srch){state.searchQuery=srch;const si=document.getElementById('sInp');if(si)si.value=srch;render();return;}
-if(location.hash.startsWith('#species/')){
-findAndOpenSpecies(decodeURIComponent(location.hash.slice(9)).replace(/_/g,' '));}
+if(location.hash.startsWith('#species/')){findAndOpenSpecies(decodeURIComponent(location.hash.slice(9)).replace(/_/g,' '));}
 }
 const _dlisten=setInterval(()=>{if(Object.keys(SPECIES_DATA).length>=TAXA_ORDER.length){clearInterval(_dlisten);checkDeepLink();}},200);
 </script>
