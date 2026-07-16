@@ -551,5 +551,36 @@
     "hp": "",
     "pkSrc": "pub",
     "water": "pond/lake"
-  }
+  },
+  {
+    "id": "da19",
+    "cn": "Skimming Bluet",
+    "sn": "Enallagma geminatum",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 1,
+    "st": "rare",
+    "wiki": "https://en.wikipedia.org/wiki/Skimming_Bluet",
+    "desc": "A black-eyed bluet with broad median and humeral stripes.  Antehumeral strip narrows towards top before flaring again.  Abdomen mostly black except S8-9 all blue but S10 is black.",
+    "fm": {
+      "Size": "Small: 19-28mm",
+      "Male": "Eyes black, with narrow line on forehead. Thorax blue.",
+      "Female": "Similar to male, eyes brown below. Abdomen thicker with S9 black and sides of S2-8 with pale marks.",
+      "Similar Species": "Slender, Stream and Azure have dark abdomens but all have blue eyes and S10 is blue.",
+      "Habitat": "Ponds and lakes with lots of vegetation.",
+      "Flight Period": "Spring through Fall."
+    },
+    "mo": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "pk": [],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "pond/lake"
+  } 
 ]
