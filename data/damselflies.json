@@ -582,5 +582,36 @@
     "hp": "",
     "pkSrc": "pub",
     "water": "pond/lake"
-  } 
+  },
+  {
+    "id": "da20",
+    "cn": "American Rubyspot",
+    "sn": "Hetaerina americana",
+    "fam": "Calopterygidae",
+    "famCommon":"jewelwings",
+    "obs": 3,
+    "st": "uncommon",
+    "wiki": "https://en.wikipedia.org/wiki/American_Rubyspot",
+    "desc": "A dazzling and unique damselfly with metalic coloration and a distictive wash to the base of the wings. Found along rocky streams with sunny banks with plenty of vegetation.",
+    "fm": {
+      "Size": "Large: 37-42mm",
+      "Male": "Eyes tan becoming red with maturity, thorax metalic red with yellow stripes, abdomen metalic green.",
+      "Female": "Eyes tan becoming red, thorax metalic green with yellow stripes, abdomen metalic green with some yellow below and segment rings.",
+      "Similar Species": "None recorded in our area.",
+      "Habitat": "Cleam rocky streams with sunny banks and vegetation.",
+      "Flight Period": "Late Summer."
+    },
+    "mo": [
+      7,
+      8,
+      9
+    ],
+    "pk": [
+      8,
+      9
+    ],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "stream/creek"
+  }
 ]

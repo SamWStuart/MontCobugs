@@ -103,12 +103,12 @@
     "obs": 45,
     "wiki": "http://en.wikipedia.org/wiki/Sympetrum_vicinum",
     "st": "common",
-    "desc": "Face color is key for Meadowhawks ID. Males are entirely red, females are very colorful and lack red.  Females pose a real ID challenge and amount of black on abdomen is key to separating from other red Meadowhawks.",
+    "desc": "Face color is key for Meadowhawks ID but also variable. Males are entirely red, females are very colorful and lack red.  Females pose a real ID challenge and amount of black on abdomen is key to separating from other red Meadowhawks.",
     "fm": {
       "Size": "Small: 31-35mm",
       "Male": "All red with narrow black median on S9",
       "Female": "Tan or Tan-reddish otherwise similarly patterned.",
-      "Similar Species": "White-face, Ruby and Cherry-faced have prominent black in abdomens",
+      "Similar Species": "White-face, Ruby and Cherry-faced have prominent black in abdomens. Getting a picture of hamules is key to ID for this quartet.",
       "Habitat": "Ponds and Lakes with lots of vegetation or nearby forests.",
       "Flight Period": "Late Summer through Fall"
     },
@@ -136,7 +136,7 @@
     "obs": 41,
     "wiki": "http://en.wikipedia.org/wiki/Widow_skimmer",
     "st": "common",
-    "desc": "An easily identified dragonfly owing to it's wing pattern.",
+    "desc": "An easily identified dragonfly owing to it's wing pattern and perching behavior.  Can be territorial and chase other dragonflies.",
     "fm": {
       "Size": "Medium: 42-50mm",
       "Male": "Large black patches basally on both FW & HW. Eyes, face and thorax dark, abdomen pruinescent.",
@@ -165,7 +165,7 @@
     "obs": 34,
     "wiki": "http://en.wikipedia.org/wiki/Eastern_amberwing",
     "st": "common",
-    "desc": "A delightful tiny, colorful winged dragonfly who is common at marshy, vernal ponds.",
+    "desc": "A delightful tiny, colorful winged dragonfly who is common at marshy ponds and occasionaly away from wetlands.",
     "fm": {
       "Size": "X-Small: 20-25mm",
       "Male": "Orange winged and tiny should separate it from anything else.",
@@ -194,7 +194,7 @@
     "obs": 32,
     "wiki": "https://en.wikipedia.org/wiki/Twelve-spotted_skimmer",
     "st": "uncommon",
-    "desc": "A large skimmer with distinctive wing pattern.  But beware look-a-likes like the female Common Whitetail.  The shape of spots in wing will make this ID easy.",
+    "desc": "A large skimmer with distinctive wing pattern.  Males are unmistakale, but beware look-a-likes of the female, like the female Common Whitetail.  The shape of spots in wing will make this ID easy.",
     "fm": {
       "Size": "Large: 52-57mm",
       "Male": "Has three dark spots per wing interspersed with pruinescent patches.",
@@ -476,12 +476,12 @@
     "obs": 7,
     "wiki": "http://en.wikipedia.org/wiki/Pantala_hymenaea",
     "st": "common",
-    "desc": "A reddish-brown big bodied Glider",
+    "desc": "A reddish-brown big bodied Glider. Gliders have distinctive broad hindwing shape and Gliders spend most of their time flying.",
     "fm": {
       "Size": "Medium: 45-50mm",
       "Male": "Eyes gray and red, thorax brown/red with two gray stripes, abdomen brownish. Hindwings with small splotch on base.",
       "Female": "Similar to male, less red in face.",
-      "Similar Species": "Wandering Glider is more brightly yellow.",
+      "Similar Species": "Wandering Glider is brightly yellow but otherwise similar in behavior and shape.",
       "Habitat": "Likes to Wander and can be seen anywhere.",
       "Flight Period": "Summer and Fall."
     },
@@ -628,7 +628,7 @@
     "obs": 5,
     "wiki": "http://en.wikipedia.org/wiki/Dromogomphus_spinosus",
     "st": "uncommon",
-    "desc": "Long Clubtail with dark black front of the thorax.",
+    "desc": "Large Clubtail with distinctive thorax - sides lacking black stripes and front with black markings. Eyes boldly green and face yellow.",
     "fm": {
       "Size": "Large: 53-68mm",
       "Male": "Eyes green, face yellow, thorax mostly yellow-gray but boldly black on front, abdomen moderately clubbed with yellow-gray lines down middle.",
@@ -690,7 +690,7 @@
     "obs": 4,
     "wiki": "https://en.wikipedia.org/wiki/Band-winged_meadowhawk",
     "st": "rare",
-    "desc": "Dark wing bands distinctive among red Meadowhawks",
+    "desc": "Dark wing bands distinctive among red Meadowhawks - especially well marked hindwings can have a translucent wash.",
     "fm": {
       "Size": "Medium: 28-40mm",
       "Male": "Wings with deep red-brown bands on HW. Eyes brownish-red as is thorax, abdomen bright red.",
@@ -902,7 +902,7 @@
     "famCommon":"emeralds",
     "obs": 2,
     "wiki": "http://en.wikipedia.org/wiki/Somatochlora_linearis",
-    "st": "uncommon",
+    "st": "rare",
     "desc": "A dark narrow bodied Emerald, Imperiled in Pennsylvania.",
     "fm": {
       "Size": "Large: 58-68mm",
@@ -1025,10 +1025,10 @@
     "obs": 1,
     "wiki": "http://en.wikipedia.org/wiki/Epitheca_princeps",
     "st": "uncommon",
-    "desc": "A long narrowbodied Baskettail with bold wing markings",
+    "desc": "A long narrowbodied Baskettail with variably bold wing markings.  Prefers wooded streams but can be found in a wide variety of habitats.  Constantly on the move low over the water.",
     "fm": {
       "Size": "Large: 59-75mm",
-      "Male": "Eyes green, thorax and abdomen mostly dark, wings typically with four spots each.",
+      "Male": "Eyes metalic-emerald green, thorax and abdomen mostly dark, wings typically with four spots each.",
       "Female": "female similar, thicker abdomen. Eyes gray-brown",
       "Similar Species": "Common Whitetail and 12-spotted Skimmer smaller with different body shape.",
       "Habitat": "Larger creeks and rivers or ponds with sandy banks.",
