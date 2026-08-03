@@ -46,6 +46,7 @@ button{font-family:inherit;cursor:pointer}input{font-family:inherit}
 .llbd{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}.llbd span{font-size:9px;opacity:0.7}
 .llld{font-size:11px;color:var(--gold);margin-top:4px;animation:pls 1.5s ease infinite}
 @keyframes pls{0%,100%{opacity:0.5}50%{opacity:1}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .si{width:100%;padding:9px 14px;border-radius:9px;border:1px solid #e0d8cc;background:#fff;font-size:13px;color:var(--forest);outline:none;margin-bottom:10px;transition:border-color 0.2s}
 .si:focus{border-color:var(--gold)}
 .slg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
@@ -222,13 +223,13 @@ const STATUS_PIP={"uncommon":{dot:"#BFA46E",bg:"rgba(191,164,110,0.4)",text:"#ff
 const CONSERVATION={"Danaus plexippus":{iucn:"VU",iucnFull:"Vulnerable",esa:"Proposed Threatened (Dec 2024)",note:"IUCN Vulnerable (migratory population); USFWS proposed Threatened status under review."}};
 const SPECIES_DATA={}
 
-const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'taxon',observedFilter:null,waterFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},lifeListLoading:false,expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
+const state={activeTaxon:'butterflies',statusFilter:null,familyFilter:null,famExpanded:false,famSort:'taxon',observedFilter:null,waterFilter:null,searchQuery:'',inatUsername:null,lifeListData:{},yearListData:{},lifeListLoading:false,listMode:'life',expandedCards:{},expandedSubsp:{},leafletMap:null,dsMap:null,photoCache:{},resolvedTids:{}};
 
-const IDB_NAME='montcoBugsPhotos',IDB_VER=1,IDB_STORE='photos';
+const IDB_NAME='montcoBugsPhotos',IDB_VER=2,IDB_STORE='photos',IDB_LISTS='listCache';
 let idb=null;
 function openIDB(){return new Promise((res,rej)=>{
 try{const r=indexedDB.open(IDB_NAME,IDB_VER);
-r.onupgradeneeded=e=>{e.target.result.createObjectStore(IDB_STORE);};
+r.onupgradeneeded=e=>{const db=e.target.result;if(!db.objectStoreNames.contains(IDB_STORE))db.createObjectStore(IDB_STORE);if(!db.objectStoreNames.contains(IDB_LISTS))db.createObjectStore(IDB_LISTS);};
 r.onsuccess=e=>{idb=e.target.result;res(idb);};
 r.onerror=()=>res(null);}catch{res(null);}});}
 function idbGet(key){return new Promise(res=>{
@@ -251,6 +252,40 @@ const keys=rk.result||[];const vals=rv.result||[];
 for(let i=0;i<keys.length;i++)result[keys[i]]=vals[i];
 res(result);};
 tx.onerror=()=>res({});}catch{res({});}});}
+// ── List cache helpers ────────────────────────────────────────────────────────
+const LIFE_TTL=24*60*60*1000;  // 24 hours
+const YEAR_TTL=6*60*60*1000;   // 6 hours
+function listCacheKey(username,type){return username+'_'+type+'_'+new Date().getFullYear();}
+function idbSetList(key,data){return new Promise(res=>{
+  if(!idb)return res();
+  try{const tx=idb.transaction(IDB_LISTS,'readwrite');
+  tx.objectStore(IDB_LISTS).put({data,ts:Date.now()},key);
+  tx.oncomplete=()=>res();tx.onerror=()=>res();}catch{res();}});}
+function idbGetList(key){return new Promise(res=>{
+  if(!idb)return res(null);
+  try{const tx=idb.transaction(IDB_LISTS,'readonly');
+  const r=tx.objectStore(IDB_LISTS).get(key);
+  r.onsuccess=()=>res(r.result||null);r.onerror=()=>res(null);}catch{res(null);}});}
+async function loadCachedLists(){
+  if(!state.inatUsername||!idb)return false;
+  const lifeKey=listCacheKey(state.inatUsername,'life');
+  const yearKey=listCacheKey(state.inatUsername,'year');
+  const [lifeRec,yearRec]=await Promise.all([idbGetList(lifeKey),idbGetList(yearKey)]);
+  let gotLife=false,gotYear=false;
+  if(lifeRec&&(Date.now()-lifeRec.ts)<LIFE_TTL){
+    state.lifeListData={};
+    for(const k of TAXA_ORDER){const d=lifeRec.data[k];if(d)state.lifeListData[k]={ids:new Set(d.ids),names:new Set(d.names)};}
+    gotLife=true;}
+  if(yearRec&&(Date.now()-yearRec.ts)<YEAR_TTL){
+    state.yearListData={};
+    for(const k of TAXA_ORDER){const d=yearRec.data[k];if(d)state.yearListData[k]={ids:new Set(d.ids),names:new Set(d.names)};}
+    gotYear=true;}
+  return gotLife||gotYear;}
+function serializeListData(listData){
+  const out={};
+  for(const k of TAXA_ORDER){const d=listData[k];if(d)out[k]={ids:[...d.ids],names:[...d.names]};}
+  return out;}
+// ─────────────────────────────────────────────────────────────────────────────
 async function hydrateCache(){
 await openIDB();if(!idb)return;
 const all=await idbGetAll();let n=0;
@@ -259,7 +294,7 @@ if(v&&v.url){state.photoCache[sn]={url:v.url,attr:v.attr||''};
 if(v.tid)state.resolvedTids[sn]=v.tid;n++;}}
 if(n>0)console.log('Hydrated '+n+' cached photos from IndexedDB');}
 
-function loadState(){try{const h=location.hash.replace('#','');if(TAXA_ORDER.includes(h))state.activeTaxon=h;const u=localStorage.getItem('inat_username');if(u)state.inatUsername=u;}catch{}}
+function loadState(){try{const h=location.hash.replace('#','');if(TAXA_ORDER.includes(h))state.activeTaxon=h;const u=localStorage.getItem('inat_username');if(u)state.inatUsername=u;const m=localStorage.getItem('list_mode');if(m)state.listMode=m;}catch{}}
 function saveU(n){state.inatUsername=n;try{n?localStorage.setItem('inat_username',n):localStorage.removeItem('inat_username')}catch{}}
 function saveT(k){state.activeTaxon=k;state.statusFilter=null;state.familyFilter=null;state.observedFilter=null;state.waterFilter=null;state.searchQuery='';state.expandedCards={};state.expandedSubsp={};for(const sp of(SPECIES_DATA[k]||[])){const c=state.photoCache[sp.sn];if(c&&!c.url&&c._rc){delete state.photoCache[sp.sn];}}try{location.hash=k}catch{}}
 
@@ -312,19 +347,51 @@ if(!pq.find(q=>q.sn===sp.sn))newItems.push(sp);}}
 if(priority){pq.unshift(...newItems);}else{pq.push(...newItems);}
 ppq();}
 
-async function fetchLL(){if(!state.inatUsername)return;state.lifeListLoading=true;rLL();
-const res={};for(const k of TAXA_ORDER){const cfg=TAXA[k];
-try{const r=await fetch(`https://api.inaturalist.org/v1/observations/species_counts?user_id=${encodeURIComponent(state.inatUsername)}&place_id=${cfg.placeId}&taxon_id=${cfg.iNatTaxonId}&per_page=500`);
-const d=await r.json();const ids=new Set(),names=new Set();
-for(const x of(d.results||[])){if(x.taxon?.id)ids.add(x.taxon.id);if(x.taxon?.name)names.add(x.taxon.name.toLowerCase());}
-res[k]={ids,names};}catch{res[k]={ids:new Set(),names:new Set()};}}
-state.lifeListData=res;state.lifeListLoading=false;render();}
+async function fetchLL(forceRefresh=false){
+if(!state.inatUsername)return;
+// Try cache first unless forcing refresh
+if(!forceRefresh){
+  const gotCached=await loadCachedLists();
+  if(gotCached&&Object.keys(state.lifeListData).length>0){render();fetchLLBackground();return;}}
+state.lifeListLoading=true;rLL();
+await fetchLLFull();
+state.lifeListLoading=false;render();}
+async function fetchLLBackground(){
+  // Silently check if cache is stale and refresh if needed
+  if(!state.inatUsername||!idb)return;
+  const lifeKey=listCacheKey(state.inatUsername,'life');
+  const yearKey=listCacheKey(state.inatUsername,'year');
+  const [lifeRec,yearRec]=await Promise.all([idbGetList(lifeKey),idbGetList(yearKey)]);
+  const lifeStale=!lifeRec||(Date.now()-lifeRec.ts)>=LIFE_TTL;
+  const yearStale=!yearRec||(Date.now()-yearRec.ts)>=YEAR_TTL;
+  if(lifeStale||yearStale){await fetchLLFull();render();}}
+async function fetchLLFull(){
+  const year=new Date().getFullYear();
+  const lifeRes={},yearRes={};
+  for(const k of TAXA_ORDER){const cfg=TAXA[k];
+  try{
+    // Life list
+    const r1=await fetch(`https://api.inaturalist.org/v1/observations/species_counts?user_id=${encodeURIComponent(state.inatUsername)}&place_id=${cfg.placeId}&taxon_id=${cfg.iNatTaxonId}&per_page=500`);
+    const d1=await r1.json();const ids1=new Set(),names1=new Set();
+    for(const x of(d1.results||[])){if(x.taxon?.id)ids1.add(x.taxon.id);if(x.taxon?.name)names1.add(x.taxon.name.toLowerCase());}
+    lifeRes[k]={ids:ids1,names:names1};
+    // Year list
+    const r2=await fetch(`https://api.inaturalist.org/v1/observations/species_counts?user_id=${encodeURIComponent(state.inatUsername)}&place_id=${cfg.placeId}&taxon_id=${cfg.iNatTaxonId}&per_page=500&d1=${year}-01-01&d2=${year}-12-31`);
+    const d2=await r2.json();const ids2=new Set(),names2=new Set();
+    for(const x of(d2.results||[])){if(x.taxon?.id)ids2.add(x.taxon.id);if(x.taxon?.name)names2.add(x.taxon.name.toLowerCase());}
+    yearRes[k]={ids:ids2,names:names2};
+  }catch{lifeRes[k]={ids:new Set(),names:new Set()};yearRes[k]={ids:new Set(),names:new Set()};}}
+  state.lifeListData=lifeRes;state.yearListData=yearRes;
+  // Cache both
+  if(idb){
+    await idbSetList(listCacheKey(state.inatUsername,'life'),serializeListData(lifeRes));
+    await idbSetList(listCacheKey(state.inatUsername,'year'),serializeListData(yearRes));}}
 
-function isO(sp,taxon){const d=state.lifeListData[taxon||state.activeTaxon];if(!d)return false;const r=state.resolvedTids[sp.sn];if(r&&d.ids.has(r))return true;const sn=sp.sn.toLowerCase();if(d.names.has(sn))return true;const parts=sn.split(' ');if(parts.length>=3&&d.names.has(parts[0]+' '+parts[1]))return true;return false;}
+function isO(sp,taxon){const src=state.listMode==='year'?state.yearListData:state.lifeListData;const d=src[taxon||state.activeTaxon];if(!d)return false;const r=state.resolvedTids[sp.sn];if(r&&d.ids.has(r))return true;const sn=sp.sn.toLowerCase();if(d.names.has(sn))return true;const parts=sn.split(' ');if(parts.length>=3&&d.names.has(parts[0]+' '+parts[1]))return true;return false;}
 
 function sC(){const c={};for(const k of TAXA_ORDER)c[k]=(SPECIES_DATA[k]||[]).filter(sp=>!sp.ssp).length;return c;}
 function sspC(k){return(SPECIES_DATA[k]||[]).filter(sp=>sp.ssp).length;}
-function lC(){const c={};for(const k of TAXA_ORDER){const d=state.lifeListData[k];if(!d){c[k]=0;continue;}let n=0;for(const sp of(SPECIES_DATA[k]||[])){if(sp.ssp)continue;if(isO(sp,k))n++;}c[k]=n;}return c;}
+function lC(){const c={};for(const k of TAXA_ORDER){const src=state.listMode==='year'?state.yearListData:state.lifeListData;const d=src[k];if(!d){c[k]=0;continue;}let n=0;for(const sp of(SPECIES_DATA[k]||[])){if(sp.ssp)continue;if(isO(sp,k))n++;}c[k]=n;}return c;}
 
 function fmtN(n){return n.toLocaleString();}
 function rSub(){const t=TAXA_ORDER.reduce((a,k)=>a+(SPECIES_DATA[k]||[]).length,0);const ssp=TAXA_ORDER.reduce((a,k)=>a+sspC(k),0);document.getElementById('hSub').textContent=ssp>0?`${fmtN(t-ssp)} species + ${ssp} subspecies — Butterflies, Dragonflies & Damselflies`:`${fmtN(t)} species — Butterflies, Dragonflies & Damselflies`;}
@@ -356,12 +423,23 @@ if(state.observedFilter==='observed')fl=fl.filter(s=>isO(s,k));
 if(state.observedFilter==='unobserved')fl=fl.filter(s=>!isO(s,k));
 if(state.waterFilter)fl=fl.filter(s=>matchWater(s,state.waterFilter));
 fsc=fl.filter(s=>!s.ssp).length;flc=fl.filter(s=>!s.ssp&&isO(s,k)).length;}
-let h=`<div class="llh"><span class="lll">iNaturalist Life List</span><div id="llC"></div></div>`;
+const year=new Date().getFullYear();
+const modeLabel=state.listMode==='year'?year+' Year List':'Life List';
+let h=`<div class="llh"><span class="lll">iNaturalist</span><div style="display:flex;align-items:center;gap:6px"><div id="llMode" style="display:flex;background:var(--forest-deep);border-radius:6px;padding:2px"><button id="llModeLife" style="padding:2px 8px;border:none;border-radius:4px;font-size:10px;font-weight:600;cursor:pointer;background:${state.listMode==='life'?'var(--gold)':'transparent'};color:${state.listMode==='life'?'var(--forest)':'rgba(255,255,255,0.6)'}">Life</button><button id="llModeYear" style="padding:2px 8px;border:none;border-radius:4px;font-size:10px;font-weight:600;cursor:pointer;background:${state.listMode==='year'?'var(--gold)':'transparent'};color:${state.listMode==='year'?'var(--forest)':'rgba(255,255,255,0.6)'}">${year}</button></div><button id="llRefresh" title="Refresh from iNaturalist" style="background:none;border:none;color:var(--gold);font-size:14px;cursor:pointer;padding:0 2px;line-height:1">↻</button><div id="llC"></div></div></div>`;
 if(state.inatUsername){const p=fsc>0?(flc/fsc*100):0;if(state.lifeListLoading)h+=`<div class="llld">Loading...</div>`;
 h+=`<div class="llp"><div class="llt"><div class="llf" style="width:${p}%"></div></div><span class="lln">${fmtN(flc)}/${fmtN(fsc)}${hasFilter?' <span style=\"font-size:9px;opacity:0.6\">(filtered)</span>':''}</span></div>`;}
 el.innerHTML=h;const c=document.getElementById('llC');
 if(state.inatUsername){c.innerHTML=`<button class="llbt" id="llE">${state.inatUsername}</button>`;document.getElementById('llE').addEventListener('click',sUI);}
-else{c.innerHTML=`<button class="llbt" id="llS">Set Username</button>`;document.getElementById('llS').addEventListener('click',sUI);}}
+else{c.innerHTML=`<button class="llbt" id="llS">Set Username</button>`;document.getElementById('llS').addEventListener('click',sUI);}
+const mLife=document.getElementById('llModeLife');
+const mYear=document.getElementById('llModeYear');
+const mRef=document.getElementById('llRefresh');
+if(mLife)mLife.addEventListener('click',()=>{state.listMode='life';try{localStorage.setItem('list_mode','life')}catch{};render();});
+if(mYear)mYear.addEventListener('click',()=>{state.listMode='year';try{localStorage.setItem('list_mode','year')}catch{};render();});
+if(mRef)mRef.addEventListener('click',()=>{
+  if(!state.inatUsername)return;
+  if(mRef)mRef.style.animation='spin 1s linear infinite';
+  fetchLL(true).then(()=>{if(mRef)mRef.style.animation='';});});}
 function sUI(){const c=document.getElementById('llC');c.innerHTML=`<div style="display:flex;gap:4px"><input class="lli" id="llI" placeholder="iNat username" value="${state.inatUsername||''}"><button class="llbt" id="llO" style="background:var(--gold);color:var(--forest);border:none">OK</button>${state.inatUsername?`<button class="llbt" id="llX" style="background:rgba(198,40,40,0.2);color:#EF9A9A;border:1px solid rgba(198,40,40,0.35)">×</button>`:''}</div>`;
 const i=document.getElementById('llI');i.focus();i.addEventListener('keydown',e=>{if(e.key==='Enter')subU();});document.getElementById('llO').addEventListener('click',subU);const x=document.getElementById('llX');if(x)x.addEventListener('click',()=>{saveU(null);state.lifeListData={};render();});}
 function subU(){const v=document.getElementById('llI').value.trim();saveU(v||null);if(v)fetchLL();render();}
@@ -587,7 +665,7 @@ async function loadAllData(){
     catch(e){console.warn('Failed to load '+g+':',e);SPECIES_DATA[g]=[];}
     _dataLoaded++;updateLoadProgress();if(g===state.activeTaxon)render();
   });
-  await Promise.all(promises);rSub();render();if(state.inatUsername)fetchLL();
+  await Promise.all(promises);rSub();render();if(state.inatUsername)fetchLL(false);
 }
 
 loadAllData();
