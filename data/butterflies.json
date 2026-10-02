@@ -2295,5 +2295,31 @@
     "pk":[],
     "hp":"",
     "pkSrc": "pub"
+  },
+  {
+    "id": "bu75",
+    "cn": "Little Yellow",
+    "sn": "Pyrisitia lisa",
+    "fam": "Pieridae",
+    "famCommon":"sulphurs",
+    "obs": 2,
+    "wiki": "http://en.wikipedia.org/wiki/Pyrisitia_lisa",
+    "st": "rare",
+    "desc": "An uncommon and tiny sulphur that can wander North in late Summer. Size is distinctive!",
+    "fm": {
+      "Wingspan":"Similar to Crescents",
+      "Upperside": "Bright yellow with some black edging",
+      "Underside": "Lemony yellow with dark brownish black spotting on HW",
+      "Flight Period":"Late Summer.",
+      "Host Plants": "Pea",
+      "Habitat": "Open fields, roadsides and meadows."
+    },
+    "mo": [
+      8,
+      9
+    ],
+    "pk":[],
+    "hp":"",
+    "pkSrc": "pub"
   }
 ]

@@ -613,5 +613,34 @@
     "hp": "",
     "pkSrc": "pub",
     "water": "stream/creek"
+  },
+  {
+    "id": "da21",
+    "cn": "Turquoise Bluet",
+    "sn": "Enallagma divagans",
+    "fam": "Coenagrionidae",
+    "famCommon":"bluets",
+    "obs": 1,
+    "st": "rare",
+    "wiki": "https://en.wikipedia.org/wiki/Enallagma_divagans",
+    "desc": "Very similar to Stream bluet but possibly not overlapping in habitat.",
+    "fm": {
+      "Size": "Small: 17-22mm",
+      "Male": "Eyes blue with black-cap, thorax blue with humeral and median stripes of equal width. Abdomen mostly black, with blue S8 & 9.",
+      "Female": "Variable - eyes browner, thorax blue-green sometimes with brown covering humeral. Abdomen black on top with blue-green low on sides.",
+      "Similar Species": "Stream bluet has blue rings in middle of abdomen",
+      "Habitat": "Swampy areas, ponds and lakes.",
+      "Flight Period": "Late Summer."
+    },
+    "mo": [
+      7,
+      8,
+      9
+    ],
+    "pk": [
+    ],
+    "hp": "",
+    "pkSrc": "pub",
+    "water": "stream/creek"
   }
 ]
